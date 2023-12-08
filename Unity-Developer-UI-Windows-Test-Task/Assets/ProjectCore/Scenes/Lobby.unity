@@ -661,6 +661,7 @@ GameObject:
   m_Component:
   - component: {fileID: 311876480}
   - component: {fileID: 311876479}
+  - component: {fileID: 311876481}
   - component: {fileID: 311876478}
   - component: {fileID: 311876477}
   m_Layer: 0
@@ -710,6 +711,7 @@ MonoBehaviour:
   _scriptableObjectInstallers: []
   _monoInstallers:
   - {fileID: 311876478}
+  - {fileID: 311876481}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -740,8 +742,20 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &311876481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 311876476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25d1517e24814cd5aa47fd712ae4aa8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &343711985
 GameObject:
   m_ObjectHideFlags: 0
@@ -1024,7 +1038,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &546297455
 GameObject:
@@ -2400,12 +2414,12 @@ GameObject:
   - component: {fileID: 1080545228}
   - component: {fileID: 1080545227}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: MainThemeAudioSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &1080545227
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2415,12 +2429,12 @@ AudioSource:
   m_GameObject: {fileID: 1080545226}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 7529864644734122771, guid: 686c382b91a943042972a3c7382a7e87, type: 2}
+  m_audioClip: {fileID: 8300000, guid: dfbdd7e701934974583ce91d76447ce8, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -3074,7 +3088,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1403444730
 GameObject:
@@ -3090,7 +3104,7 @@ GameObject:
   - component: {fileID: 1403444732}
   - component: {fileID: 1403444731}
   m_Layer: 5
-  m_Name: Canvas (1)
+  m_Name: Canvas!!!!!!!!!!!!!!!!!!!!!!!!!
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3108,6 +3122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37b959a170e74cb09ce81992e36f93d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _toggleButtons: []
 --- !u!114 &1403444732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3186,7 +3201,7 @@ RectTransform:
   - {fileID: 1278965281}
   - {fileID: 149194079}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

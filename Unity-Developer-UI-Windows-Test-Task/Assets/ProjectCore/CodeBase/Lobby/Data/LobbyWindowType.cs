@@ -1,4 +1,4 @@
-﻿namespace ProjectCore.CodeBase.Lobby.Data
+﻿namespace CodeBase.Lobby.Data
 {
     public enum LobbyWindowType
     {

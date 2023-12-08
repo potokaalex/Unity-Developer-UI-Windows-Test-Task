@@ -1,18 +1,25 @@
-using ProjectCore.CodeBase.Lobby.Data;
-using ProjectCore.CodeBase.Utilities.UI;
+using CodeBase.Lobby.Data;
+using CodeBase.Utilities.UI;
 using UnityEngine;
-using Zenject;
 
-namespace ProjectCore.CodeBase.Lobby.Main
+namespace CodeBase.Lobby.Main
 {
     public class LobbyMainToggleWindowButton : ButtonBase
     {
         [SerializeField] private LobbyWindowType _lobbyWindowType;
         private LobbyMainAdapter _lobbyMainAdapter;
+        private LobbyAudioManager _audioManager;
 
-        [Inject]
-        public void Construct(LobbyMainAdapter lobbyMainAdapter) => _lobbyMainAdapter = lobbyMainAdapter;
+        public void Initialize(LobbyMainAdapter lobbyMainAdapter, LobbyAudioManager audioManager)
+        {
+            _lobbyMainAdapter = lobbyMainAdapter;
+            _audioManager = audioManager;
+        }
 
-        private protected override void OnClick() => _lobbyMainAdapter.ToggleCurrentWindow(_lobbyWindowType);
+        private protected override void OnClick()
+        {
+            _lobbyMainAdapter.ToggleCurrentWindow(_lobbyWindowType);
+            _audioManager.PlayButtonClick();
+        }
     }
 }

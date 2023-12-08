@@ -1,6 +1,6 @@
 ﻿using UnityEditor;
 
-namespace ProjectCore.CodeBase.Utilities.Editor
+namespace CodeBase.Utilities.Editor
 {
     public class LockInspectorMenuItem
     {

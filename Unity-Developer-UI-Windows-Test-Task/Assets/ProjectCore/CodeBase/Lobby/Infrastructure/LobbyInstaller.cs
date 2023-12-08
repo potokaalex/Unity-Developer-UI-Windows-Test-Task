@@ -1,10 +1,11 @@
-﻿using ProjectCore.CodeBase.Lobby.Data;
-using ProjectCore.CodeBase.Lobby.Main;
-using ProjectCore.CodeBase.Lobby.Settings;
+﻿using CodeBase.Lobby.Data;
+using CodeBase.Lobby.Infrastructure.Providers;
+using CodeBase.Lobby.Main;
+using CodeBase.Lobby.Settings;
 using UnityEngine;
 using Zenject;
 
-namespace ProjectCore.CodeBase.Lobby.Infrastructure
+namespace CodeBase.Lobby.Infrastructure
 {
     public class LobbyInstaller : MonoInstaller
     {
@@ -12,7 +13,11 @@ namespace ProjectCore.CodeBase.Lobby.Infrastructure
 
         public override void InstallBindings()
         {
+            Container.Bind<LobbyFactory>().AsSingle();
+            Container.Bind<LobbyWindowsManager>().AsSingle();
+            Container.Bind<LobbyAudioManagerProvider>().AsSingle();
             Container.Bind<LobbyMainAdapter>().AsSingle();
+            Container.Bind<LobbySettingsAdapter>().AsSingle();
             Container.Bind<LobbyModel>().AsSingle();
             Container.Bind<LobbyUIFactory>().AsSingle();
             Container.Bind<LobbySettingsUIFactory>().AsSingle();

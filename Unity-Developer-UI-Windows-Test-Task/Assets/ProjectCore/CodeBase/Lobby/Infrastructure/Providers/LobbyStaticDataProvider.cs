@@ -1,6 +1,6 @@
-﻿using ProjectCore.CodeBase.Lobby.Data;
+﻿using CodeBase.Lobby.Data;
 
-namespace ProjectCore.CodeBase.Lobby.Infrastructure
+namespace CodeBase.Lobby.Infrastructure.Providers
 {
     public class LobbyStaticDataProvider
     {

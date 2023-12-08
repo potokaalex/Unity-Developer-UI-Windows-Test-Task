@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 878f7caf18b04773a5d91471c293a82b, type: 3}
   m_Name: LobbyConfig
   m_EditorClassIdentifier: 
+  AudioManagerPrefab: {fileID: 6900255400157796821, guid: 2ce355f62c99c134eadd0f405880b953, type: 3}
   MainViewPrefab: {fileID: 1598339370219117928, guid: 13b29d81d8294b94abfc86440d9d64bb, type: 3}
   SettingsViewPrefab: {fileID: 3906930698698578222, guid: f01da2f3a8007b74c89f4d1f89b65812, type: 3}

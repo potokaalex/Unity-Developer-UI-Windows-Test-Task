@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace ProjectCore.CodeBase.Utilities.UI
+namespace CodeBase.Utilities.UI
 {
     public abstract class WindowBase : MonoBehaviour
     {

@@ -1,10 +1,24 @@
-﻿using ProjectCore.CodeBase.Utilities.UI;
+﻿using System.Collections.Generic;
+using CodeBase.Lobby.WindowsManager;
+using CodeBase.Utilities.UI;
+using UnityEngine;
 
-namespace ProjectCore.CodeBase.Lobby.Settings
+namespace CodeBase.Lobby.Settings
 {
     public class LobbySettingsView : WindowBase
     {
-        public void Initialize() => Close();
+        [SerializeField] private List<LobbySettingsToggle> _settingsToggles;
+        [SerializeField] private LobbyCloseCurrentWindowButton _closeWindowButton;
+
+        public void Initialize(LobbySettingsAdapter settingsAdapter, LobbyAudioManager audioManager)
+        {
+            _closeWindowButton.Initialize(settingsAdapter, audioManager);
+
+            foreach (var toggle in _settingsToggles)
+                toggle.Initialize(settingsAdapter, audioManager);
+
+            Close();
+        }
 
         public override void Open()
         {

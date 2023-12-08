@@ -1,46 +1,18 @@
-﻿using System;
-using ProjectCore.CodeBase.Lobby.Data;
-using ProjectCore.CodeBase.Lobby.Settings;
-using ProjectCore.CodeBase.Utilities;
-using ProjectCore.CodeBase.Utilities.UI;
+﻿using CodeBase.Lobby.Data;
+using CodeBase.Lobby.WindowsManager;
 
-namespace ProjectCore.CodeBase.Lobby.Main
+namespace CodeBase.Lobby.Main
 {
-    public class LobbyMainAdapter
+    public class LobbyMainAdapter: ILobbyCloseCurrentWindowAdapter
     {
-        private LobbySettingsView _settingsView;
-        private LobbyWindowType _currentWindowType;
-        private WindowBase _currentWindow;
+        private readonly LobbyWindowsManager _windowsManager;
 
-        public void Initialize(LobbySettingsView settingsView) => _settingsView = settingsView;
+        public LobbyMainAdapter(LobbyWindowsManager windowsManager) => _windowsManager = windowsManager;
 
-        public void ToggleCurrentWindow(LobbyWindowType windowType)
-        {
-            CloseCurrentWindow();
+        public void Initialize(LobbyMainView mainView, LobbyAudioManager audioManager) => mainView.Initialize(this, audioManager);
 
-            if (_currentWindowType == windowType)
-                return;
+        public void ToggleCurrentWindow(LobbyWindowType windowType) => _windowsManager.ToggleCurrentWindow(windowType);
 
-            switch (windowType)
-            {
-                case LobbyWindowType.Settings:
-                    OpenWindow(_settingsView);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(windowType), windowType, null);
-            }
-        }
-
-        public void CloseCurrentWindow()
-        {
-            _currentWindow?.Close();
-            _currentWindowType = LobbyWindowType.None;
-        }
-
-        private void OpenWindow(WindowBase window)
-        {
-            _currentWindow = window;
-            _currentWindow.Open();
-        }
+        public void CloseCurrentWindow() => _windowsManager.CloseCurrentWindow();
     }
 }

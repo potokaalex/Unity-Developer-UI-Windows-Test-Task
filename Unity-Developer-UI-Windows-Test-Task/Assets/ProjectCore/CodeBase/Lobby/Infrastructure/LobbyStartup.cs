@@ -1,15 +1,17 @@
-﻿using UnityEngine;
+﻿using CodeBase.Lobby.Infrastructure.States;
+using CodeBase.Project.Services.StateMachineService;
+using UnityEngine;
 using Zenject;
 
-namespace ProjectCore.CodeBase.Lobby.Infrastructure
+namespace CodeBase.Lobby.Infrastructure
 {
     public class LobbyStartup : MonoBehaviour
     {
-        private LobbyUIFactory _lobbyUIFactory;
+        private StateMachine _stateMachine;
 
         [Inject]
-        public void Construct(LobbyUIFactory lobbyUIFactory) => _lobbyUIFactory = lobbyUIFactory;
+        public void Construct(StateMachine stateMachine) => _stateMachine = stateMachine;
 
-        private void Start() => _lobbyUIFactory.Create();
+        private void Start() => _stateMachine.SwitchTo<LobbyStartState>();
     }
 }

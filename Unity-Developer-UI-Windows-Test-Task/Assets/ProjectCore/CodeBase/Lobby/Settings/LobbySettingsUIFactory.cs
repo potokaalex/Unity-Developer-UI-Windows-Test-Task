@@ -9,25 +9,27 @@ namespace CodeBase.Lobby.Settings
     {
         private readonly IInstantiator _instantiator;
         private readonly LobbyStaticDataProvider _staticDataProvider;
-        private readonly LobbyAudioManagerProvider _lobbyAudioManagerProvider;
+        private readonly LobbyAudioManagerProvider _audioManagerProvider;
+        private readonly LobbySettingsAdapter _adapter;
 
         public LobbySettingsUIFactory(IInstantiator instantiator, LobbyStaticDataProvider staticDataProvider,
-            LobbyAudioManagerProvider lobbyAudioManagerProvider)
+            LobbyAudioManagerProvider audioManagerProvider, LobbySettingsAdapter adapter)
         {
             _instantiator = instantiator;
             _staticDataProvider = staticDataProvider;
-            _lobbyAudioManagerProvider = lobbyAudioManagerProvider;
+            _audioManagerProvider = audioManagerProvider;
+            _adapter = adapter;
         }
 
-        public LobbySettingsView CreateView(Transform root, LobbySettingsAdapter settingsAdapter)
+        public LobbySettingsView CreateView(Transform root)
         {
-            var audioManger = _lobbyAudioManagerProvider.GetManager();
+            var audioManger = _audioManagerProvider.GetManager();
             var prefab = _staticDataProvider.GetConfig().SettingsViewPrefab;
             var item = _instantiator.InstantiatePrefabForComponent<LobbySettingsView>(prefab);
 
             item.transform.SetParent(root, false);
-            item.Initialize(settingsAdapter, audioManger);
-
+            item.Initialize(_adapter, audioManger);
+            
             return item;
         }
     }

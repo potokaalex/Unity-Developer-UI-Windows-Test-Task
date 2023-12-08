@@ -12,7 +12,7 @@ namespace CodeBase.Lobby.Settings
         private readonly LobbyModel _model;
         private readonly LobbyWindowsManager _windowsManager;
 
-        public LobbySettingsAdapter(IAudioManager audioManager, LobbyModel model,LobbyWindowsManager windowsManager)
+        public LobbySettingsAdapter(IAudioManager audioManager, LobbyModel model, LobbyWindowsManager windowsManager)
         {
             _audioManager = audioManager;
             _model = model;
@@ -22,11 +22,11 @@ namespace CodeBase.Lobby.Settings
         public void Initialize()
         {
             var settings = _model.GetGameData().Settings;
-            
+
             SetMusicActive(settings.IsMusicActive);
             SetUISoundActive(settings.IsUISoundActive);
         }
-        
+
         public void Set(LobbySettingsToggleType settingsType, bool isActive)
         {
             switch (settingsType)

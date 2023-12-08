@@ -6,5 +6,7 @@ namespace CodeBase.Project.Data
     public class GameData
     {
         public GameSettingsData Settings = new();
+        public double LastEntryOADate;
+        public int TicketsCount;
     }
 }

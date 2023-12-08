@@ -1,4 +1,5 @@
-﻿using CodeBase.Project.Data;
+﻿using System;
+using CodeBase.Project.Data;
 using CodeBase.Project.Services.SaveLoaderService;
 
 namespace CodeBase.Lobby
@@ -15,6 +16,10 @@ namespace CodeBase.Lobby
 
         public void OnGameDataLoad(GameData data) => _gameData = data;
 
-        public void OnGameDataSave(GameData data) => data.Settings = _gameData.Settings;
+        public void OnGameDataSave(GameData data)
+        {
+            data.Settings = _gameData.Settings;
+            data.LastEntryOADate = DateTime.Now.ToOADate();
+        }
     }
 }

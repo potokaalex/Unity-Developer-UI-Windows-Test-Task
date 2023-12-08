@@ -1,4 +1,5 @@
-﻿using CodeBase.Lobby.Data;
+﻿using CodeBase.Lobby.DailyBonus;
+using CodeBase.Lobby.Data;
 using CodeBase.Lobby.Infrastructure.Providers;
 using CodeBase.Lobby.Main;
 using CodeBase.Lobby.Settings;
@@ -13,15 +14,33 @@ namespace CodeBase.Lobby.Infrastructure
 
         public override void InstallBindings()
         {
-            Container.Bind<LobbyFactory>().AsSingle();
+            BindFactories();
+            BindProviders();
+            BindAdapters();
+
             Container.Bind<LobbyWindowsManager>().AsSingle();
+            Container.Bind<LobbyModel>().AsSingle();
+        }
+
+        private void BindFactories()
+        {
+            Container.Bind<LobbyFactory>().AsSingle();
+            Container.Bind<LobbyMainUIFactory>().AsSingle();
+            Container.Bind<LobbySettingsUIFactory>().AsSingle();
+            Container.Bind<LobbyDailyBonusUIFactory>().AsSingle();
+        }
+
+        private void BindProviders()
+        {
             Container.Bind<LobbyAudioManagerProvider>().AsSingle();
+            Container.Bind<LobbyStaticDataProvider>().AsSingle().WithArguments(_lobbyConfig);
+        }
+
+        private void BindAdapters()
+        {
             Container.Bind<LobbyMainAdapter>().AsSingle();
             Container.Bind<LobbySettingsAdapter>().AsSingle();
-            Container.Bind<LobbyModel>().AsSingle();
-            Container.Bind<LobbyUIFactory>().AsSingle();
-            Container.Bind<LobbySettingsUIFactory>().AsSingle();
-            Container.Bind<LobbyStaticDataProvider>().AsSingle().WithArguments(_lobbyConfig);
+            Container.Bind<LobbyDailyBonusAdapter>().AsSingle();
         }
     }
 }

@@ -15,12 +15,15 @@ namespace CodeBase.Lobby.Settings
         private LobbyAudioManager _audioManager;
 
         [Inject]
-        public void Construct(LobbyAudioManagerProvider audioManagerProvider) =>
-            _audioManagerProvider = audioManagerProvider;
-
-        public void Initialize(LobbySettingsAdapter settingsAdapter)
+        public void Construct(LobbySettingsAdapter settingsAdapter, LobbyAudioManagerProvider audioManagerProvider)
         {
             _settingsAdapter = settingsAdapter;
+            _audioManagerProvider = audioManagerProvider;
+        }
+
+        public void Initialize(bool isActive)
+        {
+            SelectableToggle.SetIsOnWithoutNotify(isActive);
             _audioManager = _audioManagerProvider.GetManager();
         }
 

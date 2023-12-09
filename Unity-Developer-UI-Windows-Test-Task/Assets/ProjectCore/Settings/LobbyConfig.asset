@@ -58,7 +58,7 @@ MonoBehaviour:
     Count: 0
     RequiredLevelNumber: 0
   - GroupType: 1
-    IconName: LockIcon
+    IconName: EmptyIcon
     ID: Character 2
     Cost: 500
     Count: 0
@@ -76,7 +76,7 @@ MonoBehaviour:
     Count: 0
     RequiredLevelNumber: 0
   - GroupType: 2
-    IconName: LockIcon
+    IconName: EmptyIcon
     ID: Location 3
     Cost: 500
     Count: 0

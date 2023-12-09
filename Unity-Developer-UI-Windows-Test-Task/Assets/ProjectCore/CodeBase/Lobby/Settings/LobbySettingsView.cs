@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using CodeBase.Lobby.WindowsManager;
+﻿using CodeBase.Lobby.WindowsManager;
+using CodeBase.Project.Data;
 using CodeBase.Utilities.UI;
 using UnityEngine;
 
@@ -7,15 +7,16 @@ namespace CodeBase.Lobby.Settings
 {
     public class LobbySettingsView : WindowBase
     {
-        [SerializeField] private List<LobbySettingsToggle> _settingsToggles;
+        [SerializeField] private LobbySettingsToggle _musicToggle;
+        [SerializeField] private LobbySettingsToggle _uiSoundToggle;
         [SerializeField] private LobbyCloseCurrentWindowButton _closeWindowButton;
 
-        public void Initialize(LobbySettingsAdapter settingsAdapter)
+        public void Initialize(LobbySettingsAdapter settingsAdapter, GameSettingsData settingsData)
         {
             _closeWindowButton.Initialize(settingsAdapter);
 
-            foreach (var toggle in _settingsToggles)
-                toggle.Initialize(settingsAdapter);
+            _musicToggle.Initialize(settingsData.IsMusicActive);
+            _uiSoundToggle.Initialize(settingsData.IsUISoundActive);
 
             Close();
         }

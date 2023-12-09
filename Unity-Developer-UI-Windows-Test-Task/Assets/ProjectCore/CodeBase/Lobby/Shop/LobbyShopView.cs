@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CodeBase.Lobby.Data;
+using CodeBase.Lobby.Shop.Item;
 using CodeBase.Lobby.WindowsManager;
 using CodeBase.Utilities.UI;
 using UnityEngine;
@@ -13,6 +14,7 @@ namespace CodeBase.Lobby.Shop
         [SerializeField] private LobbyCloseCurrentWindowButton _closeCurrentWindowButton;
         [SerializeField] private Transform _itemGroupsRoot;
 
+        private readonly Dictionary<string, LobbyShopItem> _items = new();
         private LobbyShopAdapter _shopAdapter;
         private LobbyShopUIFactory _shopUIFactory;
 
@@ -62,8 +64,12 @@ namespace CodeBase.Lobby.Shop
                 if (groupType == ShopGroupType.Tickets)
                     _shopUIFactory.CreateDonateItem(preset, group.GetItemsRoot());
                 else
-                    _shopUIFactory.CreateItem(preset, group.GetItemsRoot());
+                    _items.Add(preset.ID, _shopUIFactory.CreateItem(preset, group.GetItemsRoot()));
             }
         }
+
+        public void ShowBuy(string presetID) => _items[presetID].ShowBuy();
+
+        public void UnlockItem(string presetID) => _items[presetID].Unlock();
     }
 }

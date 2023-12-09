@@ -9,13 +9,15 @@ namespace CodeBase.Lobby.Settings
         private readonly IInstantiator _instantiator;
         private readonly LobbyStaticDataProvider _staticDataProvider;
         private readonly LobbySettingsAdapter _adapter;
+        private readonly LobbyModel _model;
 
         public LobbySettingsUIFactory(IInstantiator instantiator, LobbyStaticDataProvider staticDataProvider,
-            LobbySettingsAdapter adapter)
+            LobbySettingsAdapter adapter, LobbyModel model)
         {
             _instantiator = instantiator;
             _staticDataProvider = staticDataProvider;
             _adapter = adapter;
+            _model = model;
         }
 
         public LobbySettingsView CreateView(Transform root)
@@ -24,7 +26,7 @@ namespace CodeBase.Lobby.Settings
             var item = _instantiator.InstantiatePrefabForComponent<LobbySettingsView>(prefab);
 
             item.transform.SetParent(root, false);
-            item.Initialize(_adapter);
+            item.Initialize(_adapter, _model.GetGameData().Settings);
 
             return item;
         }

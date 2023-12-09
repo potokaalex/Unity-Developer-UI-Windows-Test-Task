@@ -31,7 +31,7 @@ namespace CodeBase.Lobby.Infrastructure.States
             _gameDataSaveLoader.Load();
             _lobbyFactory.CreateAudioManager();
             _lobbyFactory.CreateUI();
-
+            
             _unityEventsObserver.OnApplicationExitEvent += _stateMachine.SwitchTo<LobbyExitState>;
         }
 

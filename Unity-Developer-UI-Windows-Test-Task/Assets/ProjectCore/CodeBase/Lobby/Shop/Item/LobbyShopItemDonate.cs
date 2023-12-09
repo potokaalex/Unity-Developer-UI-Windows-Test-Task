@@ -54,6 +54,6 @@ namespace CodeBase.Lobby.Shop.Item
 
         private void OnClickBuyItem() => _audioManager.PlayButtonClick();
 
-        private void OnBuyItem(Product arg) => _adapter.BuyItem(_preset);
+        private void OnBuyItem(Product arg) => _adapter.BuyItemDonate(_preset);
     }
 }

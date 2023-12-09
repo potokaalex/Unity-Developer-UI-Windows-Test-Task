@@ -16,11 +16,13 @@ namespace CodeBase.Lobby.Shop.Item
         [SerializeField] private GameObject _boughtRoot;
         [SerializeField] private Button _selectableButton;
         [SerializeField] private Image _itemIcon;
+        [SerializeField] private Sprite _lockIcon;
 
         private LobbyShopAdapter _adapter;
         private LobbyAudioManagerProvider _audioManagerProvider;
         private LobbyShopItemPreset _preset;
         private LobbyAudioManager _audioManager;
+        private Sprite _defaultIcon;
 
         [Inject]
         public void Construct(LobbyShopAdapter adapter, LobbyAudioManagerProvider audioManagerProvider)
@@ -29,18 +31,18 @@ namespace CodeBase.Lobby.Shop.Item
             _audioManagerProvider = audioManagerProvider;
         }
 
-        public void Initialize(LobbyShopItemPreset preset, Sprite sprite)
+        public void Initialize(LobbyShopItemPreset preset, Sprite defaultIcon)
         {
             _preset = preset;
+            _defaultIcon = defaultIcon;
             _audioManager = _audioManagerProvider.GetManager();
             _nameText.text = $"{preset.ID}";
             _costText.text = $"{preset.Cost}";
-            _itemIcon.sprite = sprite;
 
-            if (preset.RequiredLevelNumber != 0)
-                _requiredLevelText.text = $"LV. {preset.RequiredLevelNumber}";
+            if (preset.RequiredLevelNumber == 0)
+                Unlock();
             else
-                _requiredLevelText.gameObject.SetActive(false);
+                Lock();
         }
 
         private void OnEnable() => _selectableButton.onClick.AddListener(OnClickBuy);
@@ -53,18 +55,22 @@ namespace CodeBase.Lobby.Shop.Item
             _audioManager.PlayButtonClick();
         }
 
-        public void ShowBuy(bool isBought)
+        public void ShowBuy()
         {
-            if (isBought)
-            {
-                _notBoughtRoot.SetActive(false);
-                _boughtRoot.SetActive(true);
-            }
-            else
-            {
-                _notBoughtRoot.SetActive(true);
-                _boughtRoot.SetActive(false);
-            }
+            _notBoughtRoot.SetActive(false);
+            _boughtRoot.SetActive(true);
+        }
+
+        public void Unlock()
+        {
+            _requiredLevelText.gameObject.SetActive(false);
+            _itemIcon.sprite = _defaultIcon;
+        }
+
+        private void Lock()
+        {
+            _requiredLevelText.text = $"LV. {_preset.RequiredLevelNumber}";
+            _itemIcon.sprite = _lockIcon;
         }
     }
 }

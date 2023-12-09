@@ -9,6 +9,7 @@ namespace CodeBase.Lobby
         private GameData _gameData;
 
         public event Action<int> OnTicketsCountChanged;
+        public event Action<int> OnLevelChanged;
 
         public GameData GetGameData() => _gameData;
 
@@ -16,6 +17,18 @@ namespace CodeBase.Lobby
         {
             _gameData.PlayerProgress.TicketsCount += count;
             OnTicketsCountChanged?.Invoke(_gameData.PlayerProgress.TicketsCount);
+        }
+
+        public void RemoveTicketsCount(int count)
+        {
+            _gameData.PlayerProgress.TicketsCount -= count;
+            OnTicketsCountChanged?.Invoke(_gameData.PlayerProgress.TicketsCount);
+        }
+
+        public void SetNextLevel()
+        {
+            _gameData.PlayerProgress.ReachedLevel += 1;
+            OnLevelChanged?.Invoke(_gameData.PlayerProgress.ReachedLevel);
         }
 
         public void OnGameDataLoad(GameData data) => _gameData = data;

@@ -45,13 +45,15 @@ namespace CodeBase.Lobby.Shop
             return item;
         }
 
-        public void CreateItem(LobbyShopItemPreset preset, Transform root)
+        public LobbyShopItem CreateItem(LobbyShopItemPreset preset, Transform root)
         {
             var prefab = _config.LobbyShopItemPrefab;
             var item = _instantiator.InstantiatePrefabForComponent<LobbyShopItem>(prefab);
 
             item.transform.SetParent(root, false);
             item.Initialize(preset, _assetProvider.Get<Sprite>(preset.IconName));
+            
+            return item;
         }
 
         public void CreateDonateItem(LobbyShopItemPreset preset, Transform root)

@@ -1,4 +1,6 @@
-﻿using CodeBase.Lobby.Main;
+﻿using System.Collections.Generic;
+using CodeBase.Lobby.DailyBonus;
+using CodeBase.Lobby.Main;
 using CodeBase.Lobby.Settings;
 using UnityEngine;
 
@@ -10,5 +12,11 @@ namespace CodeBase.Lobby.Data
         public LobbyAudioManager AudioManagerPrefab;
         public LobbyMainView MainViewPrefab;
         public LobbySettingsView SettingsViewPrefab;
+
+        public LobbyDailyBonusCongratsView DailyBonusCongratsViewPrefab;
+        public LobbyDailyBonusOverviewView DailyBonusOverviewViewPrefab;
+        public LobbyDailyBonusCountItemView DailyBonusCountItemViewPrefab;
+        public List<LobbyDailyBonusCountItemPreset> DailyBonusCountItemPresets;
+        public LobbyDailyBonusCountItemPreset WeeklyBonusCountItemPreset;
     }
 }

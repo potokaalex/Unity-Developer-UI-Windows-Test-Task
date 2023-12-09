@@ -2,6 +2,7 @@
 using CodeBase.Lobby.Infrastructure.Providers;
 using CodeBase.Lobby.Main;
 using CodeBase.Lobby.Settings;
+using CodeBase.Lobby.WindowsManager;
 using Zenject;
 
 namespace CodeBase.Lobby
@@ -17,11 +18,13 @@ namespace CodeBase.Lobby
         private readonly LobbyWindowsManager _windowsManager;
         private readonly LobbyMainAdapter _mainAdapter;
         private readonly LobbySettingsAdapter _settingsAdapter;
+        private readonly LobbyDailyBonusAdapter _dailyBonusAdapter;
 
         public LobbyFactory(IInstantiator instantiator, LobbyStaticDataProvider staticDataProvider,
             LobbyAudioManagerProvider audioManagerProvider, LobbyMainUIFactory mainUIFactory,
             LobbySettingsUIFactory settingsUIFactory, LobbyDailyBonusUIFactory dailyBonusUIFactory,
-            LobbyWindowsManager windowsManager, LobbyMainAdapter mainAdapter, LobbySettingsAdapter settingsAdapter)
+            LobbyWindowsManager windowsManager, LobbyMainAdapter mainAdapter, LobbySettingsAdapter settingsAdapter,
+            LobbyDailyBonusAdapter dailyBonusAdapter)
         {
             _instantiator = instantiator;
             _staticDataProvider = staticDataProvider;
@@ -32,6 +35,7 @@ namespace CodeBase.Lobby
             _windowsManager = windowsManager;
             _mainAdapter = mainAdapter;
             _settingsAdapter = settingsAdapter;
+            _dailyBonusAdapter = dailyBonusAdapter;
         }
 
         public void CreateAudioManager()
@@ -45,13 +49,16 @@ namespace CodeBase.Lobby
         public void CreateUI()
         {
             var mainView = _mainUIFactory.CreateView();
-            var settingsView = _settingsUIFactory.CreateView(mainView.GetViewsRoot());
-            _dailyBonusUIFactory.Create();
+            var viewsRoot = mainView.GetViewsRoot();
+            var settingsView = _settingsUIFactory.CreateView(viewsRoot);
+            var congratsView = _dailyBonusUIFactory.CreateCongratsView(viewsRoot);
+            var overviewView = _dailyBonusUIFactory.CreateOverviewView(viewsRoot);
+
+            _windowsManager.Initialize(settingsView, overviewView, congratsView);
 
             _mainAdapter.Initialize(mainView);
             _settingsAdapter.Initialize();
-            
-            _windowsManager.Initialize(settingsView);
+            _dailyBonusAdapter.Initialize(congratsView, overviewView);
         }
     }
 }

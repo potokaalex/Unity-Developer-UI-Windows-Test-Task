@@ -1,19 +1,27 @@
 ﻿using CodeBase.Lobby.Data;
+using CodeBase.Lobby.Infrastructure.Providers;
 using CodeBase.Utilities.UI;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.Lobby.Settings
 {
     public class LobbySettingsToggle : ToggleBase
     {
         [SerializeField] private LobbySettingsToggleType _settingsToggleType;
+
+        private LobbyAudioManagerProvider _audioManagerProvider;
         private LobbySettingsAdapter _settingsAdapter;
         private LobbyAudioManager _audioManager;
 
-        public void Initialize(LobbySettingsAdapter settingsAdapter,LobbyAudioManager audioManager)
+        [Inject]
+        public void Construct(LobbyAudioManagerProvider audioManagerProvider) =>
+            _audioManagerProvider = audioManagerProvider;
+
+        public void Initialize(LobbySettingsAdapter settingsAdapter)
         {
             _settingsAdapter = settingsAdapter;
-            _audioManager = audioManager;
+            _audioManager = _audioManagerProvider.GetManager();
         }
 
         private protected override void OnValueChange(bool isActive)

@@ -15,3 +15,22 @@ MonoBehaviour:
   AudioManagerPrefab: {fileID: 6900255400157796821, guid: 2ce355f62c99c134eadd0f405880b953, type: 3}
   MainViewPrefab: {fileID: 1598339370219117928, guid: 13b29d81d8294b94abfc86440d9d64bb, type: 3}
   SettingsViewPrefab: {fileID: 3906930698698578222, guid: f01da2f3a8007b74c89f4d1f89b65812, type: 3}
+  DailyBonusCongratsViewPrefab: {fileID: 7312072375896489493, guid: 29887de836620b94d899fad30314a16b, type: 3}
+  DailyBonusOverviewViewPrefab: {fileID: 3082625682474795020, guid: 8c3f045efea44d145989aa5a8b59be86, type: 3}
+  DailyBonusCountItemViewPrefab: {fileID: 443571190072871154, guid: ca61c9844fd4c2941b75fdf0149ee968, type: 3}
+  DailyBonusCountItemPresets:
+  - DayNumber: 1
+    TicketsCount: 5
+  - DayNumber: 2
+    TicketsCount: 5
+  - DayNumber: 3
+    TicketsCount: 10
+  - DayNumber: 4
+    TicketsCount: 10
+  - DayNumber: 5
+    TicketsCount: 15
+  - DayNumber: 6
+    TicketsCount: 15
+  WeeklyBonusCountItemPreset:
+    DayNumber: 7
+    TicketsCount: 30

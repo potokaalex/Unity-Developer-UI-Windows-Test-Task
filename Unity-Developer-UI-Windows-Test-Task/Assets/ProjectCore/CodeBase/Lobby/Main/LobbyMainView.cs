@@ -8,11 +8,11 @@ namespace CodeBase.Lobby.Main
     {
         [SerializeField] private List<LobbyMainToggleWindowButton> _toggleButtons;
         [SerializeField] private TextMeshProUGUI _ticketsCount;
-            
-        public void Initialize(LobbyMainAdapter lobbyMainAdapter, LobbyAudioManager audioManager)
+
+        public void Initialize(LobbyMainAdapter lobbyMainAdapter)
         {
             foreach (var button in _toggleButtons)
-                button.Initialize(lobbyMainAdapter, audioManager);
+                button.Initialize(lobbyMainAdapter);
         }
 
         public Transform GetViewsRoot() => gameObject.transform;

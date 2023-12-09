@@ -1,7 +1,7 @@
 ﻿using System;
 using CodeBase.Lobby.Data;
-using CodeBase.Lobby.Main;
 using CodeBase.Lobby.WindowsManager;
+using CodeBase.Project.Data;
 using CodeBase.Project.Services.AudioManagerService;
 
 namespace CodeBase.Lobby.Settings
@@ -11,6 +11,7 @@ namespace CodeBase.Lobby.Settings
         private readonly IAudioManager _audioManager;
         private readonly LobbyModel _model;
         private readonly LobbyWindowsManager _windowsManager;
+        private GameSettingsData _data;
 
         public LobbySettingsAdapter(IAudioManager audioManager, LobbyModel model, LobbyWindowsManager windowsManager)
         {
@@ -21,10 +22,10 @@ namespace CodeBase.Lobby.Settings
 
         public void Initialize()
         {
-            var settings = _model.GetGameData().Settings;
+            _data = _model.GetGameData().Settings;
 
-            SetMusicActive(settings.IsMusicActive);
-            SetUISoundActive(settings.IsUISoundActive);
+            SetMusicActive(_data.IsMusicActive);
+            SetUISoundActive(_data.IsUISoundActive);
         }
 
         public void Set(LobbySettingsToggleType settingsType, bool isActive)
@@ -45,13 +46,13 @@ namespace CodeBase.Lobby.Settings
         private void SetMusicActive(bool isActive)
         {
             _audioManager.SetMusicActive(isActive);
-            _model.SetMusicActive(isActive);
+            _data.IsMusicActive = isActive;
         }
 
         private void SetUISoundActive(bool isActive)
         {
             _audioManager.SetUISoundActive(isActive);
-            _model.SetUISoundActive(isActive);
+            _data.IsUISoundActive = isActive;
         }
 
         public void CloseCurrentWindow() => _windowsManager.CloseCurrentWindow();

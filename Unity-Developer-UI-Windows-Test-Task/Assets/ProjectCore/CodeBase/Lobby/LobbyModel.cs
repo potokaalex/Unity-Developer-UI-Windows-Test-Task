@@ -8,11 +8,15 @@ namespace CodeBase.Lobby
     {
         private GameData _gameData;
 
+        public event Action<int> OnTicketsCountChanged;
+
         public GameData GetGameData() => _gameData;
 
-        public void SetMusicActive(bool isActive) => _gameData.Settings.IsMusicActive = isActive;
-
-        public void SetUISoundActive(bool isActive) => _gameData.Settings.IsUISoundActive = isActive;
+        public void AddTicketsCount(int count)
+        {
+            _gameData.TicketsCount += count;
+            OnTicketsCountChanged?.Invoke(_gameData.TicketsCount);
+        }
 
         public void OnGameDataLoad(GameData data) => _gameData = data;
 

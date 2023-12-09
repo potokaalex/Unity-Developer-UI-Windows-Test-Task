@@ -10,12 +10,12 @@ namespace CodeBase.Lobby.Settings
         [SerializeField] private List<LobbySettingsToggle> _settingsToggles;
         [SerializeField] private LobbyCloseCurrentWindowButton _closeWindowButton;
 
-        public void Initialize(LobbySettingsAdapter settingsAdapter, LobbyAudioManager audioManager)
+        public void Initialize(LobbySettingsAdapter settingsAdapter)
         {
-            _closeWindowButton.Initialize(settingsAdapter, audioManager);
+            _closeWindowButton.Initialize(settingsAdapter);
 
             foreach (var toggle in _settingsToggles)
-                toggle.Initialize(settingsAdapter, audioManager);
+                toggle.Initialize(settingsAdapter);
 
             Close();
         }

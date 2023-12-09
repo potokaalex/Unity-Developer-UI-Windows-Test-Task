@@ -29,7 +29,7 @@ namespace CodeBase.Lobby.DailyBonus
             List<LobbyDailyBonusCountItemPreset> itemPresets)
         {
             _slider.maxValue = MaxSliderValue;
-            
+
             _closeWindowButton.Initialize(dailyBonusAdapter);
             _getWeeklyBonusButton.Initialize();
             Close();

@@ -26,8 +26,8 @@ namespace CodeBase.Lobby.Settings
 
         private protected override void OnValueChange(bool isActive)
         {
-            _settingsAdapter.Set(_settingsToggleType, isActive);
             _audioManager.PlayButtonClick();
+            _settingsAdapter.Set(_settingsToggleType, isActive);
         }
     }
 }

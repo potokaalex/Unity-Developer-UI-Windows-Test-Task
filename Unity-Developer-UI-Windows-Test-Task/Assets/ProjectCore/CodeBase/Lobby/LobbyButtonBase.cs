@@ -12,7 +12,7 @@ namespace CodeBase.Lobby
         [Inject]
         public void Construct(LobbyAudioManagerProvider audioManagerProvider) =>
             _audioManagerProvider = audioManagerProvider;
-        
+
         private protected virtual void Initialize() => _audioManager = _audioManagerProvider.GetManager();
 
         private protected void PlayClickSound() => _audioManager.PlayButtonClick();

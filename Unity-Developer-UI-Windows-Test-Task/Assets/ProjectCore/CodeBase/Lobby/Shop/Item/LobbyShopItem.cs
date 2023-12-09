@@ -15,6 +15,7 @@ namespace CodeBase.Lobby.Shop.Item
         [SerializeField] private GameObject _notBoughtRoot;
         [SerializeField] private GameObject _boughtRoot;
         [SerializeField] private Button _selectableButton;
+        [SerializeField] private Image _itemIcon;
 
         private LobbyShopAdapter _adapter;
         private LobbyAudioManagerProvider _audioManagerProvider;
@@ -28,16 +29,17 @@ namespace CodeBase.Lobby.Shop.Item
             _audioManagerProvider = audioManagerProvider;
         }
 
-        public void Initialize(LobbyShopItemPreset preset)
+        public void Initialize(LobbyShopItemPreset preset, Sprite sprite)
         {
             _preset = preset;
             _audioManager = _audioManagerProvider.GetManager();
             _nameText.text = $"{preset.ID}";
             _costText.text = $"{preset.Cost}";
+            _itemIcon.sprite = sprite;
 
             if (preset.RequiredLevelNumber != 0)
                 _requiredLevelText.text = $"LV. {preset.RequiredLevelNumber}";
-            else 
+            else
                 _requiredLevelText.gameObject.SetActive(false);
         }
 

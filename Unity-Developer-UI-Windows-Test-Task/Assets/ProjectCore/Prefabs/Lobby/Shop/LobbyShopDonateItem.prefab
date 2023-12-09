@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2180869185250564690}
   - component: {fileID: 2542983374963944394}
-  - component: {fileID: 3474543679489607466}
   - component: {fileID: 7116220673326013210}
+  - component: {fileID: 3474543679489607466}
   m_Layer: 5
   m_Name: LobbyShopDonateItem
   m_TagString: Untagged
@@ -84,22 +84,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &3474543679489607466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2180869185250564689}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af94bb791f604450b2f58940c45a1e39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _nameText: {fileID: 5481787531806746728}
-  _costText: {fileID: 2985253151167817517}
-  _itemsCountText: {fileID: 2180869186129698099}
-  _iapButton: {fileID: 249044984439824229}
 --- !u!114 &7116220673326013210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,6 +104,23 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &3474543679489607466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2180869185250564689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af94bb791f604450b2f58940c45a1e39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _nameText: {fileID: 5481787531806746728}
+  _costText: {fileID: 2985253151167817517}
+  _itemsCountText: {fileID: 2180869186129698099}
+  _iapButton: {fileID: 249044984439824229}
+  _itemIcon: {fileID: 5481787530373080389}
 --- !u!1 &2180869185521234406
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,6 +576,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5481787530373080389 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7482560558513684294, guid: 80f700fe43381eb4ba77c2ef98aed3d4, type: 3}
+  m_PrefabInstance: {fileID: 3153748546860341763}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!224 &5481787530653987082 stripped

@@ -3,6 +3,7 @@ using CodeBase.Lobby.Infrastructure.Providers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Purchasing;
+using UnityEngine.UI;
 using Zenject;
 
 namespace CodeBase.Lobby.Shop.Item
@@ -13,26 +14,30 @@ namespace CodeBase.Lobby.Shop.Item
         [SerializeField] private TextMeshProUGUI _costText;
         [SerializeField] private TextMeshProUGUI _itemsCountText;
         [SerializeField] private CodelessIAPButton _iapButton;
+        [SerializeField] private Image _itemIcon;
 
         private LobbyShopAdapter _adapter;
         private LobbyAudioManagerProvider _audioManagerProvider;
-        private LobbyShopDonateItemPreset _preset;
+        private LobbyShopItemPreset _preset;
         private LobbyAudioManager _audioManager;
 
         [Inject]
-        public void Construct(LobbyShopAdapter adapter,LobbyAudioManagerProvider audioManagerProvider)
+        public void Construct(LobbyShopAdapter adapter, LobbyAudioManagerProvider audioManagerProvider,
+            LobbyShopItemPreset preset)
         {
             _adapter = adapter;
             _audioManagerProvider = audioManagerProvider;
+            _preset = preset;
+            _iapButton.productId = preset.ID;
         }
 
-        public void Initialize(LobbyShopDonateItemPreset preset)
+        public void Initialize(Sprite sprite)
         {
-            _preset = preset;
             _audioManager = _audioManagerProvider.GetManager();
-            _nameText.text = $"[{preset.ID}]";
-            _costText.text = $"${preset.Cost}";
-            _itemsCountText.text = $"X{preset.Count}";
+            _nameText.text = $"[{_preset.ID}]";
+            _costText.text = $"${_preset.Cost}";
+            _itemsCountText.text = $"X{_preset.Count}";
+            _itemIcon.sprite = sprite;
         }
 
         private void OnEnable()

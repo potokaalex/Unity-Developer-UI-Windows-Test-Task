@@ -1,4 +1,5 @@
 ﻿using CodeBase.Project.Services;
+using CodeBase.Project.Services.AssetProviderService;
 using CodeBase.Project.Services.AudioManagerService;
 using CodeBase.Project.Services.SaveLoaderService;
 using UnityEngine;
@@ -16,6 +17,7 @@ namespace CodeBase.Project
             Container.Bind<IAudioManager>().To<AudioManager>().FromComponentInNewPrefab(_audioManagerPrefab).AsSingle();
             Container.Bind<GameDataSaveLoader>().AsSingle();
             Container.Bind<UnityEventsObserver>().FromComponentInNewPrefab(_unityEventsObserverPrefab).AsSingle();
+            Container.Bind<IAssetProvider>().To<AssetProvider>().AsSingle();
         }
     }
 }

@@ -35,27 +35,49 @@ MonoBehaviour:
     DayNumber: 7
     TicketsCount: 30
   LobbyShopViewPrefab: {fileID: 5480568759837382669, guid: e4dc171ae3cb64f479149dbcb0d49837, type: 3}
-  ShopTicketsItemPresets:
-  - ID: Epic chest
+  LobbyShopItemGroupPrefab: {fileID: 4664310790797371788, guid: 0f18f3c5b18a41b4b927011d7a626503, type: 3}
+  LobbyShopItemPrefab: {fileID: 3412071454948441761, guid: 5dd58213e805f0242af23954b772e50c, type: 3}
+  LobbyShopDonateItemPrefab: {fileID: 3474543679489607466, guid: 838ac805cd1330a428d9d94f6bcc1575, type: 3}
+  ShopItemPresets:
+  - GroupType: 0
+    IconName: ChestIcon
+    ID: Epic chest
     Cost: 1.99
     Count: 500
-  - ID: Lucky chest
-    Cost: 1.99
+    RequiredLevelNumber: 0
+  - GroupType: 0
+    IconName: ChestIcon
+    ID: Lucky chest
+    Cost: 4.99
     Count: 1200
-  ShopSkinsItemPresets:
-  - ID: Character 1
-    Cost: 0
     RequiredLevelNumber: 0
-  - ID: Character 1
+  - GroupType: 1
+    IconName: RobotIcon
+    ID: Character 1
+    Cost: 0
+    Count: 0
+    RequiredLevelNumber: 0
+  - GroupType: 1
+    IconName: LockIcon
+    ID: Character 2
     Cost: 500
+    Count: 0
     RequiredLevelNumber: 10
-  ShopLocationsItemPresets:
-  - ID: Location 1
+  - GroupType: 2
+    IconName: EmptyIcon
+    ID: Location 1
     Cost: 0
+    Count: 0
     RequiredLevelNumber: 0
-  - ID: Location 2
+  - GroupType: 2
+    IconName: EmptyIcon
+    ID: Location 2
     Cost: 500
+    Count: 0
     RequiredLevelNumber: 0
-  - ID: Location 2
+  - GroupType: 2
+    IconName: LockIcon
+    ID: Location 3
     Cost: 500
-    RequiredLevelNumber: 19
+    Count: 0
+    RequiredLevelNumber: 10

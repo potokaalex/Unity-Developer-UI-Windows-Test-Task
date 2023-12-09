@@ -3,6 +3,7 @@ using CodeBase.Lobby.DailyBonus;
 using CodeBase.Lobby.Main;
 using CodeBase.Lobby.Settings;
 using CodeBase.Lobby.Shop;
+using CodeBase.Lobby.Shop.Item;
 using UnityEngine;
 
 namespace CodeBase.Lobby.Data
@@ -21,8 +22,9 @@ namespace CodeBase.Lobby.Data
         public LobbyDailyBonusCountItemPreset WeeklyBonusCountItemPreset;
 
         public LobbyShopView LobbyShopViewPrefab;
-        public List<LobbyShopDonateItemPreset> ShopTicketsItemPresets;
-        public List<LobbyShopItemPreset> ShopSkinsItemPresets;
-        public List<LobbyShopItemPreset> ShopLocationsItemPresets;
+        public LobbyShopItemGroup LobbyShopItemGroupPrefab;
+        public LobbyShopItem LobbyShopItemPrefab;
+        public LobbyShopItemDonate LobbyShopDonateItemPrefab;
+        public List<LobbyShopItemPreset> ShopItemPresets;
     }
 }

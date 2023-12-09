@@ -1,6 +1,6 @@
 using System.Collections.Generic;
+using System.Linq;
 using CodeBase.Lobby.Data;
-using CodeBase.Lobby.Shop.Item;
 using CodeBase.Lobby.WindowsManager;
 using CodeBase.Utilities.UI;
 using UnityEngine;
@@ -11,28 +11,23 @@ namespace CodeBase.Lobby.Shop
     public class LobbyShopView : WindowBase
     {
         [SerializeField] private LobbyCloseCurrentWindowButton _closeCurrentWindowButton;
-        [SerializeField] private List<LobbyShopItemDonate> _shopBuyTicketItems;
-        [SerializeField] private List<LobbyShopItem> _shopBuySkinItems;
-        [SerializeField] private List<LobbyShopItem> _shopBuyLocationItems;
+        [SerializeField] private Transform _itemGroupsRoot;
+
         private LobbyShopAdapter _shopAdapter;
+        private LobbyShopUIFactory _shopUIFactory;
 
         [Inject]
-        public void Construct(LobbyShopAdapter shopAdapter) => _shopAdapter = shopAdapter;
+        public void Construct(LobbyShopAdapter shopAdapter, LobbyShopUIFactory shopUIFactory)
+        {
+            _shopAdapter = shopAdapter;
+            _shopUIFactory = shopUIFactory;
+        }
 
-        public void Initialize(List<LobbyShopDonateItemPreset> ticketPresets, List<LobbyShopItemPreset> skinPresets,
-            List<LobbyShopItemPreset> locationPresets)
+        public void Initialize(List<LobbyShopItemPreset> itemPresets)
         {
             _closeCurrentWindowButton.Initialize(_shopAdapter);
             Close();
-
-            for (var i = 0; i < _shopBuyTicketItems.Count; i++)
-                _shopBuyTicketItems[i].Initialize(ticketPresets[i]);
-
-            for (var i = 0; i < _shopBuySkinItems.Count; i++)
-                _shopBuySkinItems[i].Initialize(skinPresets[i]);
-
-            for (var i = 0; i < _shopBuyLocationItems.Count; i++)
-                _shopBuyLocationItems[i].Initialize(locationPresets[i]);
+            CreateItems(itemPresets);
         }
 
         public override void Open()
@@ -45,6 +40,30 @@ namespace CodeBase.Lobby.Shop
         {
             base.Close();
             gameObject.SetActive(false);
+        }
+
+        private void CreateItems(List<LobbyShopItemPreset> presets)
+        {
+            var ticketsItemsPresets = presets.Where(p => p.GroupType == ShopGroupType.Tickets);
+            var skinsItemsPresets = presets.Where(p => p.GroupType == ShopGroupType.Skins);
+            var locationsItemsPresets = presets.Where(p => p.GroupType == ShopGroupType.Locations);
+
+            CreateItemsInGroups(ticketsItemsPresets, ShopGroupType.Tickets);
+            CreateItemsInGroups(skinsItemsPresets, ShopGroupType.Skins);
+            CreateItemsInGroups(locationsItemsPresets, ShopGroupType.Locations);
+        }
+
+        private void CreateItemsInGroups(IEnumerable<LobbyShopItemPreset> itemsPresets, ShopGroupType groupType)
+        {
+            var group = _shopUIFactory.CreateItemGroup(_itemGroupsRoot, groupType);
+
+            foreach (var preset in itemsPresets)
+            {
+                if (groupType == ShopGroupType.Tickets)
+                    _shopUIFactory.CreateDonateItem(preset, group.GetItemsRoot());
+                else
+                    _shopUIFactory.CreateItem(preset, group.GetItemsRoot());
+            }
         }
     }
 }

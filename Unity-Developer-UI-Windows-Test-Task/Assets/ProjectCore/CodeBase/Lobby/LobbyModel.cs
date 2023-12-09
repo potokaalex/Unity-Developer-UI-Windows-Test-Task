@@ -14,8 +14,8 @@ namespace CodeBase.Lobby
 
         public void AddTicketsCount(int count)
         {
-            _gameData.TicketsCount += count;
-            OnTicketsCountChanged?.Invoke(_gameData.TicketsCount);
+            _gameData.PlayerProgress.TicketsCount += count;
+            OnTicketsCountChanged?.Invoke(_gameData.PlayerProgress.TicketsCount);
         }
 
         public void OnGameDataLoad(GameData data) => _gameData = data;
@@ -23,7 +23,7 @@ namespace CodeBase.Lobby
         public void OnGameDataSave(GameData data)
         {
             data.Settings = _gameData.Settings;
-            data.LastEntryOADate = DateTime.Now.ToOADate();
+            data.PlayerProgress.LastEntryOADate = DateTime.Now.ToOADate();
         }
     }
 }

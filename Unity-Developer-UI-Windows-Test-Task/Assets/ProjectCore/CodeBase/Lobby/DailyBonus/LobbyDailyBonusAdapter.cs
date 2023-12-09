@@ -15,7 +15,7 @@ namespace CodeBase.Lobby.DailyBonus
         private LobbyDailyBonusCongratsView _congratsView;
         private LobbyDailyBonusOverviewView _overviewView;
         private LobbyConfig _config;
-        private GameData _data;
+        private PlayerProgressData _playerProgress;
 
         public LobbyDailyBonusAdapter(LobbyModel model, LobbyWindowsManager windowsManager,
             LobbyStaticDataProvider staticDataProvider)
@@ -30,19 +30,19 @@ namespace CodeBase.Lobby.DailyBonus
             _congratsView = congratsView;
             _overviewView = overviewView;
             _config = _staticDataProvider.GetConfig();
-            _data = _model.GetGameData();
+            _playerProgress = _model.GetGameData().PlayerProgress;
 
             CheckDailyBonus();
-            _overviewView.SetSliderProgress(_data.ConsecutiveEntryCount);
+            _overviewView.SetSliderProgress(_playerProgress.ConsecutiveEntryCount);
         }
 
         public void GetWeeklyBonus()
         {
-            if (_data.ConsecutiveEntryCount > _config.DailyBonusCountItemPresets.Count)
+            if (_playerProgress.ConsecutiveEntryCount > _config.DailyBonusCountItemPresets.Count)
             {
                 OpenCongratsWindow(_config.WeeklyBonusCountItemPreset);
-                _data.ConsecutiveEntryCount = 0;
-                _overviewView.SetSliderProgress(_data.ConsecutiveEntryCount);
+                _playerProgress.ConsecutiveEntryCount = 0;
+                _overviewView.SetSliderProgress(_playerProgress.ConsecutiveEntryCount);
             }
         }
 
@@ -51,19 +51,19 @@ namespace CodeBase.Lobby.DailyBonus
         private void CheckDailyBonus()
         {
             var currentDate = DateTime.Now.ToOADate();
-            var difference = currentDate - _data.LastEntryOADate;
+            var difference = currentDate - _playerProgress.LastEntryOADate;
             var presets = _config.DailyBonusCountItemPresets;
 
             if (difference > 1)
-                _data.ConsecutiveEntryCount = 0;
+                _playerProgress.ConsecutiveEntryCount = 0;
 
-            if (_data.ConsecutiveEntryCount < presets.Count)
+            if (_playerProgress.ConsecutiveEntryCount < presets.Count)
             {
-                OpenCongratsWindow(presets[_data.ConsecutiveEntryCount]);
-                _data.ConsecutiveEntryCount++;
+                OpenCongratsWindow(presets[_playerProgress.ConsecutiveEntryCount]);
+                _playerProgress.ConsecutiveEntryCount++;
             }
-            else if (_data.ConsecutiveEntryCount == presets.Count)
-                _data.ConsecutiveEntryCount++;
+            else if (_playerProgress.ConsecutiveEntryCount == presets.Count)
+                _playerProgress.ConsecutiveEntryCount++;
         }
 
         private void OpenCongratsWindow(LobbyDailyBonusCountItemPreset preset)

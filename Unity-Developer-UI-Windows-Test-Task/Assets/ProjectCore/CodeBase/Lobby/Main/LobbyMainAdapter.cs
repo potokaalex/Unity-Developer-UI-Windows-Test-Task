@@ -22,7 +22,7 @@ namespace CodeBase.Lobby.Main
             _mainView = mainView;
 
             _model.OnTicketsCountChanged += SetCoinsCount;
-            SetCoinsCount(data.TicketsCount);
+            SetCoinsCount(data.PlayerProgress.TicketsCount);
         }
 
         public void Dispose() => _model.OnTicketsCountChanged -= SetCoinsCount;

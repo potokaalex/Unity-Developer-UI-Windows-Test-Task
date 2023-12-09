@@ -902,6 +902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdd270e5ad494a1e9ffe218399d768c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _getWeeklyBonusButton: {fileID: 6267079597309240118}
   _closeWindowButton: {fileID: 3082625682081642939}
   _countItemsSpawnRoot: {fileID: 3082625682886749555}
   _sliderProgressText: {fileID: 3082625682728091636}

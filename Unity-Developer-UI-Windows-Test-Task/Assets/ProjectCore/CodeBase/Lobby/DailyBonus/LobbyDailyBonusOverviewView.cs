@@ -11,6 +11,7 @@ namespace CodeBase.Lobby.DailyBonus
 {
     public class LobbyDailyBonusOverviewView : WindowBase
     {
+        [SerializeField] private LobbyDailyBonusGetWeeklyBonusButton _getWeeklyBonusButton;
         [SerializeField] private LobbyCloseCurrentWindowButton _closeWindowButton;
         [SerializeField] private Transform _countItemsSpawnRoot;
         [SerializeField] private TextMeshProUGUI _sliderProgressText;
@@ -27,13 +28,14 @@ namespace CodeBase.Lobby.DailyBonus
         public void Initialize(LobbyDailyBonusAdapter dailyBonusAdapter,
             List<LobbyDailyBonusCountItemPreset> itemPresets)
         {
-            Close();
+            _slider.maxValue = MaxSliderValue;
+            
             _closeWindowButton.Initialize(dailyBonusAdapter);
+            _getWeeklyBonusButton.Initialize();
+            Close();
 
             for (var i = 0; i < 6; i++)
                 _dailyBonusUIFactory.CreateCountItemView(_countItemsSpawnRoot, itemPresets[i]);
-
-            _slider.maxValue = MaxSliderValue;
         }
 
         public void SetSliderProgress(int consecutiveDaysCount)

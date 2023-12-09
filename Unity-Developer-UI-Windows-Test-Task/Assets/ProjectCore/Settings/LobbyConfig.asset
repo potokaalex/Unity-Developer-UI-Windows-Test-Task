@@ -34,3 +34,28 @@ MonoBehaviour:
   WeeklyBonusCountItemPreset:
     DayNumber: 7
     TicketsCount: 30
+  LobbyShopViewPrefab: {fileID: 5480568759837382669, guid: e4dc171ae3cb64f479149dbcb0d49837, type: 3}
+  ShopTicketsItemPresets:
+  - ID: Epic chest
+    Cost: 1.99
+    Count: 500
+  - ID: Lucky chest
+    Cost: 1.99
+    Count: 1200
+  ShopSkinsItemPresets:
+  - ID: Character 1
+    Cost: 0
+    RequiredLevelNumber: 0
+  - ID: Character 1
+    Cost: 500
+    RequiredLevelNumber: 10
+  ShopLocationsItemPresets:
+  - ID: Location 1
+    Cost: 0
+    RequiredLevelNumber: 0
+  - ID: Location 2
+    Cost: 500
+    RequiredLevelNumber: 0
+  - ID: Location 2
+    Cost: 500
+    RequiredLevelNumber: 19

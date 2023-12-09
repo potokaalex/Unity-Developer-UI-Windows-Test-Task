@@ -2,6 +2,7 @@
 using CodeBase.Lobby.DailyBonus;
 using CodeBase.Lobby.Data;
 using CodeBase.Lobby.Settings;
+using CodeBase.Lobby.Shop;
 using CodeBase.Utilities.UI;
 
 namespace CodeBase.Lobby.WindowsManager
@@ -9,18 +10,20 @@ namespace CodeBase.Lobby.WindowsManager
     public class LobbyWindowsManager
     {
         private LobbySettingsView _settingsView;
-        private WindowBase _dailyBonusCongratsWindow;
-        private WindowBase _dailyBonusOverviewWindow;
+        private LobbyDailyBonusCongratsView _dailyBonusCongratsWindow;
+        private LobbyDailyBonusOverviewView _dailyBonusOverviewWindow;
+        private LobbyShopView _shopView;
 
         private LobbyWindowType _currentWindowType;
         private WindowBase _currentWindow;
 
         public void Initialize(LobbySettingsView settingsView, LobbyDailyBonusOverviewView dailyBonusOverviewWindow,
-            LobbyDailyBonusCongratsView dailyBonusCongratsWindow)
+            LobbyDailyBonusCongratsView dailyBonusCongratsWindow, LobbyShopView shopView)
         {
             _settingsView = settingsView;
             _dailyBonusOverviewWindow = dailyBonusOverviewWindow;
             _dailyBonusCongratsWindow = dailyBonusCongratsWindow;
+            _shopView = shopView;
         }
 
         public void ToggleCurrentWindow(LobbyWindowType windowType)
@@ -40,6 +43,9 @@ namespace CodeBase.Lobby.WindowsManager
                     break;
                 case LobbyWindowType.DailyBonusOverview:
                     OpenWindow(_dailyBonusOverviewWindow);
+                    break;
+                case LobbyWindowType.Shop:
+                    OpenWindow(_shopView);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(windowType), windowType, null);

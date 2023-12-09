@@ -4,6 +4,7 @@ using CodeBase.Lobby.Data;
 using CodeBase.Lobby.Infrastructure.Providers;
 using CodeBase.Lobby.Main;
 using CodeBase.Lobby.Settings;
+using CodeBase.Lobby.Shop;
 using CodeBase.Lobby.WindowsManager;
 using UnityEngine;
 using Zenject;
@@ -30,6 +31,7 @@ namespace CodeBase.Lobby.Infrastructure
             Container.Bind<LobbyMainUIFactory>().AsSingle();
             Container.Bind<LobbySettingsUIFactory>().AsSingle();
             Container.BindInterfacesAndSelfTo<LobbyDailyBonusUIFactory>().AsSingle();
+            Container.BindInterfacesAndSelfTo<LobbyShopUIFactory>().AsSingle();
         }
 
         private void BindProviders()
@@ -43,6 +45,7 @@ namespace CodeBase.Lobby.Infrastructure
             Container.Bind(typeof(LobbyMainAdapter), typeof(IDisposable)).To<LobbyMainAdapter>().AsSingle();
             Container.Bind<LobbySettingsAdapter>().AsSingle();
             Container.Bind<LobbyDailyBonusAdapter>().AsSingle();
+            Container.Bind(typeof(LobbyShopAdapter)).To<LobbyShopAdapter>().AsSingle();
         }
     }
 }

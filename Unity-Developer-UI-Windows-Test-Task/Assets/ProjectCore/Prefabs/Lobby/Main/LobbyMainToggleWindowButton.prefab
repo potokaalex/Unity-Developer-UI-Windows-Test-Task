@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 2192600030292135514}
   - component: {fileID: 3807918423915102074}
   m_Layer: 5
-  m_Name: LobbyToggleWindowButton
+  m_Name: LobbyMainToggleWindowButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

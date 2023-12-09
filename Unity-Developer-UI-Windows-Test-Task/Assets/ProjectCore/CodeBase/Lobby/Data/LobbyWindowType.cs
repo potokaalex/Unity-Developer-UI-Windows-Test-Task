@@ -5,6 +5,7 @@
         None = 0,
         Settings = 1,
         DailyBonusCongrats = 2,
-        DailyBonusOverview = 3
+        DailyBonusOverview = 3,
+        Shop = 4
     }
 }

@@ -2,6 +2,7 @@
 using CodeBase.Lobby.Infrastructure.Providers;
 using CodeBase.Lobby.Main;
 using CodeBase.Lobby.Settings;
+using CodeBase.Lobby.Shop;
 using CodeBase.Lobby.WindowsManager;
 using Zenject;
 
@@ -19,12 +20,14 @@ namespace CodeBase.Lobby
         private readonly LobbyMainAdapter _mainAdapter;
         private readonly LobbySettingsAdapter _settingsAdapter;
         private readonly LobbyDailyBonusAdapter _dailyBonusAdapter;
+        private readonly LobbyShopUIFactory _shopUIFactory;
+        private readonly LobbyShopAdapter _shopAdapter;
 
         public LobbyFactory(IInstantiator instantiator, LobbyStaticDataProvider staticDataProvider,
             LobbyAudioManagerProvider audioManagerProvider, LobbyMainUIFactory mainUIFactory,
             LobbySettingsUIFactory settingsUIFactory, LobbyDailyBonusUIFactory dailyBonusUIFactory,
             LobbyWindowsManager windowsManager, LobbyMainAdapter mainAdapter, LobbySettingsAdapter settingsAdapter,
-            LobbyDailyBonusAdapter dailyBonusAdapter)
+            LobbyDailyBonusAdapter dailyBonusAdapter, LobbyShopUIFactory shopUIFactory, LobbyShopAdapter shopAdapter)
         {
             _instantiator = instantiator;
             _staticDataProvider = staticDataProvider;
@@ -36,6 +39,8 @@ namespace CodeBase.Lobby
             _mainAdapter = mainAdapter;
             _settingsAdapter = settingsAdapter;
             _dailyBonusAdapter = dailyBonusAdapter;
+            _shopUIFactory = shopUIFactory;
+            _shopAdapter = shopAdapter;
         }
 
         public void CreateAudioManager()
@@ -53,12 +58,14 @@ namespace CodeBase.Lobby
             var settingsView = _settingsUIFactory.CreateView(viewsRoot);
             var congratsView = _dailyBonusUIFactory.CreateCongratsView(viewsRoot);
             var overviewView = _dailyBonusUIFactory.CreateOverviewView(viewsRoot);
+            var shopView = _shopUIFactory.CreateView(viewsRoot);
 
-            _windowsManager.Initialize(settingsView, overviewView, congratsView);
+            _windowsManager.Initialize(settingsView, overviewView, congratsView, shopView);
 
             _mainAdapter.Initialize(mainView);
             _settingsAdapter.Initialize();
             _dailyBonusAdapter.Initialize(congratsView, overviewView);
+            _shopAdapter.Initialize(shopView);
         }
     }
 }

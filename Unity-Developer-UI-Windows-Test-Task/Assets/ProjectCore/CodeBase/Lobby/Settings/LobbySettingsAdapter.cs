@@ -2,18 +2,18 @@
 using CodeBase.Lobby.Data;
 using CodeBase.Lobby.WindowsManager;
 using CodeBase.Project.Data;
-using CodeBase.Project.Services.AudioManagerService;
+using CodeBase.Project.Services;
 
 namespace CodeBase.Lobby.Settings
 {
     public class LobbySettingsAdapter : ILobbyCloseCurrentWindowAdapter
     {
-        private readonly IAudioManager _audioManager;
+        private readonly AudioManager _audioManager;
         private readonly LobbyModel _model;
         private readonly LobbyWindowsManager _windowsManager;
         private GameSettingsData _data;
 
-        public LobbySettingsAdapter(IAudioManager audioManager, LobbyModel model, LobbyWindowsManager windowsManager)
+        public LobbySettingsAdapter(AudioManager audioManager, LobbyModel model, LobbyWindowsManager windowsManager)
         {
             _audioManager = audioManager;
             _model = model;

@@ -5,13 +5,13 @@ using UnityEngine;
 
 namespace CodeBase.Lobby.DailyBonus
 {
-    public class LobbyDailyBonusCongratsView : WindowBase
+    public class DailyBonusCongratsView : WindowBase
     {
         [SerializeField] private LobbyCloseCurrentWindowButton _closeWindowButton;
         [SerializeField] private TextMeshProUGUI _ticketsCountText;
         [SerializeField] private TextMeshProUGUI _dayNumberText;
 
-        public void Initialize(LobbyDailyBonusAdapter dailyBonusAdapter)
+        public void Initialize(DailyBonusAdapter dailyBonusAdapter)
         {
             Close();
             _closeWindowButton.Initialize(dailyBonusAdapter);

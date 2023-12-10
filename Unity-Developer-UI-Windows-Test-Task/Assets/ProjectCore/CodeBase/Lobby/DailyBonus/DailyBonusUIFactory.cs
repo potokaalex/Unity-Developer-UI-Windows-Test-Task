@@ -5,14 +5,14 @@ using Zenject;
 
 namespace CodeBase.Lobby.DailyBonus
 {
-    public class LobbyDailyBonusUIFactory : IInitializable
+    public class DailyBonusUIFactory : IInitializable
     {
         private readonly IInstantiator _instantiator;
-        private readonly LobbyDailyBonusAdapter _adapter;
+        private readonly DailyBonusAdapter _adapter;
         private readonly LobbyStaticDataProvider _staticDataProvider;
         private LobbyConfig _config;
 
-        public LobbyDailyBonusUIFactory(IInstantiator instantiator, LobbyDailyBonusAdapter adapter,
+        public DailyBonusUIFactory(IInstantiator instantiator, DailyBonusAdapter adapter,
             LobbyStaticDataProvider staticDataProvider)
         {
             _instantiator = instantiator;
@@ -22,10 +22,10 @@ namespace CodeBase.Lobby.DailyBonus
 
         public void Initialize() => _config = _staticDataProvider.GetConfig();
 
-        public LobbyDailyBonusCongratsView CreateCongratsView(Transform root)
+        public DailyBonusCongratsView CreateCongratsView(Transform root)
         {
             var prefab = _config.DailyBonusCongratsViewPrefab;
-            var item = _instantiator.InstantiatePrefabForComponent<LobbyDailyBonusCongratsView>(prefab);
+            var item = _instantiator.InstantiatePrefabForComponent<DailyBonusCongratsView>(prefab);
 
             item.transform.SetParent(root, false);
             item.Initialize(_adapter);
@@ -33,10 +33,10 @@ namespace CodeBase.Lobby.DailyBonus
             return item;
         }
 
-        public LobbyDailyBonusOverviewView CreateOverviewView(Transform root)
+        public DailyBonusOverviewView CreateOverviewView(Transform root)
         {
             var prefab = _config.DailyBonusOverviewViewPrefab;
-            var item = _instantiator.InstantiatePrefabForComponent<LobbyDailyBonusOverviewView>(prefab);
+            var item = _instantiator.InstantiatePrefabForComponent<DailyBonusOverviewView>(prefab);
 
             item.transform.SetParent(root, false);
             item.Initialize(_adapter, _config.DailyBonusCountItemPresets);
@@ -47,7 +47,7 @@ namespace CodeBase.Lobby.DailyBonus
         public void CreateCountItemView(Transform root, LobbyDailyBonusCountItemPreset preset)
         {
             var prefab = _config.DailyBonusCountItemViewPrefab;
-            var item = _instantiator.InstantiatePrefabForComponent<LobbyDailyBonusCountItemView>(prefab);
+            var item = _instantiator.InstantiatePrefabForComponent<DailyBonusCountItemView>(prefab);
 
             item.transform.SetParent(root, false);
             item.Initialize(preset);

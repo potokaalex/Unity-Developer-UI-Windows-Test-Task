@@ -1,19 +1,26 @@
+using CodeBase.Project.Services;
+using CodeBase.Utilities.UI;
 using TMPro;
 using UnityEngine;
 using Zenject;
 
 namespace CodeBase.Lobby.Levels
 {
-    public class LobbyLevelsOpenLevelButton : LobbyButtonBase
+    public class LobbyLevelsOpenLevelButton : ButtonBase
     {
         [SerializeField] private TextMeshProUGUI _levelNumberText;
         [SerializeField] private GameObject _isLockedRoot;
         [SerializeField] private GameObject _isOpenedRoot;
+        private AudioManager _audioManager;
         private LobbyLevelsAdapter _adapter;
         private int _levelNumber;
 
         [Inject]
-        public void Construct(LobbyLevelsAdapter adapter) => _adapter = adapter;
+        public void Construct(LobbyLevelsAdapter adapter,AudioManager audioManager)
+        {
+            _adapter = adapter;
+            _audioManager = audioManager;
+        }
 
         public void Initialize(int levelNumber, bool isOpened)
         {
@@ -22,8 +29,6 @@ namespace CodeBase.Lobby.Levels
 
             if (isOpened)
                 Unlock();
-            
-            base.Initialize();
         }
 
         public void Unlock()
@@ -35,7 +40,7 @@ namespace CodeBase.Lobby.Levels
         private protected override void OnClick()
         {
             _adapter.OnOpenLevelClicked(_levelNumber);
-            PlayClickSound();
+            _audioManager.PlayButtonClickUISound();
         }
     }
 }

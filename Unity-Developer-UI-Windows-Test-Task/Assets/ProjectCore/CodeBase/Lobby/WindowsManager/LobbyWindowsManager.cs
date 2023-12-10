@@ -11,16 +11,16 @@ namespace CodeBase.Lobby.WindowsManager
     public class LobbyWindowsManager
     {
         private LobbySettingsView _settingsView;
-        private LobbyDailyBonusCongratsView _dailyBonusCongratsWindow;
-        private LobbyDailyBonusOverviewView _dailyBonusOverviewWindow;
+        private DailyBonusCongratsView _dailyBonusCongratsWindow;
+        private DailyBonusOverviewView _dailyBonusOverviewWindow;
         private LobbyShopView _shopView;
         private LobbyLevelsView _levelsView;
 
         private LobbyWindowType _currentWindowType;
         private WindowBase _currentWindow;
 
-        public void Initialize(LobbySettingsView settingsView, LobbyDailyBonusOverviewView dailyBonusOverviewWindow,
-            LobbyDailyBonusCongratsView dailyBonusCongratsWindow, LobbyShopView shopView,LobbyLevelsView levelsView)
+        public void Initialize(LobbySettingsView settingsView, DailyBonusOverviewView dailyBonusOverviewWindow,
+            DailyBonusCongratsView dailyBonusCongratsWindow, LobbyShopView shopView,LobbyLevelsView levelsView)
         {
             _settingsView = settingsView;
             _dailyBonusOverviewWindow = dailyBonusOverviewWindow;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace CodeBase.Lobby.DailyBonus
 {
-    public class LobbyDailyBonusCountItemView : MonoBehaviour
+    public class DailyBonusCountItemView : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI _dayNumberText;
         [SerializeField] private TextMeshProUGUI _ticketsCountText;

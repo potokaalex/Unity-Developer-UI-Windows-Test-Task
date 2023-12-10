@@ -29,7 +29,6 @@ namespace CodeBase.Lobby.Infrastructure.States
             InitializeUnityServices();
             _gameDataSaveLoader.RegisterWatcher(_model);
             _gameDataSaveLoader.Load();
-            _lobbyFactory.CreateAudioManager();
             _lobbyFactory.CreateUI();
             
             _unityEventsObserver.OnApplicationExitEvent += _stateMachine.SwitchTo<LobbyExitState>;

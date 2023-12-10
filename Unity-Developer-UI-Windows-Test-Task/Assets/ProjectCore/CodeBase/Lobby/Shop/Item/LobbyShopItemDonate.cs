@@ -1,5 +1,6 @@
 ﻿using CodeBase.Lobby.Data;
 using CodeBase.Lobby.Infrastructure.Providers;
+using CodeBase.Project.Services;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Purchasing;
@@ -17,23 +18,21 @@ namespace CodeBase.Lobby.Shop.Item
         [SerializeField] private Image _itemIcon;
 
         private LobbyShopAdapter _adapter;
-        private LobbyAudioManagerProvider _audioManagerProvider;
         private LobbyShopItemPreset _preset;
-        private LobbyAudioManager _audioManager;
+        private AudioManager _audioManager;
 
         [Inject]
-        public void Construct(LobbyShopAdapter adapter, LobbyAudioManagerProvider audioManagerProvider,
+        public void Construct(LobbyShopAdapter adapter, AudioManager audioManager,
             LobbyShopItemPreset preset)
         {
             _adapter = adapter;
-            _audioManagerProvider = audioManagerProvider;
+            _audioManager = audioManager;
             _preset = preset;
             _iapButton.productId = preset.ID;
         }
 
         public void Initialize(Sprite sprite)
         {
-            _audioManager = _audioManagerProvider.GetManager();
             _nameText.text = $"[{_preset.ID}]";
             _costText.text = $"${_preset.Cost}";
             _itemsCountText.text = $"X{_preset.Count}";
@@ -52,7 +51,7 @@ namespace CodeBase.Lobby.Shop.Item
             _iapButton.onPurchaseComplete.RemoveListener(OnBuyItem);
         }
 
-        private void OnClickBuyItem() => _audioManager.PlayButtonClick();
+        private void OnClickBuyItem() => _audioManager.PlayButtonClickUISound();
 
         private void OnBuyItem(Product arg) => _adapter.BuyItemDonate(_preset);
     }

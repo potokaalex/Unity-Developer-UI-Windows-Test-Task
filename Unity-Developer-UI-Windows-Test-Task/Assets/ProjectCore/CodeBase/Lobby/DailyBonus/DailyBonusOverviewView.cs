@@ -9,9 +9,9 @@ using Zenject;
 
 namespace CodeBase.Lobby.DailyBonus
 {
-    public class LobbyDailyBonusOverviewView : WindowBase
+    public class DailyBonusOverviewView : WindowBase
     {
-        [SerializeField] private LobbyDailyBonusGetWeeklyBonusButton _getWeeklyBonusButton;
+        [SerializeField] private DailyBonusGetWeeklyBonusButton _getWeeklyBonusButton;
         [SerializeField] private LobbyCloseCurrentWindowButton _closeWindowButton;
         [SerializeField] private Transform _countItemsSpawnRoot;
         [SerializeField] private TextMeshProUGUI _sliderProgressText;
@@ -19,19 +19,18 @@ namespace CodeBase.Lobby.DailyBonus
 
         private const int MaxSliderValue = 7;
 
-        private LobbyDailyBonusUIFactory _dailyBonusUIFactory;
+        private DailyBonusUIFactory _dailyBonusUIFactory;
 
         [Inject]
-        public void Construct(LobbyDailyBonusUIFactory dailyBonusUIFactory) =>
+        public void Construct(DailyBonusUIFactory dailyBonusUIFactory) =>
             _dailyBonusUIFactory = dailyBonusUIFactory;
 
-        public void Initialize(LobbyDailyBonusAdapter dailyBonusAdapter,
+        public void Initialize(DailyBonusAdapter dailyBonusAdapter,
             List<LobbyDailyBonusCountItemPreset> itemPresets)
         {
             _slider.maxValue = MaxSliderValue;
 
             _closeWindowButton.Initialize(dailyBonusAdapter);
-            _getWeeklyBonusButton.Initialize();
             Close();
 
             for (var i = 0; i < 6; i++)

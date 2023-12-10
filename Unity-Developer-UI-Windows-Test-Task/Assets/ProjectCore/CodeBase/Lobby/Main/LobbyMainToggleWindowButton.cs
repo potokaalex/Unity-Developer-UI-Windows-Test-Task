@@ -1,5 +1,6 @@
 using CodeBase.Lobby.Data;
 using CodeBase.Lobby.Infrastructure.Providers;
+using CodeBase.Project.Services;
 using CodeBase.Utilities.UI;
 using UnityEngine;
 using Zenject;
@@ -10,24 +11,21 @@ namespace CodeBase.Lobby.Main
     {
         [SerializeField] private LobbyWindowType _lobbyWindowType;
 
-        private LobbyAudioManagerProvider _audioManagerProvider;
         private LobbyMainAdapter _lobbyMainAdapter;
-        private LobbyAudioManager _audioManager;
+        private AudioManager _audioManager;
 
         [Inject]
-        public void Construct(LobbyAudioManagerProvider audioManagerProvider) =>
-            _audioManagerProvider = audioManagerProvider;
+        public void Construct(AudioManager audioManager) => _audioManager = audioManager;
 
         public void Initialize(LobbyMainAdapter lobbyMainAdapter)
         {
             _lobbyMainAdapter = lobbyMainAdapter;
-            _audioManager = _audioManagerProvider.GetManager();
         }
 
         private protected override void OnClick()
         {
             _lobbyMainAdapter.ToggleCurrentWindow(_lobbyWindowType);
-            _audioManager.PlayButtonClick();
+            _audioManager.PlayButtonClickUISound();
         }
     }
 }

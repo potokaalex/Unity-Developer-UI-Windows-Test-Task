@@ -1,5 +1,6 @@
 ﻿using CodeBase.Lobby.Data;
 using CodeBase.Lobby.Infrastructure.Providers;
+using CodeBase.Project.Services;
 using CodeBase.Utilities.UI;
 using UnityEngine;
 using Zenject;
@@ -11,20 +12,18 @@ namespace CodeBase.Lobby.Settings
         [SerializeField] private LobbySettingsToggleType _settingsToggleType;
         [SerializeField] private GameObject _onDisableRoot;
 
-        private LobbyAudioManagerProvider _audioManagerProvider;
+        private AudioManager _audioManager;
         private LobbySettingsAdapter _settingsAdapter;
-        private LobbyAudioManager _audioManager;
 
         [Inject]
-        public void Construct(LobbySettingsAdapter settingsAdapter, LobbyAudioManagerProvider audioManagerProvider)
+        public void Construct(LobbySettingsAdapter settingsAdapter, AudioManager audioManager)
         {
             _settingsAdapter = settingsAdapter;
-            _audioManagerProvider = audioManagerProvider;
+            _audioManager = audioManager;
         }
 
         public void Initialize(bool isActive)
         {
-            _audioManager = _audioManagerProvider.GetManager();
             SelectableToggle.SetIsOnWithoutNotify(isActive);
             SetActive(isActive);
         }
@@ -33,7 +32,7 @@ namespace CodeBase.Lobby.Settings
 
         private protected override void OnValueChange(bool isActive)
         {
-            _audioManager.PlayButtonClick();
+            _audioManager.PlayButtonClickUISound();
             _settingsAdapter.Set(_settingsToggleType, isActive);
             SetActive(isActive);
         }

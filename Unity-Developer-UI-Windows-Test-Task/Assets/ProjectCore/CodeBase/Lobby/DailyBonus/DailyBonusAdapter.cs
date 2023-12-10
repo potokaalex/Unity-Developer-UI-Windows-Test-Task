@@ -6,18 +6,18 @@ using CodeBase.Project.Data;
 
 namespace CodeBase.Lobby.DailyBonus
 {
-    public class LobbyDailyBonusAdapter : ILobbyCloseCurrentWindowAdapter
+    public class DailyBonusAdapter : ILobbyCloseCurrentWindowAdapter
     {
         private readonly LobbyModel _model;
         private readonly LobbyWindowsManager _windowsManager;
         private readonly LobbyStaticDataProvider _staticDataProvider;
 
-        private LobbyDailyBonusCongratsView _congratsView;
-        private LobbyDailyBonusOverviewView _overviewView;
+        private DailyBonusCongratsView _congratsView;
+        private DailyBonusOverviewView _overviewView;
         private LobbyConfig _config;
         private PlayerProgressData _playerProgress;
 
-        public LobbyDailyBonusAdapter(LobbyModel model, LobbyWindowsManager windowsManager,
+        public DailyBonusAdapter(LobbyModel model, LobbyWindowsManager windowsManager,
             LobbyStaticDataProvider staticDataProvider)
         {
             _model = model;
@@ -25,7 +25,7 @@ namespace CodeBase.Lobby.DailyBonus
             _staticDataProvider = staticDataProvider;
         }
 
-        public void Initialize(LobbyDailyBonusCongratsView congratsView, LobbyDailyBonusOverviewView overviewView)
+        public void Initialize(DailyBonusCongratsView congratsView, DailyBonusOverviewView overviewView)
         {
             _congratsView = congratsView;
             _overviewView = overviewView;

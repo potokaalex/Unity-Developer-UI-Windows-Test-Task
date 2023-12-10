@@ -22,6 +22,7 @@ namespace CodeBase.Lobby.Infrastructure
             BindProviders();
             BindAdapters();
 
+            Container.Bind<LobbyStaticDataProvider>().AsSingle().WithArguments(_lobbyConfig);
             Container.Bind<LobbyWindowsManager>().AsSingle();
             Container.Bind<LobbyModel>().AsSingle();
         }
@@ -31,22 +32,20 @@ namespace CodeBase.Lobby.Infrastructure
             Container.Bind<LobbyFactory>().AsSingle();
             Container.Bind<LobbyMainUIFactory>().AsSingle();
             Container.Bind<LobbySettingsUIFactory>().AsSingle();
-            Container.BindInterfacesAndSelfTo<LobbyDailyBonusUIFactory>().AsSingle();
+            Container.BindInterfacesAndSelfTo<DailyBonusUIFactory>().AsSingle();
             Container.BindInterfacesAndSelfTo<LobbyShopUIFactory>().AsSingle();
             Container.BindInterfacesAndSelfTo<LevelsUIFactory>().AsSingle();
         }
 
         private void BindProviders()
         {
-            Container.Bind<LobbyAudioManagerProvider>().AsSingle();
-            Container.Bind<LobbyStaticDataProvider>().AsSingle().WithArguments(_lobbyConfig);
         }
 
         private void BindAdapters()
         {
             Container.Bind(typeof(LobbyMainAdapter), typeof(IDisposable)).To<LobbyMainAdapter>().AsSingle();
             Container.Bind<LobbySettingsAdapter>().AsSingle();
-            Container.Bind<LobbyDailyBonusAdapter>().AsSingle();
+            Container.Bind<DailyBonusAdapter>().AsSingle();
             Container.Bind(typeof(LobbyShopAdapter)).To<LobbyShopAdapter>().AsSingle();
             Container.Bind<LobbyLevelsAdapter>().AsSingle();
         }

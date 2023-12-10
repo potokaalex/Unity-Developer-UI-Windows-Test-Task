@@ -6,6 +6,7 @@
         Settings = 1,
         DailyBonusCongrats = 2,
         DailyBonusOverview = 3,
-        Shop = 4
+        Shop = 4,
+        Levels = 5
     }
 }

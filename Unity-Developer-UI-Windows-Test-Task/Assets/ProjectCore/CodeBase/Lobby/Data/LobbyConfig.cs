@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using CodeBase.Lobby.DailyBonus;
+using CodeBase.Lobby.Levels;
 using CodeBase.Lobby.Main;
 using CodeBase.Lobby.Settings;
 using CodeBase.Lobby.Shop;
@@ -26,5 +27,7 @@ namespace CodeBase.Lobby.Data
         public LobbyShopItem LobbyShopItemPrefab;
         public LobbyShopItemDonate LobbyShopDonateItemPrefab;
         public List<LobbyShopItemPreset> ShopItemPresets;
+        
+        public LobbyLevelsView LobbyLevelsViewPrefab;
     }
 }

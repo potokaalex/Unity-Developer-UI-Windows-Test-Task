@@ -9,7 +9,7 @@ namespace CodeBase.Project.Data
         public double LastEntryOADate = DateTime.Now.ToOADate();
         public int ConsecutiveEntryCount;
         public int TicketsCount;
-        public int ReachedLevel;
+        public int ReachedLevel = 5;
 
         public List<string> BoughtItemsNames = new()
         {

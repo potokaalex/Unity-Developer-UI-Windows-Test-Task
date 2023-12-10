@@ -81,3 +81,4 @@ MonoBehaviour:
     Cost: 500
     Count: 0
     RequiredLevelNumber: 10
+  LobbyLevelsViewPrefab: {fileID: 325684127526228386, guid: edfda7e5b93fc2f448d9a29f47ec2491, type: 3}

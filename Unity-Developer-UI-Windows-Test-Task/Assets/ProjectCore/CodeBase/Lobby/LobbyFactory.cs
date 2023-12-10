@@ -1,5 +1,6 @@
 ﻿using CodeBase.Lobby.DailyBonus;
 using CodeBase.Lobby.Infrastructure.Providers;
+using CodeBase.Lobby.Levels;
 using CodeBase.Lobby.Main;
 using CodeBase.Lobby.Settings;
 using CodeBase.Lobby.Shop;
@@ -22,12 +23,15 @@ namespace CodeBase.Lobby
         private readonly LobbyDailyBonusAdapter _dailyBonusAdapter;
         private readonly LobbyShopUIFactory _shopUIFactory;
         private readonly LobbyShopAdapter _shopAdapter;
+        private readonly LevelsUIFactory _levelsUIFactory;
+        private readonly LobbyLevelsAdapter _levelsAdapter;
 
         public LobbyFactory(IInstantiator instantiator, LobbyStaticDataProvider staticDataProvider,
             LobbyAudioManagerProvider audioManagerProvider, LobbyMainUIFactory mainUIFactory,
             LobbySettingsUIFactory settingsUIFactory, LobbyDailyBonusUIFactory dailyBonusUIFactory,
             LobbyWindowsManager windowsManager, LobbyMainAdapter mainAdapter, LobbySettingsAdapter settingsAdapter,
-            LobbyDailyBonusAdapter dailyBonusAdapter, LobbyShopUIFactory shopUIFactory, LobbyShopAdapter shopAdapter)
+            LobbyDailyBonusAdapter dailyBonusAdapter, LobbyShopUIFactory shopUIFactory, LobbyShopAdapter shopAdapter,
+            LevelsUIFactory levelsUIFactory,LobbyLevelsAdapter levelsAdapter)
         {
             _instantiator = instantiator;
             _staticDataProvider = staticDataProvider;
@@ -41,6 +45,8 @@ namespace CodeBase.Lobby
             _dailyBonusAdapter = dailyBonusAdapter;
             _shopUIFactory = shopUIFactory;
             _shopAdapter = shopAdapter;
+            _levelsUIFactory = levelsUIFactory;
+            _levelsAdapter = levelsAdapter;
         }
 
         public void CreateAudioManager()
@@ -59,13 +65,15 @@ namespace CodeBase.Lobby
             var congratsView = _dailyBonusUIFactory.CreateCongratsView(viewsRoot);
             var overviewView = _dailyBonusUIFactory.CreateOverviewView(viewsRoot);
             var shopView = _shopUIFactory.CreateView(viewsRoot);
+            var levelsView = _levelsUIFactory.CreateView(viewsRoot);
 
-            _windowsManager.Initialize(settingsView, overviewView, congratsView, shopView);
+            _windowsManager.Initialize(settingsView, overviewView, congratsView, shopView, levelsView);
 
             _mainAdapter.Initialize(mainView);
             _settingsAdapter.Initialize();
             _dailyBonusAdapter.Initialize(congratsView, overviewView);
             _shopAdapter.Initialize(shopView);
+            _levelsAdapter.Initialize(levelsView);
         }
     }
 }

@@ -1,13 +1,12 @@
-﻿using System.Collections.Generic;
-using CodeBase.Lobby.Data;
-using CodeBase.Utilities.UI;
+﻿using CodeBase.Lobby.DailyBonus;
+using CodeBase.Lobby.Infrastructure.Providers;
 using CodeBase.Utilities.UI.Window;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace CodeBase.Lobby.DailyBonus
+namespace CodeBase.UI.DailyBonus
 {
     public class DailyBonusOverviewView : WindowBase
     {
@@ -15,27 +14,33 @@ namespace CodeBase.Lobby.DailyBonus
         [SerializeField] private TextMeshProUGUI _sliderProgressText;
         [SerializeField] private Slider _slider;
 
-        private const int MaxSliderValue = 7;
-
+        private LobbyStaticDataProvider _staticDataProvider;
         private DailyBonusUIFactory _dailyBonusUIFactory;
+        private int _maxSliderValue;
 
         [Inject]
-        public void Construct(DailyBonusUIFactory dailyBonusUIFactory) =>
-            _dailyBonusUIFactory = dailyBonusUIFactory;
-
-        public void Initialize(DailyBonusAdapter dailyBonusAdapter,
-            List<LobbyDailyBonusCountItemPreset> itemPresets)
+        public void Construct(LobbyStaticDataProvider staticDataProvider, DailyBonusUIFactory dailyBonusUIFactory)
         {
-            _slider.maxValue = MaxSliderValue;
-            Close();
+            _staticDataProvider = staticDataProvider;
+            _dailyBonusUIFactory = dailyBonusUIFactory;
+        }
 
-            for (var i = 0; i < 6; i++)
-                _dailyBonusUIFactory.CreateCountItemView(_countItemsSpawnRoot, itemPresets[i]);
+        public void Initialize()
+        {
+            var config = _staticDataProvider.GetConfig();
+
+            _maxSliderValue = config.DailyBonusCountItemPresets.Count + 1;
+            _slider.maxValue = _maxSliderValue;
+
+            foreach (var preset in config.DailyBonusCountItemPresets)
+                _dailyBonusUIFactory.CreateCountItemView(_countItemsSpawnRoot, preset);
+
+            Close();
         }
 
         public void SetSliderProgress(int consecutiveDaysCount)
         {
-            _sliderProgressText.text = $"{consecutiveDaysCount}/{MaxSliderValue}";
+            _sliderProgressText.text = $"{consecutiveDaysCount}/{_maxSliderValue}";
             _slider.value = consecutiveDaysCount;
         }
 

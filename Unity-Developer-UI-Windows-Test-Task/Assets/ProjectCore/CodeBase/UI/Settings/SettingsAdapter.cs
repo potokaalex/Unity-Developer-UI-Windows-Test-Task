@@ -2,6 +2,7 @@
 using CodeBase.Lobby.Data;
 using CodeBase.Project.Services;
 using CodeBase.Project.Services.WindowsManagerService;
+using CodeBase.UI.Model;
 using Zenject;
 
 namespace CodeBase.Lobby.Settings
@@ -9,11 +10,11 @@ namespace CodeBase.Lobby.Settings
     public class SettingsAdapter : IInitializable
     {
         private readonly AudioManager _audioManager;
-        private readonly LobbyModel _model;
+        private readonly UIModel _model;
         private readonly WindowsManager _windowsManager;
         private readonly SettingsUIFactory _settingsUIFactory;
 
-        public SettingsAdapter(AudioManager audioManager, LobbyModel model, WindowsManager windowsManager,
+        public SettingsAdapter(AudioManager audioManager, UIModel model, WindowsManager windowsManager,
             SettingsUIFactory settingsUIFactory)
         {
             _audioManager = audioManager;
@@ -30,6 +31,7 @@ namespace CodeBase.Lobby.Settings
             settingsView.Initialize(settingsData.IsMusicActive, settingsData.IsUISoundActive);
             _windowsManager.RegisterWindow(WindowType.Settings, settingsView);
 
+            //TODO: call by event
             SetMusicActive(settingsData.IsMusicActive);
             SetUISoundActive(settingsData.IsUISoundActive);
         }

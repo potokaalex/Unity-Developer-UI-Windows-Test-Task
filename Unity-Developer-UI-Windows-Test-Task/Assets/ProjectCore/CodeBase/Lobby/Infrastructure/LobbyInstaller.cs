@@ -5,6 +5,8 @@ using CodeBase.Lobby.Levels;
 using CodeBase.Lobby.Main;
 using CodeBase.Lobby.Settings;
 using CodeBase.Lobby.Shop;
+using CodeBase.UI.DailyBonus;
+using CodeBase.UI.Model;
 using UnityEngine;
 using Zenject;
 
@@ -20,7 +22,7 @@ namespace CodeBase.Lobby.Infrastructure
             BindAdapters();
 
             Container.Bind<LobbyStaticDataProvider>().AsSingle().WithArguments(_lobbyConfig);
-            Container.Bind<LobbyModel>().AsSingle();
+            Container.Bind<UIModel>().AsSingle();
         }
 
         private void BindFactories()
@@ -35,10 +37,10 @@ namespace CodeBase.Lobby.Infrastructure
 
         private void BindAdapters()
         {
-            Container.BindInterfacesAndSelfTo<LobbyMainAdapter>().AsSingle();
-            Container.BindInterfacesAndSelfTo<LobbyShopAdapter>().AsSingle();
-            Container.BindInterfacesAndSelfTo<SettingsAdapter>().AsSingle();
+            Container.Bind<LobbyMainAdapter>().AsSingle();
+            Container.Bind<SettingsAdapter>().AsSingle();
             Container.Bind<DailyBonusAdapter>().AsSingle();
+            Container.BindInterfacesAndSelfTo<LobbyShopAdapter>().AsSingle();
             Container.Bind<LobbyLevelsAdapter>().AsSingle();
         }
     }

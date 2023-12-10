@@ -11,7 +11,7 @@ namespace CodeBase.Lobby.Levels
         private readonly LobbyStaticDataProvider _staticDataProvider;
         private LobbyConfig _config;
 
-        public LevelsUIFactory(IInstantiator instantiator,LobbyStaticDataProvider staticDataProvider)
+        public LevelsUIFactory(IInstantiator instantiator, LobbyStaticDataProvider staticDataProvider)
         {
             _instantiator = instantiator;
             _staticDataProvider = staticDataProvider;
@@ -25,7 +25,7 @@ namespace CodeBase.Lobby.Levels
             var item = _instantiator.InstantiatePrefabForComponent<LobbyLevelsView>(prefab);
 
             item.transform.SetParent(root, false);
-            
+
             return item;
         }
     }

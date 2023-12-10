@@ -1,5 +1,4 @@
-﻿using CodeBase.Lobby.Data;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 namespace CodeBase.Lobby.DailyBonus
@@ -9,10 +8,10 @@ namespace CodeBase.Lobby.DailyBonus
         [SerializeField] private TextMeshProUGUI _dayNumberText;
         [SerializeField] private TextMeshProUGUI _ticketsCountText;
 
-        public void Initialize(LobbyDailyBonusCountItemPreset preset)
+        public void Initialize(int dayNumber,int ticketsCount)
         {
-            _dayNumberText.text = $"day{preset.DayNumber.ToString()}";
-            _ticketsCountText.text = $"X{preset.TicketsCount.ToString()}";
+            _dayNumberText.text = $"day{dayNumber.ToString()}";
+            _ticketsCountText.text = $"X{ticketsCount.ToString()}";
         }
     }
 }

@@ -2,10 +2,10 @@
 
 namespace CodeBase.Project.Data
 {
-    public struct PlayerProgressData
+    public struct ModelPlayerProgressData
     {
         public List<string> BoughtItemsNames;
-        public double LastEntryOADate;
+        public double LastExitOADate;
         public int ConsecutiveEntryCount;
         public int TicketsCount;
         public int ReachedLevel;

@@ -5,6 +5,7 @@ using CodeBase.Lobby.Main;
 using CodeBase.Lobby.Settings;
 using CodeBase.Lobby.Shop;
 using CodeBase.Lobby.Shop.Item;
+using CodeBase.UI.DailyBonus;
 using UnityEngine;
 
 namespace CodeBase.Lobby.Data

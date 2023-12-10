@@ -6,7 +6,7 @@ namespace CodeBase.Project.Data
     [Serializable]
     public class SavedPlayerProgressData
     {
-        public double LastEntryOADate;
+        public double LastExitOADate;
         public int ConsecutiveEntryCount;
         public int TicketsCount;
         public int ReachedLevel = 5;

@@ -3,18 +3,17 @@ using CodeBase.Project.Data;
 using CodeBase.Project.Data.Saved;
 using CodeBase.Project.Services.SaveLoaderService;
 
-namespace CodeBase.Lobby
+namespace CodeBase.UI.Model
 {
-    public class LobbyModel : IGameDataWriter, IGameDataReader
+    public class UIModel : IGameDataWriter, IGameDataReader
     {
-        private GameData _currentData;
+        private ModelGameData _currentData;
 
         public event Action<int> OnTicketsCountChanged;
 
         public event Action<int> OnLevelChanged;
-
-
-        public GameData ReadOnlyData => _currentData;
+        
+        public ModelGameData ReadOnlyData => _currentData;
 
         public SavedGameData GetGameData() => new();
 
@@ -40,12 +39,15 @@ namespace CodeBase.Lobby
 
         public void SetUISoundActive(bool isActive) => _currentData.Settings.IsUISoundActive = isActive;
 
+        public void SetConsecutiveEntryCount(int count) => _currentData.PlayerProgress.ConsecutiveEntryCount = count;
+
         public void OnGameDataLoad(SavedGameData data) => _currentData = data.FromSaved();
 
         public void OnGameDataSave(SavedGameData data)
         {
             data.Settings = _currentData.Settings.ToSaved();
             data.PlayerProgress = _currentData.PlayerProgress.ToSaved();
+            data.PlayerProgress.LastExitOADate = DateTime.Now.ToOADate();
         }
     }
 }

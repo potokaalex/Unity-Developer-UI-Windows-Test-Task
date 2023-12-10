@@ -1,28 +1,29 @@
-﻿using CodeBase.Project.Data.Saved;
+﻿using CodeBase.Project.Data;
+using CodeBase.Project.Data.Saved;
 
-namespace CodeBase.Project.Data
+namespace CodeBase.UI.Model
 {
-    public static class PlayerProgressExtensions
+    public static class UIModelGameDataExtensions
     {
-        public static GameData FromSaved(this SavedGameData gameData)
+        public static ModelGameData FromSaved(this SavedGameData gameData)
         {
-            return new GameData
+            return new ModelGameData
             {
                 Settings = gameData.Settings.FromSaved(),
                 PlayerProgress = gameData.PlayerProgress.FromSaved()
             };
         }
 
-        public static SettingsData FromSaved(this SavedSettingsData settings)
+        public static ModelSettingsData FromSaved(this SavedSettingsData settings)
         {
-            return new SettingsData
+            return new ModelSettingsData
             {
                 IsMusicActive = settings.IsMusicActive,
                 IsUISoundActive = settings.IsUISoundActive
             };
         }
 
-        public static SavedSettingsData ToSaved(this SettingsData settings)
+        public static SavedSettingsData ToSaved(this ModelSettingsData settings)
         {
             return new SavedSettingsData
             {
@@ -31,24 +32,24 @@ namespace CodeBase.Project.Data
             };
         }
 
-        public static PlayerProgressData FromSaved(this SavedPlayerProgressData playerProgress)
+        public static ModelPlayerProgressData FromSaved(this SavedPlayerProgressData playerProgress)
         {
-            return new PlayerProgressData
+            return new ModelPlayerProgressData
             {
                 BoughtItemsNames = playerProgress.BoughtItemsNames,
-                LastEntryOADate = playerProgress.LastEntryOADate,
+                LastExitOADate = playerProgress.LastExitOADate,
                 ConsecutiveEntryCount = playerProgress.ConsecutiveEntryCount,
                 TicketsCount = playerProgress.TicketsCount,
                 ReachedLevel = playerProgress.ReachedLevel
             };
         }
 
-        public static SavedPlayerProgressData ToSaved(this PlayerProgressData playerProgress)
+        public static SavedPlayerProgressData ToSaved(this ModelPlayerProgressData playerProgress)
         {
             return new SavedPlayerProgressData
             {
                 BoughtItemsNames = playerProgress.BoughtItemsNames,
-                LastEntryOADate = playerProgress.LastEntryOADate,
+                LastExitOADate = playerProgress.LastExitOADate,
                 ConsecutiveEntryCount = playerProgress.ConsecutiveEntryCount,
                 TicketsCount = playerProgress.TicketsCount,
                 ReachedLevel = playerProgress.ReachedLevel

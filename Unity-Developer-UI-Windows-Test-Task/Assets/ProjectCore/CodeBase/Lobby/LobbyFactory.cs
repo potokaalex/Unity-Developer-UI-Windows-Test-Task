@@ -4,6 +4,7 @@ using CodeBase.Lobby.Main;
 using CodeBase.Lobby.Settings;
 using CodeBase.Lobby.Shop;
 using CodeBase.Project.Services.WindowsManagerService;
+using CodeBase.UI.DailyBonus;
 
 namespace CodeBase.Lobby
 {
@@ -39,16 +40,16 @@ namespace CodeBase.Lobby
 
         public void CreateUI()
         {
-            //_mainAdapter.Initialize();
-            //_settingsAdapter.Initialize();
+            _mainAdapter.Initialize();
+            _settingsAdapter.Initialize();
+            _dailyBonusAdapter.Initialize();
             
             var viewsRoot = _windowsManager.WindowsRoot;
-            var congratsView = _dailyBonusUIFactory.CreateCongratsView(viewsRoot);
-            var overviewView = _dailyBonusUIFactory.CreateOverviewView(viewsRoot);
+            //var congratsView = _dailyBonusUIFactory.CreateCongratsView(viewsRoot);
+            //var overviewView = _dailyBonusUIFactory.CreateOverviewView(viewsRoot);
             var shopView = _shopUIFactory.CreateView(viewsRoot);
             var levelsView = _levelsUIFactory.CreateView(viewsRoot);
 
-            _dailyBonusAdapter.Initialize(congratsView, overviewView);
             _shopAdapter.Initialize(shopView);
             _levelsAdapter.Initialize(levelsView);
         }

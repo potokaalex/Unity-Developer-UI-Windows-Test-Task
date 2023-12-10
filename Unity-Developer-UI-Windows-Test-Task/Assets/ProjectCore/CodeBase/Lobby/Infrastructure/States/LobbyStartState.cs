@@ -1,6 +1,7 @@
 ﻿using CodeBase.Project.Services;
 using CodeBase.Project.Services.SaveLoaderService;
 using CodeBase.Project.Services.StateMachineService;
+using CodeBase.UI.Model;
 using Unity.Services.Core;
 using Unity.Services.Core.Environments;
 
@@ -9,12 +10,12 @@ namespace CodeBase.Lobby.Infrastructure.States
     public class LobbyStartState : IEnterState, IExitState
     {
         private readonly GameDataSaveLoader _gameDataSaveLoader;
-        private readonly LobbyModel _model;
+        private readonly UIModel _model;
         private readonly UnityEventsObserver _unityEventsObserver;
         private readonly StateMachine _stateMachine;
         private readonly LobbyFactory _lobbyFactory;
 
-        public LobbyStartState(GameDataSaveLoader gameDataSaveLoader, LobbyModel model,
+        public LobbyStartState(GameDataSaveLoader gameDataSaveLoader, UIModel model,
             UnityEventsObserver unityEventsObserver, StateMachine stateMachine, LobbyFactory lobbyFactory)
         {
             _gameDataSaveLoader = gameDataSaveLoader;

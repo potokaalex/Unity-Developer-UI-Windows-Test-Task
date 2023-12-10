@@ -1,16 +1,17 @@
 ﻿using CodeBase.Project.Data;
 using CodeBase.Project.Services.WindowsManagerService;
+using CodeBase.UI.Model;
 
 namespace CodeBase.Lobby.Levels
 {
     public class LobbyLevelsAdapter
     {
-        private readonly LobbyModel _model;
+        private readonly UIModel _model;
         private readonly WindowsManager _windowsManager;
         private LobbyLevelsView _levelsView;
         private SavedPlayerProgressData _playerProgressData;
 
-        public LobbyLevelsAdapter(LobbyModel model, WindowsManager windowsManager)
+        public LobbyLevelsAdapter(UIModel model, WindowsManager windowsManager)
         {
             _model = model;
             _windowsManager = windowsManager;

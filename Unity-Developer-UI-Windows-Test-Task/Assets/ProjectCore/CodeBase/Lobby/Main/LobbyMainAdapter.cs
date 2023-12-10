@@ -1,17 +1,18 @@
 ﻿using System;
 using CodeBase.Project.Services.WindowsManagerService;
+using CodeBase.UI.Model;
 using Zenject;
 
 namespace CodeBase.Lobby.Main
 {
     public class LobbyMainAdapter : IInitializable, IDisposable
     {
-        private readonly LobbyModel _model;
+        private readonly UIModel _model;
         private readonly LobbyMainUIFactory _lobbyMainUIFactory;
         private readonly WindowsManager _windowsManager;
         private LobbyMainView _mainView;
 
-        public LobbyMainAdapter(LobbyModel model, LobbyMainUIFactory lobbyMainUIFactory, WindowsManager windowsManager)
+        public LobbyMainAdapter(UIModel model, LobbyMainUIFactory lobbyMainUIFactory, WindowsManager windowsManager)
         {
             _model = model;
             _lobbyMainUIFactory = lobbyMainUIFactory;

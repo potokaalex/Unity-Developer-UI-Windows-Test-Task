@@ -4,6 +4,7 @@ using CodeBase.Lobby.Infrastructure.Providers;
 using CodeBase.Project.Data;
 using CodeBase.Project.Data.Saved;
 using CodeBase.Project.Services.WindowsManagerService;
+using CodeBase.UI.Model;
 
 namespace CodeBase.Lobby.Shop
 {
@@ -11,13 +12,13 @@ namespace CodeBase.Lobby.Shop
     {
         private readonly LobbyStaticDataProvider _staticDataProvider;
         private readonly WindowsManager _windowsManager;
-        private readonly LobbyModel _model;
+        private readonly UIModel _model;
         private LobbyShopView _lobbyShopView;
         private LobbyConfig _config;
         private SavedGameData _data;
 
         public LobbyShopAdapter(LobbyStaticDataProvider staticDataProvider, WindowsManager windowsManager,
-            LobbyModel model)
+            UIModel model)
         {
             _staticDataProvider = staticDataProvider;
             _windowsManager = windowsManager;

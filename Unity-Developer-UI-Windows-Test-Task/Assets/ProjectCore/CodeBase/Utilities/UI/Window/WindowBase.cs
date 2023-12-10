@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CodeBase.Utilities.UI
+namespace CodeBase.Utilities.UI.Window
 {
     public abstract class WindowBase : MonoBehaviour, IWindow
     {

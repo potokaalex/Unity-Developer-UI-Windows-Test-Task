@@ -1,35 +1,40 @@
 ﻿using System;
 using CodeBase.Lobby.Data;
-using CodeBase.Project.Data;
 using CodeBase.Project.Services;
 using CodeBase.Project.Services.WindowsManagerService;
+using Zenject;
 
 namespace CodeBase.Lobby.Settings
 {
-    public class LobbySettingsAdapter
+    public class SettingsAdapter : IInitializable
     {
         private readonly AudioManager _audioManager;
         private readonly LobbyModel _model;
         private readonly WindowsManager _windowsManager;
-        private GameSettingsData _data;
+        private readonly SettingsUIFactory _settingsUIFactory;
 
-        public LobbySettingsAdapter(AudioManager audioManager, LobbyModel model, WindowsManager windowsManager)
+        public SettingsAdapter(AudioManager audioManager, LobbyModel model, WindowsManager windowsManager,
+            SettingsUIFactory settingsUIFactory)
         {
             _audioManager = audioManager;
             _model = model;
             _windowsManager = windowsManager;
+            _settingsUIFactory = settingsUIFactory;
         }
 
-        public void Initialize(LobbySettingsView settingsView)
+        public void Initialize()
         {
-            _data = _model.GetGameData().Settings;
+            var settingsData = _model.ReadOnlyData.Settings;
+            var settingsView = _settingsUIFactory.CreateView();
+            
+            settingsView.Initialize(settingsData.IsMusicActive, settingsData.IsUISoundActive);
             _windowsManager.RegisterWindow(WindowType.Settings, settingsView);
 
-            SetMusicActive(_data.IsMusicActive);
-            SetUISoundActive(_data.IsUISoundActive);
+            SetMusicActive(settingsData.IsMusicActive);
+            SetUISoundActive(settingsData.IsUISoundActive);
         }
 
-        public void Set(LobbySettingsToggleType settingsType, bool isActive)
+        public void SetActive(LobbySettingsToggleType settingsType, bool isActive)
         {
             switch (settingsType)
             {
@@ -47,13 +52,13 @@ namespace CodeBase.Lobby.Settings
         private void SetMusicActive(bool isActive)
         {
             _audioManager.SetMusicActive(isActive);
-            _data.IsMusicActive = isActive;
+            _model.SetMusicActive(isActive);
         }
 
         private void SetUISoundActive(bool isActive)
         {
             _audioManager.SetUISoundActive(isActive);
-            _data.IsUISoundActive = isActive;
+            _model.SetUISoundActive(isActive);
         }
     }
 }

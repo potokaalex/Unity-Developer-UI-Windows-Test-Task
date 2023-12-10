@@ -3,6 +3,7 @@ using System.Linq;
 using CodeBase.Lobby.Data;
 using CodeBase.Lobby.Shop.Item;
 using CodeBase.Utilities.UI;
+using CodeBase.Utilities.UI.Window;
 using UnityEngine;
 using Zenject;
 

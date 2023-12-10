@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using CodeBase.Lobby.Data;
 using CodeBase.Utilities.UI;
+using CodeBase.Utilities.UI.Window;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

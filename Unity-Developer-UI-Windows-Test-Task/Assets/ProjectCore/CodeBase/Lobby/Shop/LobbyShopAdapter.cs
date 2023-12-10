@@ -2,6 +2,7 @@
 using CodeBase.Lobby.Data;
 using CodeBase.Lobby.Infrastructure.Providers;
 using CodeBase.Project.Data;
+using CodeBase.Project.Data.Saved;
 using CodeBase.Project.Services.WindowsManagerService;
 
 namespace CodeBase.Lobby.Shop
@@ -13,7 +14,7 @@ namespace CodeBase.Lobby.Shop
         private readonly LobbyModel _model;
         private LobbyShopView _lobbyShopView;
         private LobbyConfig _config;
-        private GameData _data;
+        private SavedGameData _data;
 
         public LobbyShopAdapter(LobbyStaticDataProvider staticDataProvider, WindowsManager windowsManager,
             LobbyModel model)

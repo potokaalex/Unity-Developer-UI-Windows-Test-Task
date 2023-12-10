@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using CodeBase.Project.Data;
+using CodeBase.Project.Data.Saved;
 using UnityEngine;
 
 namespace CodeBase.Project.Services.SaveLoaderService
@@ -10,7 +11,7 @@ namespace CodeBase.Project.Services.SaveLoaderService
 
         private readonly List<IGameDataWriter> _writers = new();
         private readonly List<IGameDataReader> _readers = new();
-        private GameData _currentData;
+        private SavedGameData _currentData;
 
         public void RegisterWatcher(IGameDataWatcher watcher)
         {
@@ -33,7 +34,7 @@ namespace CodeBase.Project.Services.SaveLoaderService
         public void Load()
         {
             var loadedString = PlayerPrefs.GetString(Key, string.Empty);
-            var data = JsonUtility.FromJson<GameData>(loadedString) ?? new GameData();
+            var data = JsonUtility.FromJson<SavedGameData>(loadedString) ?? new SavedGameData();
 
             foreach (var reader in _readers)
                 reader.OnGameDataLoad(data);

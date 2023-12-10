@@ -7,19 +7,19 @@ using Zenject;
 
 namespace CodeBase.Lobby.Settings
 {
-    public class LobbySettingsToggle : ToggleBase
+    public class SettingsToggle : ToggleBase
     {
         [SerializeField] private LobbySettingsToggleType _settingsToggleType;
         [SerializeField] private GameObject _onDisableRoot;
 
         private AudioManager _audioManager;
-        private LobbySettingsAdapter _settingsAdapter;
+        private SettingsAdapter _settingsAdapter;
 
         [Inject]
-        public void Construct(LobbySettingsAdapter settingsAdapter, AudioManager audioManager)
+        public void Construct(AudioManager audioManager, SettingsAdapter settingsAdapter)
         {
-            _settingsAdapter = settingsAdapter;
             _audioManager = audioManager;
+            _settingsAdapter = settingsAdapter;
         }
 
         public void Initialize(bool isActive)
@@ -32,8 +32,8 @@ namespace CodeBase.Lobby.Settings
 
         private protected override void OnValueChange(bool isActive)
         {
+            _settingsAdapter.SetActive(_settingsToggleType, isActive);
             _audioManager.PlayButtonClickUISound();
-            _settingsAdapter.Set(_settingsToggleType, isActive);
             SetActive(isActive);
         }
     }

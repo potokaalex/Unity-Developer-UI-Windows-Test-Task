@@ -1,9 +1,10 @@
 ﻿using CodeBase.Project.Data;
+using CodeBase.Project.Data.Saved;
 
 namespace CodeBase.Project.Services.SaveLoaderService
 {
     public interface IGameDataWriter : IGameDataWatcher
     {
-        public void OnGameDataSave(GameData data);
+        public void OnGameDataSave(SavedGameData data);
     }
 }

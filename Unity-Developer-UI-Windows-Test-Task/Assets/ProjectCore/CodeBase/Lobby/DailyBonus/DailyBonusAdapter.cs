@@ -15,7 +15,7 @@ namespace CodeBase.Lobby.DailyBonus
         private DailyBonusCongratsView _congratsView;
         private DailyBonusOverviewView _overviewView;
         private LobbyConfig _config;
-        private PlayerProgressData _playerProgress;
+        private SavedPlayerProgressData _playerProgress;
 
         public DailyBonusAdapter(LobbyModel model, WindowsManager windowsManager,
             LobbyStaticDataProvider staticDataProvider)

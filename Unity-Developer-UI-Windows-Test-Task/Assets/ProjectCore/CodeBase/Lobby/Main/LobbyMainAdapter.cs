@@ -1,25 +1,35 @@
 ﻿using System;
+using CodeBase.Project.Services.WindowsManagerService;
+using Zenject;
 
 namespace CodeBase.Lobby.Main
 {
-    public class LobbyMainAdapter : IDisposable
+    public class LobbyMainAdapter : IInitializable, IDisposable
     {
         private readonly LobbyModel _model;
+        private readonly LobbyMainUIFactory _lobbyMainUIFactory;
+        private readonly WindowsManager _windowsManager;
         private LobbyMainView _mainView;
 
-        public LobbyMainAdapter(LobbyModel model) => _model = model;
-
-        public void Initialize(LobbyMainView mainView)
+        public LobbyMainAdapter(LobbyModel model, LobbyMainUIFactory lobbyMainUIFactory, WindowsManager windowsManager)
         {
-            var data = _model.GetGameData();
-            _mainView = mainView;
+            _model = model;
+            _lobbyMainUIFactory = lobbyMainUIFactory;
+            _windowsManager = windowsManager;
+        }
 
+        public void Initialize()
+        {
+            _mainView = _lobbyMainUIFactory.CreateView();
+
+            _mainView.Initialize(_model.ReadOnlyData.PlayerProgress.TicketsCount);
             _model.OnTicketsCountChanged += SetCoinsCount;
-            SetCoinsCount(data.PlayerProgress.TicketsCount);
+
+            _windowsManager.Initialize(_mainView.GetViewsRoot());
         }
 
         public void Dispose() => _model.OnTicketsCountChanged -= SetCoinsCount;
 
-        public void SetCoinsCount(int count) => _mainView.SetCoinsCount(count);
+        private void SetCoinsCount(int count) => _mainView.SetCoinsCount(count);
     }
 }

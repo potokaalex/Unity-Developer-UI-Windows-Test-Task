@@ -1,5 +1,4 @@
-﻿using System;
-using CodeBase.Lobby.DailyBonus;
+﻿using CodeBase.Lobby.DailyBonus;
 using CodeBase.Lobby.Data;
 using CodeBase.Lobby.Infrastructure.Providers;
 using CodeBase.Lobby.Levels;
@@ -28,7 +27,7 @@ namespace CodeBase.Lobby.Infrastructure
         {
             Container.Bind<LobbyFactory>().AsSingle();
             Container.Bind<LobbyMainUIFactory>().AsSingle();
-            Container.Bind<LobbySettingsUIFactory>().AsSingle();
+            Container.Bind<SettingsUIFactory>().AsSingle();
             Container.BindInterfacesAndSelfTo<DailyBonusUIFactory>().AsSingle();
             Container.BindInterfacesAndSelfTo<LobbyShopUIFactory>().AsSingle();
             Container.BindInterfacesAndSelfTo<LevelsUIFactory>().AsSingle();
@@ -36,10 +35,10 @@ namespace CodeBase.Lobby.Infrastructure
 
         private void BindAdapters()
         {
-            Container.Bind(typeof(LobbyMainAdapter), typeof(IDisposable)).To<LobbyMainAdapter>().AsSingle();
-            Container.Bind<LobbySettingsAdapter>().AsSingle();
+            Container.BindInterfacesAndSelfTo<LobbyMainAdapter>().AsSingle();
+            Container.BindInterfacesAndSelfTo<LobbyShopAdapter>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SettingsAdapter>().AsSingle();
             Container.Bind<DailyBonusAdapter>().AsSingle();
-            Container.Bind(typeof(LobbyShopAdapter)).To<LobbyShopAdapter>().AsSingle();
             Container.Bind<LobbyLevelsAdapter>().AsSingle();
         }
     }

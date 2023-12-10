@@ -3,7 +3,7 @@
 namespace CodeBase.Project.Data
 {
     [Serializable]
-    public class GameSettingsData
+    public class SavedSettingsData
     {
         public bool IsMusicActive = true;
         public bool IsUISoundActive = true;

@@ -13,7 +13,7 @@ namespace CodeBase.Lobby.Data
     public class LobbyConfig : ScriptableObject
     {
         public LobbyMainView MainViewPrefab;
-        public LobbySettingsView SettingsViewPrefab;
+        public SettingsView SettingsViewPrefab;
 
         public DailyBonusCongratsView DailyBonusCongratsViewPrefab;
         public DailyBonusOverviewView DailyBonusOverviewViewPrefab;

@@ -1,11 +1,8 @@
-﻿using System;
-
-namespace CodeBase.Project.Data
+﻿namespace CodeBase.Project.Data
 {
-    [Serializable]
-    public class GameData
+    public struct GameData
     {
-        public GameSettingsData Settings = new();
-        public PlayerProgressData PlayerProgress = new();
+        public SettingsData Settings;
+        public PlayerProgressData PlayerProgress;
     }
 }

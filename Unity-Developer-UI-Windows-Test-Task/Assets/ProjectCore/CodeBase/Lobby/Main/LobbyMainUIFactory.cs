@@ -7,14 +7,11 @@ namespace CodeBase.Lobby.Main
     {
         private readonly IInstantiator _instantiator;
         private readonly LobbyStaticDataProvider _staticDataProvider;
-        private readonly LobbyMainAdapter _adapter;
 
-        public LobbyMainUIFactory(IInstantiator instantiator, LobbyStaticDataProvider staticDataProvider,
-            LobbyMainAdapter adapter)
+        public LobbyMainUIFactory(IInstantiator instantiator, LobbyStaticDataProvider staticDataProvider)
         {
             _instantiator = instantiator;
             _staticDataProvider = staticDataProvider;
-            _adapter = adapter;
         }
 
         public LobbyMainView CreateView()

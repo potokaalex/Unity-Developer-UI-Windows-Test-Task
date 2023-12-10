@@ -9,6 +9,8 @@ namespace CodeBase.Lobby.Main
         
         public Transform GetViewsRoot() => gameObject.transform;
 
+        public void Initialize(int coinsCount) => SetCoinsCount(coinsCount);
+
         public void SetCoinsCount(int count) => _ticketsCount.text = count.ToString();
     }
 }

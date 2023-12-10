@@ -8,7 +8,7 @@ namespace CodeBase.Lobby.Levels
         private readonly LobbyModel _model;
         private readonly WindowsManager _windowsManager;
         private LobbyLevelsView _levelsView;
-        private PlayerProgressData _playerProgressData;
+        private SavedPlayerProgressData _playerProgressData;
 
         public LobbyLevelsAdapter(LobbyModel model, WindowsManager windowsManager)
         {

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using CodeBase.Lobby.WindowsManager;
 using CodeBase.Utilities.UI;
 using UnityEngine;
 using Zenject;
@@ -8,7 +7,6 @@ namespace CodeBase.Lobby.Levels
 {
     public class LobbyLevelsView : WindowBase
     {
-        [SerializeField] private LobbyCloseCurrentWindowButton _closeCurrentWindowButton;
         [SerializeField] private List<LobbyLevelsOpenLevelButton> _levelsOpenLevelButtons;
         private LobbyLevelsAdapter _levelsAdapter;
 
@@ -17,7 +15,6 @@ namespace CodeBase.Lobby.Levels
 
         public void Initialize(int reachedLevel)
         {
-            _closeCurrentWindowButton.Initialize(_levelsAdapter);
             Close();
 
             for (var i = 0; i < _levelsOpenLevelButtons.Count; i++)

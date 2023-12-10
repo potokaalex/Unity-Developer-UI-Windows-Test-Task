@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using CodeBase.Lobby.Data;
-using CodeBase.Lobby.WindowsManager;
 using CodeBase.Utilities.UI;
 using TMPro;
 using UnityEngine;
@@ -11,8 +10,6 @@ namespace CodeBase.Lobby.DailyBonus
 {
     public class DailyBonusOverviewView : WindowBase
     {
-        [SerializeField] private DailyBonusGetWeeklyBonusButton _getWeeklyBonusButton;
-        [SerializeField] private LobbyCloseCurrentWindowButton _closeWindowButton;
         [SerializeField] private Transform _countItemsSpawnRoot;
         [SerializeField] private TextMeshProUGUI _sliderProgressText;
         [SerializeField] private Slider _slider;
@@ -29,8 +26,6 @@ namespace CodeBase.Lobby.DailyBonus
             List<LobbyDailyBonusCountItemPreset> itemPresets)
         {
             _slider.maxValue = MaxSliderValue;
-
-            _closeWindowButton.Initialize(dailyBonusAdapter);
             Close();
 
             for (var i = 0; i < 6; i++)

@@ -1,6 +1,6 @@
-﻿namespace CodeBase.Lobby.Data
+﻿namespace CodeBase.Project.Services.WindowsManagerService
 {
-    public enum LobbyWindowType
+    public enum WindowType
     {
         None = 0,
         Settings = 1,

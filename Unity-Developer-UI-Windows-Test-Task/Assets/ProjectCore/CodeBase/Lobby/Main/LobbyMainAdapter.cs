@@ -1,20 +1,13 @@
 ﻿using System;
-using CodeBase.Lobby.Data;
-using CodeBase.Lobby.WindowsManager;
 
 namespace CodeBase.Lobby.Main
 {
-    public class LobbyMainAdapter : ILobbyCloseCurrentWindowAdapter, IDisposable
+    public class LobbyMainAdapter : IDisposable
     {
-        private readonly LobbyWindowsManager _windowsManager;
         private readonly LobbyModel _model;
         private LobbyMainView _mainView;
 
-        public LobbyMainAdapter(LobbyWindowsManager windowsManager, LobbyModel model)
-        {
-            _windowsManager = windowsManager;
-            _model = model;
-        }
+        public LobbyMainAdapter(LobbyModel model) => _model = model;
 
         public void Initialize(LobbyMainView mainView)
         {
@@ -26,10 +19,6 @@ namespace CodeBase.Lobby.Main
         }
 
         public void Dispose() => _model.OnTicketsCountChanged -= SetCoinsCount;
-
-        public void ToggleCurrentWindow(LobbyWindowType windowType) => _windowsManager.ToggleCurrentWindow(windowType);
-
-        public void CloseCurrentWindow() => _windowsManager.CloseCurrentWindow();
 
         public void SetCoinsCount(int count) => _mainView.SetCoinsCount(count);
     }

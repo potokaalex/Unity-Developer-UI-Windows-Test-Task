@@ -2,12 +2,14 @@
 
 namespace CodeBase.Utilities.UI
 {
-    public abstract class WindowBase : MonoBehaviour
+    public abstract class WindowBase : MonoBehaviour, IWindow
     {
-        public bool IsOpened { get; private set; }
+        public virtual void Open()
+        {
+        }
 
-        public virtual void Open() => IsOpened = true;
-
-        public virtual void Close() => IsOpened = false;
+        public virtual void Close()
+        {
+        }
     }
 }

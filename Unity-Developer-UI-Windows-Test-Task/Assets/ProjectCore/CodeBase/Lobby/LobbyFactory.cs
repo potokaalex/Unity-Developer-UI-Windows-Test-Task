@@ -4,7 +4,7 @@ using CodeBase.Lobby.Levels;
 using CodeBase.Lobby.Main;
 using CodeBase.Lobby.Settings;
 using CodeBase.Lobby.Shop;
-using CodeBase.Lobby.WindowsManager;
+using CodeBase.Project.Services.WindowsManagerService;
 using Zenject;
 
 namespace CodeBase.Lobby
@@ -14,7 +14,7 @@ namespace CodeBase.Lobby
         private readonly LobbyMainUIFactory _mainUIFactory;
         private readonly LobbySettingsUIFactory _settingsUIFactory;
         private readonly DailyBonusUIFactory _dailyBonusUIFactory;
-        private readonly LobbyWindowsManager _windowsManager;
+        private readonly WindowsManager _windowsManager;
         private readonly LobbyMainAdapter _mainAdapter;
         private readonly LobbySettingsAdapter _settingsAdapter;
         private readonly DailyBonusAdapter _dailyBonusAdapter;
@@ -24,7 +24,7 @@ namespace CodeBase.Lobby
         private readonly LobbyLevelsAdapter _levelsAdapter;
 
         public LobbyFactory(LobbyMainUIFactory mainUIFactory, LobbySettingsUIFactory settingsUIFactory,
-            DailyBonusUIFactory dailyBonusUIFactory, LobbyWindowsManager windowsManager,
+            DailyBonusUIFactory dailyBonusUIFactory, WindowsManager windowsManager,
             LobbyMainAdapter mainAdapter, LobbySettingsAdapter settingsAdapter,
             DailyBonusAdapter dailyBonusAdapter, LobbyShopUIFactory shopUIFactory, LobbyShopAdapter shopAdapter,
             LevelsUIFactory levelsUIFactory, LobbyLevelsAdapter levelsAdapter)
@@ -52,10 +52,8 @@ namespace CodeBase.Lobby
             var shopView = _shopUIFactory.CreateView(viewsRoot);
             var levelsView = _levelsUIFactory.CreateView(viewsRoot);
 
-            _windowsManager.Initialize(settingsView, overviewView, congratsView, shopView, levelsView);
-
             _mainAdapter.Initialize(mainView);
-            _settingsAdapter.Initialize();
+            _settingsAdapter.Initialize(settingsView);
             _dailyBonusAdapter.Initialize(congratsView, overviewView);
             _shopAdapter.Initialize(shopView);
             _levelsAdapter.Initialize(levelsView);

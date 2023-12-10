@@ -1,15 +1,15 @@
 ﻿using System;
 using CodeBase.Lobby.Data;
 using CodeBase.Lobby.Infrastructure.Providers;
-using CodeBase.Lobby.WindowsManager;
 using CodeBase.Project.Data;
+using CodeBase.Project.Services.WindowsManagerService;
 
 namespace CodeBase.Lobby.DailyBonus
 {
-    public class DailyBonusAdapter : ILobbyCloseCurrentWindowAdapter
+    public class DailyBonusAdapter
     {
         private readonly LobbyModel _model;
-        private readonly LobbyWindowsManager _windowsManager;
+        private readonly WindowsManager _windowsManager;
         private readonly LobbyStaticDataProvider _staticDataProvider;
 
         private DailyBonusCongratsView _congratsView;
@@ -17,7 +17,7 @@ namespace CodeBase.Lobby.DailyBonus
         private LobbyConfig _config;
         private PlayerProgressData _playerProgress;
 
-        public DailyBonusAdapter(LobbyModel model, LobbyWindowsManager windowsManager,
+        public DailyBonusAdapter(LobbyModel model, WindowsManager windowsManager,
             LobbyStaticDataProvider staticDataProvider)
         {
             _model = model;
@@ -31,6 +31,11 @@ namespace CodeBase.Lobby.DailyBonus
             _overviewView = overviewView;
             _config = _staticDataProvider.GetConfig();
             _playerProgress = _model.GetGameData().PlayerProgress;
+
+            _windowsManager.RegisterWindow(WindowType.DailyBonusCongrats, congratsView);
+            _windowsManager.RegisterWindow(WindowType.DailyBonusOverview, overviewView);
+
+            _congratsView.Initialize();
 
             CheckDailyBonus();
             _overviewView.SetSliderProgress(_playerProgress.ConsecutiveEntryCount);
@@ -46,8 +51,6 @@ namespace CodeBase.Lobby.DailyBonus
             }
         }
 
-        public void CloseCurrentWindow() => _windowsManager.CloseCurrentWindow();
-
         private void CheckDailyBonus()
         {
             var currentDate = DateTime.Now.ToOADate();
@@ -56,7 +59,7 @@ namespace CodeBase.Lobby.DailyBonus
 
             if (difference < 1 && _playerProgress.LastEntryOADate != 0)
                 return;
-            if (difference > 2) 
+            if (difference > 2)
                 _playerProgress.ConsecutiveEntryCount = 0;
 
             if (_playerProgress.ConsecutiveEntryCount < presets.Count)
@@ -70,7 +73,7 @@ namespace CodeBase.Lobby.DailyBonus
 
         private void OpenCongratsWindow(LobbyDailyBonusCountItemPreset preset)
         {
-            _windowsManager.ToggleCurrentWindow(LobbyWindowType.DailyBonusCongrats);
+            _windowsManager.ToggleCurrentWindow(WindowType.DailyBonusCongrats);
             _congratsView.SetTicketsCount(preset.TicketsCount);
             _congratsView.SetDayNumber(preset.DayNumber);
             _model.AddTicketsCount(preset.TicketsCount);

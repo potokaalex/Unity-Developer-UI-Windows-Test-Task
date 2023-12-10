@@ -1,21 +1,21 @@
 ﻿using System;
 using CodeBase.Lobby.Data;
 using CodeBase.Lobby.Infrastructure.Providers;
-using CodeBase.Lobby.WindowsManager;
 using CodeBase.Project.Data;
+using CodeBase.Project.Services.WindowsManagerService;
 
 namespace CodeBase.Lobby.Shop
 {
-    public class LobbyShopAdapter : ILobbyCloseCurrentWindowAdapter, IDisposable
+    public class LobbyShopAdapter : IDisposable
     {
         private readonly LobbyStaticDataProvider _staticDataProvider;
-        private readonly LobbyWindowsManager _windowsManager;
+        private readonly WindowsManager _windowsManager;
         private readonly LobbyModel _model;
         private LobbyShopView _lobbyShopView;
         private LobbyConfig _config;
         private GameData _data;
 
-        public LobbyShopAdapter(LobbyStaticDataProvider staticDataProvider, LobbyWindowsManager windowsManager,
+        public LobbyShopAdapter(LobbyStaticDataProvider staticDataProvider, WindowsManager windowsManager,
             LobbyModel model)
         {
             _staticDataProvider = staticDataProvider;
@@ -29,6 +29,7 @@ namespace CodeBase.Lobby.Shop
             _lobbyShopView = lobbyShopView;
             _lobbyShopView.Initialize(_config.ShopItemPresets);
             _data = _model.GetGameData();
+            _windowsManager.RegisterWindow(WindowType.Shop, lobbyShopView);
 
             foreach (var preset in _config.ShopItemPresets)
             {
@@ -62,8 +63,6 @@ namespace CodeBase.Lobby.Shop
         }
 
         public void BuyItemDonate(LobbyShopItemPreset preset) => _model.AddTicketsCount(preset.Count);
-
-        public void CloseCurrentWindow() => _windowsManager.CloseCurrentWindow();
 
         private void OnLevelChanged(int reachedLevel)
         {

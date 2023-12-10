@@ -22,8 +22,6 @@ namespace CodeBase.Lobby.Main
             var prefab = _staticDataProvider.GetConfig().MainViewPrefab;
             var item = _instantiator.InstantiatePrefabForComponent<LobbyMainView>(prefab);
 
-            item.Initialize(_adapter);
-
             return item;
         }
     }

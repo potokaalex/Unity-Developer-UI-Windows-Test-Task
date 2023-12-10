@@ -28,7 +28,6 @@ namespace CodeBase.Lobby.DailyBonus
             var item = _instantiator.InstantiatePrefabForComponent<DailyBonusCongratsView>(prefab);
 
             item.transform.SetParent(root, false);
-            item.Initialize(_adapter);
 
             return item;
         }

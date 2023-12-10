@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using CodeBase.Lobby.Data;
 using CodeBase.Lobby.Shop.Item;
-using CodeBase.Lobby.WindowsManager;
 using CodeBase.Utilities.UI;
 using UnityEngine;
 using Zenject;
@@ -11,23 +10,16 @@ namespace CodeBase.Lobby.Shop
 {
     public class LobbyShopView : WindowBase
     {
-        [SerializeField] private LobbyCloseCurrentWindowButton _closeCurrentWindowButton;
         [SerializeField] private Transform _itemGroupsRoot;
 
         private readonly Dictionary<string, LobbyShopItem> _items = new();
-        private LobbyShopAdapter _shopAdapter;
         private LobbyShopUIFactory _shopUIFactory;
 
         [Inject]
-        public void Construct(LobbyShopAdapter shopAdapter, LobbyShopUIFactory shopUIFactory)
-        {
-            _shopAdapter = shopAdapter;
-            _shopUIFactory = shopUIFactory;
-        }
+        public void Construct(LobbyShopUIFactory shopUIFactory) => _shopUIFactory = shopUIFactory;
 
         public void Initialize(List<LobbyShopItemPreset> itemPresets)
         {
-            _closeCurrentWindowButton.Initialize(_shopAdapter);
             Close();
             CreateItems(itemPresets);
         }

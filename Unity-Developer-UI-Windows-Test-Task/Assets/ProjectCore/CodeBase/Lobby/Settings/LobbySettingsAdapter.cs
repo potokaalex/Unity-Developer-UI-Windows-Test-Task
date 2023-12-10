@@ -1,28 +1,29 @@
 ﻿using System;
 using CodeBase.Lobby.Data;
-using CodeBase.Lobby.WindowsManager;
 using CodeBase.Project.Data;
 using CodeBase.Project.Services;
+using CodeBase.Project.Services.WindowsManagerService;
 
 namespace CodeBase.Lobby.Settings
 {
-    public class LobbySettingsAdapter : ILobbyCloseCurrentWindowAdapter
+    public class LobbySettingsAdapter
     {
         private readonly AudioManager _audioManager;
         private readonly LobbyModel _model;
-        private readonly LobbyWindowsManager _windowsManager;
+        private readonly WindowsManager _windowsManager;
         private GameSettingsData _data;
 
-        public LobbySettingsAdapter(AudioManager audioManager, LobbyModel model, LobbyWindowsManager windowsManager)
+        public LobbySettingsAdapter(AudioManager audioManager, LobbyModel model, WindowsManager windowsManager)
         {
             _audioManager = audioManager;
             _model = model;
             _windowsManager = windowsManager;
         }
 
-        public void Initialize()
+        public void Initialize(LobbySettingsView settingsView)
         {
             _data = _model.GetGameData().Settings;
+            _windowsManager.RegisterWindow(WindowType.Settings, settingsView);
 
             SetMusicActive(_data.IsMusicActive);
             SetUISoundActive(_data.IsUISoundActive);
@@ -54,7 +55,5 @@ namespace CodeBase.Lobby.Settings
             _audioManager.SetUISoundActive(isActive);
             _data.IsUISoundActive = isActive;
         }
-
-        public void CloseCurrentWindow() => _windowsManager.CloseCurrentWindow();
     }
 }

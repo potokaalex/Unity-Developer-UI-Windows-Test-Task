@@ -6,7 +6,6 @@ using CodeBase.Lobby.Levels;
 using CodeBase.Lobby.Main;
 using CodeBase.Lobby.Settings;
 using CodeBase.Lobby.Shop;
-using CodeBase.Lobby.WindowsManager;
 using UnityEngine;
 using Zenject;
 
@@ -19,11 +18,9 @@ namespace CodeBase.Lobby.Infrastructure
         public override void InstallBindings()
         {
             BindFactories();
-            BindProviders();
             BindAdapters();
 
             Container.Bind<LobbyStaticDataProvider>().AsSingle().WithArguments(_lobbyConfig);
-            Container.Bind<LobbyWindowsManager>().AsSingle();
             Container.Bind<LobbyModel>().AsSingle();
         }
 
@@ -35,10 +32,6 @@ namespace CodeBase.Lobby.Infrastructure
             Container.BindInterfacesAndSelfTo<DailyBonusUIFactory>().AsSingle();
             Container.BindInterfacesAndSelfTo<LobbyShopUIFactory>().AsSingle();
             Container.BindInterfacesAndSelfTo<LevelsUIFactory>().AsSingle();
-        }
-
-        private void BindProviders()
-        {
         }
 
         private void BindAdapters()

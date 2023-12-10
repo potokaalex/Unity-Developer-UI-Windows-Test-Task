@@ -1,5 +1,4 @@
-﻿using CodeBase.Lobby.WindowsManager;
-using CodeBase.Utilities.UI;
+﻿using CodeBase.Utilities.UI;
 using TMPro;
 using UnityEngine;
 
@@ -7,15 +6,10 @@ namespace CodeBase.Lobby.DailyBonus
 {
     public class DailyBonusCongratsView : WindowBase
     {
-        [SerializeField] private LobbyCloseCurrentWindowButton _closeWindowButton;
         [SerializeField] private TextMeshProUGUI _ticketsCountText;
         [SerializeField] private TextMeshProUGUI _dayNumberText;
 
-        public void Initialize(DailyBonusAdapter dailyBonusAdapter)
-        {
-            Close();
-            _closeWindowButton.Initialize(dailyBonusAdapter);
-        }
+        public void Initialize() => Close();
 
         public void SetTicketsCount(int count) => _ticketsCountText.text = $"x{count.ToString()}";
 

@@ -1,23 +1,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using CodeBase.Lobby.Data;
+using CodeBase.Lobby.Shop;
 using CodeBase.Lobby.Shop.Item;
-using CodeBase.Utilities.UI;
 using CodeBase.Utilities.UI.Window;
 using UnityEngine;
 using Zenject;
 
-namespace CodeBase.Lobby.Shop
+namespace CodeBase.UI.Shop
 {
-    public class LobbyShopView : WindowBase
+    public class ShopView : WindowBase
     {
         [SerializeField] private Transform _itemGroupsRoot;
 
-        private readonly Dictionary<string, LobbyShopItem> _items = new();
-        private LobbyShopUIFactory _shopUIFactory;
+        private readonly Dictionary<string, ShopItem> _items = new();
+        private ShopUIFactory _shopUIFactory;
 
         [Inject]
-        public void Construct(LobbyShopUIFactory shopUIFactory) => _shopUIFactory = shopUIFactory;
+        public void Construct(ShopUIFactory shopUIFactory) => _shopUIFactory = shopUIFactory;
 
         public void Initialize(List<LobbyShopItemPreset> itemPresets)
         {

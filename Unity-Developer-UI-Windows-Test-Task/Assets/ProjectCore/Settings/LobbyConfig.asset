@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 878f7caf18b04773a5d91471c293a82b, type: 3}
   m_Name: LobbyConfig
   m_EditorClassIdentifier: 
-  AudioManagerPrefab: {fileID: 6900255400157796821, guid: 2ce355f62c99c134eadd0f405880b953, type: 3}
   MainViewPrefab: {fileID: 1598339370219117928, guid: 13b29d81d8294b94abfc86440d9d64bb, type: 3}
   SettingsViewPrefab: {fileID: 3906930698698578222, guid: f01da2f3a8007b74c89f4d1f89b65812, type: 3}
   DailyBonusCongratsViewPrefab: {fileID: 7312072375896489493, guid: 29887de836620b94d899fad30314a16b, type: 3}
@@ -34,10 +33,10 @@ MonoBehaviour:
   WeeklyBonusCountItemPreset:
     DayNumber: 7
     TicketsCount: 30
-  LobbyShopViewPrefab: {fileID: 5480568759837382669, guid: e4dc171ae3cb64f479149dbcb0d49837, type: 3}
-  LobbyShopItemGroupPrefab: {fileID: 4664310790797371788, guid: 0f18f3c5b18a41b4b927011d7a626503, type: 3}
-  LobbyShopItemPrefab: {fileID: 3412071454948441761, guid: 5dd58213e805f0242af23954b772e50c, type: 3}
-  LobbyShopDonateItemPrefab: {fileID: 3474543679489607466, guid: 838ac805cd1330a428d9d94f6bcc1575, type: 3}
+  ShopViewPrefab: {fileID: 5480568759837382669, guid: e4dc171ae3cb64f479149dbcb0d49837, type: 3}
+  ShopItemGroupPrefab: {fileID: 4664310790797371788, guid: 0f18f3c5b18a41b4b927011d7a626503, type: 3}
+  ShopItemPrefab: {fileID: 3412071454948441761, guid: 5dd58213e805f0242af23954b772e50c, type: 3}
+  ShopDonateItemPrefab: {fileID: 3474543679489607466, guid: 838ac805cd1330a428d9d94f6bcc1575, type: 3}
   ShopItemPresets:
   - GroupType: 0
     IconName: ChestIcon

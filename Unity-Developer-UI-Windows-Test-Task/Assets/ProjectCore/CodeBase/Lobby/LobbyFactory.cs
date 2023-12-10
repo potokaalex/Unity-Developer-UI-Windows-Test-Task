@@ -1,5 +1,4 @@
-﻿using CodeBase.Lobby.DailyBonus;
-using CodeBase.Lobby.Levels;
+﻿using CodeBase.Lobby.Levels;
 using CodeBase.Lobby.Main;
 using CodeBase.Lobby.Settings;
 using CodeBase.Lobby.Shop;
@@ -15,15 +14,15 @@ namespace CodeBase.Lobby
         private readonly LobbyMainAdapter _mainAdapter;
         private readonly SettingsAdapter _settingsAdapter;
         private readonly DailyBonusAdapter _dailyBonusAdapter;
-        private readonly LobbyShopUIFactory _shopUIFactory;
-        private readonly LobbyShopAdapter _shopAdapter;
+        private readonly ShopUIFactory _shopUIFactory;
+        private readonly ShopAdapter _shopAdapter;
         private readonly LevelsUIFactory _levelsUIFactory;
         private readonly LobbyLevelsAdapter _levelsAdapter;
         private readonly WindowsManager _windowsManager;
 
         public LobbyFactory(SettingsUIFactory settingsUIFactory, DailyBonusUIFactory dailyBonusUIFactory,
             LobbyMainAdapter mainAdapter, SettingsAdapter settingsAdapter,
-            DailyBonusAdapter dailyBonusAdapter, LobbyShopUIFactory shopUIFactory, LobbyShopAdapter shopAdapter,
+            DailyBonusAdapter dailyBonusAdapter, ShopUIFactory shopUIFactory, ShopAdapter shopAdapter,
             LevelsUIFactory levelsUIFactory, LobbyLevelsAdapter levelsAdapter, WindowsManager windowsManager)
         {
             _settingsUIFactory = settingsUIFactory;
@@ -43,14 +42,9 @@ namespace CodeBase.Lobby
             _mainAdapter.Initialize();
             _settingsAdapter.Initialize();
             _dailyBonusAdapter.Initialize();
-            
-            var viewsRoot = _windowsManager.WindowsRoot;
-            //var congratsView = _dailyBonusUIFactory.CreateCongratsView(viewsRoot);
-            //var overviewView = _dailyBonusUIFactory.CreateOverviewView(viewsRoot);
-            var shopView = _shopUIFactory.CreateView(viewsRoot);
-            var levelsView = _levelsUIFactory.CreateView(viewsRoot);
+            _shopAdapter.Initialize();
 
-            _shopAdapter.Initialize(shopView);
+            var levelsView = _levelsUIFactory.CreateView(_windowsManager.WindowsRoot);
             _levelsAdapter.Initialize(levelsView);
         }
     }

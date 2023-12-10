@@ -1,5 +1,4 @@
 ﻿using CodeBase.Lobby.Data;
-using CodeBase.Lobby.Infrastructure.Providers;
 using CodeBase.Project.Services;
 using TMPro;
 using UnityEngine;
@@ -9,7 +8,7 @@ using Zenject;
 
 namespace CodeBase.Lobby.Shop.Item
 {
-    public class LobbyShopItemDonate : MonoBehaviour
+    public class ShopItemDonate : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI _nameText;
         [SerializeField] private TextMeshProUGUI _costText;
@@ -17,12 +16,12 @@ namespace CodeBase.Lobby.Shop.Item
         [SerializeField] private CodelessIAPButton _iapButton;
         [SerializeField] private Image _itemIcon;
 
-        private LobbyShopAdapter _adapter;
+        private ShopAdapter _adapter;
         private LobbyShopItemPreset _preset;
         private AudioManager _audioManager;
 
         [Inject]
-        public void Construct(LobbyShopAdapter adapter, AudioManager audioManager,
+        public void Construct(ShopAdapter adapter, AudioManager audioManager,
             LobbyShopItemPreset preset)
         {
             _adapter = adapter;

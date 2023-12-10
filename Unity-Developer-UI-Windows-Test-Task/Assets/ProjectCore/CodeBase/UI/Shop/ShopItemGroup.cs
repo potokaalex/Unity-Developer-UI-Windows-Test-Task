@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace CodeBase.Lobby.Shop
 {
-    public class LobbyShopItemGroup : MonoBehaviour
+    public class ShopItemGroup : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI _name;
         [SerializeField] private Transform _itemsRoot;

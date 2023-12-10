@@ -31,7 +31,7 @@ namespace CodeBase.Lobby.Infrastructure
             Container.Bind<LobbyMainUIFactory>().AsSingle();
             Container.Bind<SettingsUIFactory>().AsSingle();
             Container.BindInterfacesAndSelfTo<DailyBonusUIFactory>().AsSingle();
-            Container.BindInterfacesAndSelfTo<LobbyShopUIFactory>().AsSingle();
+            Container.BindInterfacesAndSelfTo<ShopUIFactory>().AsSingle();
             Container.BindInterfacesAndSelfTo<LevelsUIFactory>().AsSingle();
         }
 
@@ -40,7 +40,7 @@ namespace CodeBase.Lobby.Infrastructure
             Container.Bind<LobbyMainAdapter>().AsSingle();
             Container.Bind<SettingsAdapter>().AsSingle();
             Container.Bind<DailyBonusAdapter>().AsSingle();
-            Container.BindInterfacesAndSelfTo<LobbyShopAdapter>().AsSingle();
+            Container.BindInterfacesAndSelfTo<ShopAdapter>().AsSingle();
             Container.Bind<LobbyLevelsAdapter>().AsSingle();
         }
     }

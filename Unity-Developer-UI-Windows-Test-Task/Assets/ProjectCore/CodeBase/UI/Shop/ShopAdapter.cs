@@ -1,46 +1,50 @@
 ﻿using System;
 using CodeBase.Lobby.Data;
 using CodeBase.Lobby.Infrastructure.Providers;
-using CodeBase.Project.Data;
 using CodeBase.Project.Data.Saved;
 using CodeBase.Project.Services.WindowsManagerService;
 using CodeBase.UI.Model;
+using CodeBase.UI.Shop;
 
 namespace CodeBase.Lobby.Shop
 {
-    public class LobbyShopAdapter : IDisposable
+    public class ShopAdapter : IDisposable
     {
         private readonly LobbyStaticDataProvider _staticDataProvider;
         private readonly WindowsManager _windowsManager;
         private readonly UIModel _model;
-        private LobbyShopView _lobbyShopView;
-        private LobbyConfig _config;
-        private SavedGameData _data;
+        private readonly ShopUIFactory _shopUIFactory;
 
-        public LobbyShopAdapter(LobbyStaticDataProvider staticDataProvider, WindowsManager windowsManager,
-            UIModel model)
+        private ShopView _shopView;
+        private LobbyConfig _config;
+
+        public ShopAdapter(LobbyStaticDataProvider staticDataProvider, WindowsManager windowsManager,
+            UIModel model, ShopUIFactory shopUIFactory)
         {
             _staticDataProvider = staticDataProvider;
             _windowsManager = windowsManager;
             _model = model;
+            _shopUIFactory = shopUIFactory;
         }
 
-        public void Initialize(LobbyShopView lobbyShopView)
+        public void Initialize()
         {
             _config = _staticDataProvider.GetConfig();
-            _lobbyShopView = lobbyShopView;
-            _lobbyShopView.Initialize(_config.ShopItemPresets);
-            _data = _model.GetGameData();
-            _windowsManager.RegisterWindow(WindowType.Shop, lobbyShopView);
+
+            _shopView = _shopUIFactory.CreateView();
+            _shopView.Initialize(_config.ShopItemPresets);
+            _windowsManager.RegisterWindow(WindowType.Shop, _shopView);
+
+            var playerProgress = _model.ReadOnlyData.PlayerProgress;
 
             foreach (var preset in _config.ShopItemPresets)
             {
-                if (_data.PlayerProgress.BoughtItemsNames.Contains(preset.ID))
-                    _lobbyShopView.ShowBuy(preset.ID);
+                if (playerProgress.BoughtItemsNames.Contains(preset.ID))
+                    _shopView.ShowBuy(preset.ID);
 
-                if (preset.RequiredLevelNumber <= _data.PlayerProgress.ReachedLevel)
+                if (preset.RequiredLevelNumber <= playerProgress.ReachedLevel)
                     if (preset.GroupType != ShopGroupType.Tickets)
-                        _lobbyShopView.UnlockItem(preset.ID);
+                        _shopView.UnlockItem(preset.ID);
             }
 
             _model.OnLevelChanged += OnLevelChanged;
@@ -50,17 +54,19 @@ namespace CodeBase.Lobby.Shop
 
         public void BuyItem(LobbyShopItemPreset preset)
         {
-            if (_data.PlayerProgress.TicketsCount < preset.Cost)
+            var playerProgress = _model.ReadOnlyData.PlayerProgress;
+            
+            if (playerProgress.TicketsCount < preset.Cost)
                 return;
 
-            if (_data.PlayerProgress.BoughtItemsNames.Contains(preset.ID))
+            if (playerProgress.BoughtItemsNames.Contains(preset.ID))
                 return;
 
-            if (_data.PlayerProgress.ReachedLevel < preset.RequiredLevelNumber)
+            if (playerProgress.ReachedLevel < preset.RequiredLevelNumber)
                 return;
 
-            _data.PlayerProgress.BoughtItemsNames.Add(preset.ID);
-            _lobbyShopView.ShowBuy(preset.ID);
+            playerProgress.BoughtItemsNames.Add(preset.ID);
+            _shopView.ShowBuy(preset.ID);
             _model.RemoveTicketsCount((int)preset.Cost);
         }
 
@@ -70,7 +76,7 @@ namespace CodeBase.Lobby.Shop
         {
             foreach (var preset in _config.ShopItemPresets)
                 if (preset.RequiredLevelNumber == reachedLevel)
-                    _lobbyShopView.UnlockItem(preset.ID);
+                    _shopView.UnlockItem(preset.ID);
         }
     }
 }

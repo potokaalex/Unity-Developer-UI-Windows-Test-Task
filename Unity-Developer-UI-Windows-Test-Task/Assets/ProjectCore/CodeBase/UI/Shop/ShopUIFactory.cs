@@ -2,42 +2,46 @@
 using CodeBase.Lobby.Infrastructure.Providers;
 using CodeBase.Lobby.Shop.Item;
 using CodeBase.Project.Services.AssetProviderService;
+using CodeBase.Project.Services.WindowsManagerService;
+using CodeBase.UI.Shop;
 using UnityEngine;
 using Zenject;
 
 namespace CodeBase.Lobby.Shop
 {
-    public class LobbyShopUIFactory : IInitializable
+    public class ShopUIFactory : IInitializable
     {
         private readonly IInstantiator _instantiator;
         private readonly LobbyStaticDataProvider _staticDataProvider;
         private readonly IAssetProvider _assetProvider;
+        private readonly WindowsManager _windowsManager;
         private LobbyConfig _config;
 
-        public LobbyShopUIFactory(IInstantiator instantiator, LobbyStaticDataProvider staticDataProvider,
-            IAssetProvider assetProvider)
+        public ShopUIFactory(IInstantiator instantiator, LobbyStaticDataProvider staticDataProvider,
+            IAssetProvider assetProvider, WindowsManager windowsManager)
         {
             _instantiator = instantiator;
             _staticDataProvider = staticDataProvider;
             _assetProvider = assetProvider;
+            _windowsManager = windowsManager;
         }
 
         public void Initialize() => _config = _staticDataProvider.GetConfig();
 
-        public LobbyShopView CreateView(Transform root)
+        public ShopView CreateView()
         {
-            var prefab = _config.LobbyShopViewPrefab;
-            var item = _instantiator.InstantiatePrefabForComponent<LobbyShopView>(prefab);
+            var prefab = _config.ShopViewPrefab;
+            var item = _instantiator.InstantiatePrefabForComponent<ShopView>(prefab);
 
-            item.transform.SetParent(root, false);
+            item.transform.SetParent(_windowsManager.WindowsRoot, false);
 
             return item;
         }
 
-        public LobbyShopItemGroup CreateItemGroup(Transform root, ShopGroupType groupType)
+        public ShopItemGroup CreateItemGroup(Transform root, ShopGroupType groupType)
         {
-            var prefab = _config.LobbyShopItemGroupPrefab;
-            var item = _instantiator.InstantiatePrefabForComponent<LobbyShopItemGroup>(prefab);
+            var prefab = _config.ShopItemGroupPrefab;
+            var item = _instantiator.InstantiatePrefabForComponent<ShopItemGroup>(prefab);
 
             item.transform.SetParent(root, false);
             item.Initialize(groupType);
@@ -45,22 +49,22 @@ namespace CodeBase.Lobby.Shop
             return item;
         }
 
-        public LobbyShopItem CreateItem(LobbyShopItemPreset preset, Transform root)
+        public ShopItem CreateItem(LobbyShopItemPreset preset, Transform root)
         {
-            var prefab = _config.LobbyShopItemPrefab;
-            var item = _instantiator.InstantiatePrefabForComponent<LobbyShopItem>(prefab);
+            var prefab = _config.ShopItemPrefab;
+            var item = _instantiator.InstantiatePrefabForComponent<ShopItem>(prefab);
 
             item.transform.SetParent(root, false);
             item.Initialize(preset, _assetProvider.Get<Sprite>(preset.IconName));
-            
+
             return item;
         }
 
         public void CreateDonateItem(LobbyShopItemPreset preset, Transform root)
         {
-            var prefab = _config.LobbyShopDonateItemPrefab;
+            var prefab = _config.ShopDonateItemPrefab;
             var args = new object[] { preset };
-            var item = _instantiator.InstantiatePrefabForComponent<LobbyShopItemDonate>(prefab, args);
+            var item = _instantiator.InstantiatePrefabForComponent<ShopItemDonate>(prefab, args);
 
             item.transform.SetParent(root, false);
             item.Initialize(_assetProvider.Get<Sprite>(preset.IconName));

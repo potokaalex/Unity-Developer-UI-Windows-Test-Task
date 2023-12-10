@@ -1,4 +1,4 @@
-﻿using CodeBase.Lobby.Infrastructure.Providers;
+﻿using CodeBase.Lobby.Infrastructure;
 using Zenject;
 
 namespace CodeBase.Lobby.Main

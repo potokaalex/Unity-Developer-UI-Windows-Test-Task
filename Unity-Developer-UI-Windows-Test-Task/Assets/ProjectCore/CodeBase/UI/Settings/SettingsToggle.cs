@@ -1,15 +1,13 @@
-﻿using CodeBase.Lobby.Data;
-using CodeBase.Lobby.Infrastructure.Providers;
-using CodeBase.Project.Services;
+﻿using CodeBase.Project.Services;
 using CodeBase.Utilities.UI;
 using UnityEngine;
 using Zenject;
 
-namespace CodeBase.Lobby.Settings
+namespace CodeBase.UI.Settings
 {
     public class SettingsToggle : ToggleBase
     {
-        [SerializeField] private LobbySettingsToggleType _settingsToggleType;
+        [SerializeField] private SettingsToggleType _settingsToggleType;
         [SerializeField] private GameObject _onDisableRoot;
 
         private AudioManager _audioManager;

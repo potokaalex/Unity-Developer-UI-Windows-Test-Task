@@ -1,0 +1,5 @@
+-refactoring model & its data(remove readOnlyData use some evented-data).
+-refactoring Shop(its fucking hell).
+-review adapters & ther initialization logic(is adapter sould create views?).
+-manage static data(static data,its providing, should be predictable).
+-review uiPrefabs

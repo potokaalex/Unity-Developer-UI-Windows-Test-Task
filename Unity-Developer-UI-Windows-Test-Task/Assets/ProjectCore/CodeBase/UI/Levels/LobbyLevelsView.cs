@@ -1,18 +1,12 @@
 using System.Collections.Generic;
-using CodeBase.Utilities.UI;
 using CodeBase.Utilities.UI.Window;
 using UnityEngine;
-using Zenject;
 
-namespace CodeBase.Lobby.Levels
+namespace CodeBase.UI.Levels
 {
     public class LobbyLevelsView : WindowBase
     {
-        [SerializeField] private List<LobbyLevelsOpenLevelButton> _levelsOpenLevelButtons;
-        private LobbyLevelsAdapter _levelsAdapter;
-
-        [Inject]
-        public void Construct(LobbyLevelsAdapter levelsAdapter) => _levelsAdapter = levelsAdapter;
+        [SerializeField] private List<LevelsOpenLevelButton> _levelsOpenLevelButtons;
 
         public void Initialize(int reachedLevel)
         {

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
-using CodeBase.Lobby.Data;
-using CodeBase.Utilities.UI;
+using CodeBase.Utilities.UI.Window;
 using UnityEngine;
 
 namespace CodeBase.Project.Services.WindowsManagerService
@@ -14,7 +13,7 @@ namespace CodeBase.Project.Services.WindowsManagerService
         public void Initialize(Transform windowsRoot) => _windowsRoot = windowsRoot;
 
         public Transform WindowsRoot => _windowsRoot;
-        
+
         public void RegisterWindow(WindowType type, IWindow window) => _registeredWindows.Add(type, window);
 
         public void ToggleCurrentWindow(WindowType type)

@@ -1,11 +1,11 @@
 ﻿using System;
 
-namespace CodeBase.Lobby.Data
+namespace CodeBase.UI.Shop.Item
 {
     [Serializable]
-    public struct LobbyShopItemPreset
+    public struct ShopItemPreset
     {
-        public ShopGroupType GroupType;
+        public ShopItemGroupType GroupType;
         public string IconName;
         public string ID;
         public float Cost;

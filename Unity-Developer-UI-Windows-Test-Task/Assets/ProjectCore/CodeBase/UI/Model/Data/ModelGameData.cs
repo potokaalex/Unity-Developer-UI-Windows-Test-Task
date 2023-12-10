@@ -1,4 +1,4 @@
-﻿namespace CodeBase.Project.Data
+﻿namespace CodeBase.UI.Model.Data
 {
     public struct ModelGameData
     {

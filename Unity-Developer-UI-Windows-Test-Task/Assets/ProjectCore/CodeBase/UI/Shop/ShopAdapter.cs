@@ -1,12 +1,11 @@
 ﻿using System;
-using CodeBase.Lobby.Data;
-using CodeBase.Lobby.Infrastructure.Providers;
-using CodeBase.Project.Data.Saved;
+using CodeBase.Lobby;
+using CodeBase.Lobby.Infrastructure;
 using CodeBase.Project.Services.WindowsManagerService;
 using CodeBase.UI.Model;
-using CodeBase.UI.Shop;
+using CodeBase.UI.Shop.Item;
 
-namespace CodeBase.Lobby.Shop
+namespace CodeBase.UI.Shop
 {
     public class ShopAdapter : IDisposable
     {
@@ -43,7 +42,7 @@ namespace CodeBase.Lobby.Shop
                     _shopView.ShowBuy(preset.ID);
 
                 if (preset.RequiredLevelNumber <= playerProgress.ReachedLevel)
-                    if (preset.GroupType != ShopGroupType.Tickets)
+                    if (preset.GroupType != ShopItemGroupType.Tickets)
                         _shopView.UnlockItem(preset.ID);
             }
 
@@ -52,10 +51,10 @@ namespace CodeBase.Lobby.Shop
 
         public void Dispose() => _model.OnLevelChanged -= OnLevelChanged;
 
-        public void BuyItem(LobbyShopItemPreset preset)
+        public void BuyItem(ShopItemPreset preset)
         {
             var playerProgress = _model.ReadOnlyData.PlayerProgress;
-            
+
             if (playerProgress.TicketsCount < preset.Cost)
                 return;
 
@@ -70,7 +69,7 @@ namespace CodeBase.Lobby.Shop
             _model.RemoveTicketsCount((int)preset.Cost);
         }
 
-        public void BuyItemDonate(LobbyShopItemPreset preset) => _model.AddTicketsCount(preset.Count);
+        public void BuyItemDonate(ShopItemPreset preset) => _model.AddTicketsCount(preset.Count);
 
         private void OnLevelChanged(int reachedLevel)
         {

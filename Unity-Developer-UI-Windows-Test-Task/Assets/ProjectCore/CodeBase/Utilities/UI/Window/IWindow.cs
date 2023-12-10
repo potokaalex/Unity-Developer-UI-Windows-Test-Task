@@ -1,4 +1,4 @@
-﻿namespace CodeBase.Utilities.UI
+﻿namespace CodeBase.Utilities.UI.Window
 {
     public interface IWindow
     {

@@ -1,26 +1,18 @@
-using CodeBase.Project.Services;
-using CodeBase.UI.DailyBonus;
-using CodeBase.Utilities.UI;
 using Zenject;
 
-namespace CodeBase.Lobby.DailyBonus
+namespace CodeBase.UI.DailyBonus
 {
-    public class DailyBonusGetWeeklyBonusButton : ButtonBase
+    public class DailyBonusGetWeeklyBonusButton : ButtonBaseSfx
     {
         private DailyBonusAdapter _adapter;
-        private AudioManager _audioManager;
 
         [Inject]
-        public void Construct(AudioManager audioManager, DailyBonusAdapter adapter)
-        {
-            _audioManager = audioManager;
-            _adapter = adapter;
-        }
+        public void Construct(DailyBonusAdapter adapter) => _adapter = adapter;
 
         private protected override void OnClick()
         {
             _adapter.GetWeeklyBonus();
-            _audioManager.PlayButtonClickUISound();
+            PlayButtonClickSound();
         }
     }
 }

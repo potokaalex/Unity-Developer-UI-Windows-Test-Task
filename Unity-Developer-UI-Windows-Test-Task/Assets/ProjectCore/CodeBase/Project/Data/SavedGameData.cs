@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CodeBase.Project.Data.Saved
+namespace CodeBase.Project.Data
 {
     [Serializable]
     public class SavedGameData

@@ -1,7 +1,6 @@
 ﻿using System;
-using CodeBase.Lobby.DailyBonus;
-using CodeBase.Lobby.Data;
-using CodeBase.Lobby.Infrastructure.Providers;
+using CodeBase.Lobby;
+using CodeBase.Lobby.Infrastructure;
 using CodeBase.Project.Services.WindowsManagerService;
 using CodeBase.UI.Model;
 using Zenject;
@@ -61,7 +60,7 @@ namespace CodeBase.UI.DailyBonus
             var lastExitData = _model.ReadOnlyData.PlayerProgress.LastExitOADate;
             var difference = DateTime.Now.ToOADate() - lastExitData;
             var presets = _config.DailyBonusCountItemPresets;
-            
+
             if (difference < 1 && lastExitData != 0)
                 return;
             if (difference > 2)
@@ -74,7 +73,7 @@ namespace CodeBase.UI.DailyBonus
                 _model.SetConsecutiveEntryCount(ConsecutiveEntryCount + 1);
         }
 
-        private void OpenCongratsWindow(LobbyDailyBonusCountItemPreset preset)
+        private void OpenCongratsWindow(DailyBonusCountItemPreset preset)
         {
             _windowsManager.ToggleCurrentWindow(WindowType.DailyBonusCongrats);
             _congratsView.SetTicketsCount(preset.TicketsCount);

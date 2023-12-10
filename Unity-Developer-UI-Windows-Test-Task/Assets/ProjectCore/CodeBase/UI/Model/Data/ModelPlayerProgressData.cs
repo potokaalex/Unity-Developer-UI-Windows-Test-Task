@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace CodeBase.Project.Data
+namespace CodeBase.UI.Model.Data
 {
     public struct ModelPlayerProgressData
     {

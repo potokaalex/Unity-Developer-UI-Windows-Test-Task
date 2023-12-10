@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using CodeBase.Project.Data;
-using CodeBase.Project.Data.Saved;
 using UnityEngine;
 
 namespace CodeBase.Project.Services.SaveLoaderService

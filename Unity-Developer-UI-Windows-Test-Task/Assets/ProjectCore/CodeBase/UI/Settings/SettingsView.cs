@@ -1,7 +1,7 @@
 ﻿using CodeBase.Utilities.UI.Window;
 using UnityEngine;
 
-namespace CodeBase.Lobby.Settings
+namespace CodeBase.UI.Settings
 {
     public class SettingsView : WindowBase
     {

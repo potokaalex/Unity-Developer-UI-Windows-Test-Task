@@ -1,13 +1,12 @@
-﻿using CodeBase.Lobby.Data;
-using CodeBase.Lobby.Infrastructure.Providers;
-using CodeBase.Lobby.Shop.Item;
+﻿using CodeBase.Lobby;
+using CodeBase.Lobby.Infrastructure;
 using CodeBase.Project.Services.AssetProviderService;
 using CodeBase.Project.Services.WindowsManagerService;
-using CodeBase.UI.Shop;
+using CodeBase.UI.Shop.Item;
 using UnityEngine;
 using Zenject;
 
-namespace CodeBase.Lobby.Shop
+namespace CodeBase.UI.Shop
 {
     public class ShopUIFactory : IInitializable
     {
@@ -38,7 +37,7 @@ namespace CodeBase.Lobby.Shop
             return item;
         }
 
-        public ShopItemGroup CreateItemGroup(Transform root, ShopGroupType groupType)
+        public ShopItemGroup CreateItemGroup(Transform root, ShopItemGroupType groupType)
         {
             var prefab = _config.ShopItemGroupPrefab;
             var item = _instantiator.InstantiatePrefabForComponent<ShopItemGroup>(prefab);
@@ -49,7 +48,7 @@ namespace CodeBase.Lobby.Shop
             return item;
         }
 
-        public ShopItem CreateItem(LobbyShopItemPreset preset, Transform root)
+        public ShopItem CreateItem(ShopItemPreset preset, Transform root)
         {
             var prefab = _config.ShopItemPrefab;
             var item = _instantiator.InstantiatePrefabForComponent<ShopItem>(prefab);
@@ -60,7 +59,7 @@ namespace CodeBase.Lobby.Shop
             return item;
         }
 
-        public void CreateDonateItem(LobbyShopItemPreset preset, Transform root)
+        public void CreateDonateItem(ShopItemPreset preset, Transform root)
         {
             var prefab = _config.ShopDonateItemPrefab;
             var args = new object[] { preset };

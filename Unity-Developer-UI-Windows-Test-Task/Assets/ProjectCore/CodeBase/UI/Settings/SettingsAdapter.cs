@@ -1,11 +1,10 @@
 ﻿using System;
-using CodeBase.Lobby.Data;
 using CodeBase.Project.Services;
 using CodeBase.Project.Services.WindowsManagerService;
 using CodeBase.UI.Model;
 using Zenject;
 
-namespace CodeBase.Lobby.Settings
+namespace CodeBase.UI.Settings
 {
     public class SettingsAdapter : IInitializable
     {
@@ -27,7 +26,7 @@ namespace CodeBase.Lobby.Settings
         {
             var settingsData = _model.ReadOnlyData.Settings;
             var settingsView = _settingsUIFactory.CreateView();
-            
+
             settingsView.Initialize(settingsData.IsMusicActive, settingsData.IsUISoundActive);
             _windowsManager.RegisterWindow(WindowType.Settings, settingsView);
 
@@ -36,14 +35,14 @@ namespace CodeBase.Lobby.Settings
             SetUISoundActive(settingsData.IsUISoundActive);
         }
 
-        public void SetActive(LobbySettingsToggleType settingsType, bool isActive)
+        public void SetActive(SettingsToggleType settingsType, bool isActive)
         {
             switch (settingsType)
             {
-                case LobbySettingsToggleType.Music:
+                case SettingsToggleType.Music:
                     SetMusicActive(isActive);
                     break;
-                case LobbySettingsToggleType.UISound:
+                case SettingsToggleType.UISound:
                     SetUISoundActive(isActive);
                     break;
                 default:

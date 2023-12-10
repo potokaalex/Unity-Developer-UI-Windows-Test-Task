@@ -1,8 +1,8 @@
-﻿using CodeBase.Lobby.Infrastructure.Providers;
+﻿using CodeBase.Lobby.Infrastructure;
 using CodeBase.Project.Services.WindowsManagerService;
 using Zenject;
 
-namespace CodeBase.Lobby.Settings
+namespace CodeBase.UI.Settings
 {
     public class SettingsUIFactory
     {

@@ -1,6 +1,5 @@
-﻿using CodeBase.Lobby.DailyBonus;
-using CodeBase.Lobby.Data;
-using CodeBase.Lobby.Infrastructure.Providers;
+﻿using CodeBase.Lobby;
+using CodeBase.Lobby.Infrastructure;
 using CodeBase.Project.Services.WindowsManagerService;
 using UnityEngine;
 using Zenject;
@@ -44,7 +43,7 @@ namespace CodeBase.UI.DailyBonus
             return item;
         }
 
-        public void CreateCountItemView(Transform root, LobbyDailyBonusCountItemPreset preset)
+        public void CreateCountItemView(Transform root, DailyBonusCountItemPreset preset)
         {
             var prefab = _config.DailyBonusCountItemViewPrefab;
             var item = _instantiator.InstantiatePrefabForComponent<DailyBonusCountItemView>(prefab);

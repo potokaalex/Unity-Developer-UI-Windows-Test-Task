@@ -2,7 +2,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace CodeBase.Lobby.DailyBonus
+namespace CodeBase.UI.DailyBonus
 {
     public class DailyBonusCongratsView : WindowBase
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using CodeBase.Project.Data;
-using CodeBase.Project.Data.Saved;
 using CodeBase.Project.Services.SaveLoaderService;
+using CodeBase.UI.Model.Data;
 
 namespace CodeBase.UI.Model
 {
@@ -12,10 +12,8 @@ namespace CodeBase.UI.Model
         public event Action<int> OnTicketsCountChanged;
 
         public event Action<int> OnLevelChanged;
-        
-        public ModelGameData ReadOnlyData => _currentData;
 
-        public SavedGameData GetGameData() => new();
+        public ModelGameData ReadOnlyData => _currentData;
 
         public void AddTicketsCount(int count)
         {

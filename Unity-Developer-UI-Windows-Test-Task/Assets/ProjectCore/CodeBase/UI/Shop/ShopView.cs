@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using CodeBase.Lobby.Data;
-using CodeBase.Lobby.Shop;
-using CodeBase.Lobby.Shop.Item;
+using CodeBase.UI.Shop.Item;
 using CodeBase.Utilities.UI.Window;
 using UnityEngine;
 using Zenject;
@@ -19,7 +17,7 @@ namespace CodeBase.UI.Shop
         [Inject]
         public void Construct(ShopUIFactory shopUIFactory) => _shopUIFactory = shopUIFactory;
 
-        public void Initialize(List<LobbyShopItemPreset> itemPresets)
+        public void Initialize(List<ShopItemPreset> itemPresets)
         {
             Close();
             CreateItems(itemPresets);
@@ -37,24 +35,24 @@ namespace CodeBase.UI.Shop
             gameObject.SetActive(false);
         }
 
-        private void CreateItems(List<LobbyShopItemPreset> presets)
+        private void CreateItems(List<ShopItemPreset> presets)
         {
-            var ticketsItemsPresets = presets.Where(p => p.GroupType == ShopGroupType.Tickets);
-            var skinsItemsPresets = presets.Where(p => p.GroupType == ShopGroupType.Skins);
-            var locationsItemsPresets = presets.Where(p => p.GroupType == ShopGroupType.Locations);
+            var ticketsItemsPresets = presets.Where(p => p.GroupType == ShopItemGroupType.Tickets);
+            var skinsItemsPresets = presets.Where(p => p.GroupType == ShopItemGroupType.Skins);
+            var locationsItemsPresets = presets.Where(p => p.GroupType == ShopItemGroupType.Locations);
 
-            CreateItemsInGroups(ticketsItemsPresets, ShopGroupType.Tickets);
-            CreateItemsInGroups(skinsItemsPresets, ShopGroupType.Skins);
-            CreateItemsInGroups(locationsItemsPresets, ShopGroupType.Locations);
+            CreateItemsInGroups(ticketsItemsPresets, ShopItemGroupType.Tickets);
+            CreateItemsInGroups(skinsItemsPresets, ShopItemGroupType.Skins);
+            CreateItemsInGroups(locationsItemsPresets, ShopItemGroupType.Locations);
         }
 
-        private void CreateItemsInGroups(IEnumerable<LobbyShopItemPreset> itemsPresets, ShopGroupType groupType)
+        private void CreateItemsInGroups(IEnumerable<ShopItemPreset> itemsPresets, ShopItemGroupType groupType)
         {
             var group = _shopUIFactory.CreateItemGroup(_itemGroupsRoot, groupType);
 
             foreach (var preset in itemsPresets)
             {
-                if (groupType == ShopGroupType.Tickets)
+                if (groupType == ShopItemGroupType.Tickets)
                     _shopUIFactory.CreateDonateItem(preset, group.GetItemsRoot());
                 else
                     _items.Add(preset.ID, _shopUIFactory.CreateItem(preset, group.GetItemsRoot()));

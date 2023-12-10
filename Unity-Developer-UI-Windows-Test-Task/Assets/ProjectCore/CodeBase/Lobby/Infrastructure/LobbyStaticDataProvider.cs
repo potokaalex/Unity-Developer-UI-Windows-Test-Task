@@ -1,6 +1,4 @@
-﻿using CodeBase.Lobby.Data;
-
-namespace CodeBase.Lobby.Infrastructure.Providers
+﻿namespace CodeBase.Lobby.Infrastructure
 {
     public class LobbyStaticDataProvider
     {

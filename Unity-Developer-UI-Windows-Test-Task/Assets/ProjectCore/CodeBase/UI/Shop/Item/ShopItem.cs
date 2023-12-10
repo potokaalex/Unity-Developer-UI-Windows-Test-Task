@@ -1,11 +1,10 @@
-﻿using CodeBase.Lobby.Data;
-using CodeBase.Project.Services;
+﻿using CodeBase.Project.Services;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace CodeBase.Lobby.Shop.Item
+namespace CodeBase.UI.Shop.Item
 {
     public class ShopItem : MonoBehaviour
     {
@@ -19,7 +18,7 @@ namespace CodeBase.Lobby.Shop.Item
         [SerializeField] private Sprite _lockIcon;
 
         private ShopAdapter _adapter;
-        private LobbyShopItemPreset _preset;
+        private ShopItemPreset _preset;
         private Sprite _defaultIcon;
         private AudioManager _audioManager;
 
@@ -30,7 +29,7 @@ namespace CodeBase.Lobby.Shop.Item
             _audioManager = audioManager;
         }
 
-        public void Initialize(LobbyShopItemPreset preset, Sprite defaultIcon)
+        public void Initialize(ShopItemPreset preset, Sprite defaultIcon)
         {
             _preset = preset;
             _defaultIcon = defaultIcon;

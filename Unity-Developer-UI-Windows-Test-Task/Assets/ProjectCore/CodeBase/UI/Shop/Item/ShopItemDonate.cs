@@ -1,12 +1,11 @@
-﻿using CodeBase.Lobby.Data;
-using CodeBase.Project.Services;
+﻿using CodeBase.Project.Services;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Purchasing;
 using UnityEngine.UI;
 using Zenject;
 
-namespace CodeBase.Lobby.Shop.Item
+namespace CodeBase.UI.Shop.Item
 {
     public class ShopItemDonate : MonoBehaviour
     {
@@ -17,12 +16,12 @@ namespace CodeBase.Lobby.Shop.Item
         [SerializeField] private Image _itemIcon;
 
         private ShopAdapter _adapter;
-        private LobbyShopItemPreset _preset;
+        private ShopItemPreset _preset;
         private AudioManager _audioManager;
 
         [Inject]
         public void Construct(ShopAdapter adapter, AudioManager audioManager,
-            LobbyShopItemPreset preset)
+            ShopItemPreset preset)
         {
             _adapter = adapter;
             _audioManager = audioManager;

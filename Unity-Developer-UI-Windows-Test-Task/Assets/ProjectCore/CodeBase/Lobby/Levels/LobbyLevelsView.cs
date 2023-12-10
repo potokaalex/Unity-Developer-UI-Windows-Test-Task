@@ -21,7 +21,7 @@ namespace CodeBase.Lobby.Levels
             Close();
 
             for (var i = 0; i < _levelsOpenLevelButtons.Count; i++)
-                _levelsOpenLevelButtons[i].Initialize(i + 1, i <= reachedLevel + 1);
+                _levelsOpenLevelButtons[i].Initialize(i + 1, i <= reachedLevel);
         }
 
         public override void Open()

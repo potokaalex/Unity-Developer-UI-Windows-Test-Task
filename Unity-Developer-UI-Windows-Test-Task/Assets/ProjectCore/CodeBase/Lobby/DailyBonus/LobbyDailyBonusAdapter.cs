@@ -54,7 +54,9 @@ namespace CodeBase.Lobby.DailyBonus
             var difference = currentDate - _playerProgress.LastEntryOADate;
             var presets = _config.DailyBonusCountItemPresets;
 
-            if (difference > 1)
+            if (difference < 1 && _playerProgress.LastEntryOADate != 0)
+                return;
+            if (difference > 2) 
                 _playerProgress.ConsecutiveEntryCount = 0;
 
             if (_playerProgress.ConsecutiveEntryCount < presets.Count)

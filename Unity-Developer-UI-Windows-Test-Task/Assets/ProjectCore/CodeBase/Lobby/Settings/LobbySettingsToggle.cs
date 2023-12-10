@@ -9,6 +9,7 @@ namespace CodeBase.Lobby.Settings
     public class LobbySettingsToggle : ToggleBase
     {
         [SerializeField] private LobbySettingsToggleType _settingsToggleType;
+        [SerializeField] private GameObject _onDisableRoot;
 
         private LobbyAudioManagerProvider _audioManagerProvider;
         private LobbySettingsAdapter _settingsAdapter;
@@ -23,14 +24,18 @@ namespace CodeBase.Lobby.Settings
 
         public void Initialize(bool isActive)
         {
-            SelectableToggle.SetIsOnWithoutNotify(isActive);
             _audioManager = _audioManagerProvider.GetManager();
+            SelectableToggle.SetIsOnWithoutNotify(isActive);
+            SetActive(isActive);
         }
+
+        private void SetActive(bool isActive) => _onDisableRoot.SetActive(!isActive);
 
         private protected override void OnValueChange(bool isActive)
         {
             _audioManager.PlayButtonClick();
             _settingsAdapter.Set(_settingsToggleType, isActive);
+            SetActive(isActive);
         }
     }
 }

@@ -6,7 +6,7 @@ namespace CodeBase.Project.Data
     [Serializable]
     public class PlayerProgressData
     {
-        public double LastEntryOADate = DateTime.Now.ToOADate();
+        public double LastEntryOADate;
         public int ConsecutiveEntryCount;
         public int TicketsCount;
         public int ReachedLevel = 5;

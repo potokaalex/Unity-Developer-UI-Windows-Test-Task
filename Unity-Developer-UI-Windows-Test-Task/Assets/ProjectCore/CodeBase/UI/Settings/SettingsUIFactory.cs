@@ -1,4 +1,5 @@
-﻿using CodeBase.Lobby.Infrastructure;
+﻿using CodeBase.Lobby.Data;
+using CodeBase.Lobby.Infrastructure;
 using CodeBase.Project.Services.WindowsManagerService;
 using Zenject;
 
@@ -7,20 +8,20 @@ namespace CodeBase.UI.Settings
     public class SettingsUIFactory
     {
         private readonly IInstantiator _instantiator;
-        private readonly LobbyStaticDataProvider _staticDataProvider;
+        private readonly LobbyConfigProvider _configProvider;
         private readonly WindowsManager _windowsManager;
 
-        public SettingsUIFactory(IInstantiator instantiator, LobbyStaticDataProvider staticDataProvider,
+        public SettingsUIFactory(IInstantiator instantiator, LobbyConfigProvider configProvider,
             WindowsManager windowsManager)
         {
             _instantiator = instantiator;
-            _staticDataProvider = staticDataProvider;
+            _configProvider = configProvider;
             _windowsManager = windowsManager;
         }
 
         public SettingsView CreateView()
         {
-            var prefab = _staticDataProvider.GetConfig().SettingsViewPrefab;
+            var prefab = _configProvider.GetConfig().SettingsViewPrefab;
             var item = _instantiator.InstantiatePrefabForComponent<SettingsView>(prefab);
 
             item.transform.SetParent(_windowsManager.WindowsRoot, false);

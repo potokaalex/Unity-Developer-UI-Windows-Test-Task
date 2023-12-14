@@ -1,5 +1,6 @@
 ﻿using System;
 using CodeBase.Lobby;
+using CodeBase.Lobby.Data;
 using CodeBase.Lobby.Infrastructure;
 using CodeBase.Project.Services.WindowsManagerService;
 using CodeBase.UI.Model;
@@ -9,7 +10,7 @@ namespace CodeBase.UI.Shop
 {
     public class ShopAdapter : IDisposable
     {
-        private readonly LobbyStaticDataProvider _staticDataProvider;
+        private readonly LobbyConfigProvider _configProvider;
         private readonly WindowsManager _windowsManager;
         private readonly UIModel _model;
         private readonly ShopUIFactory _shopUIFactory;
@@ -17,10 +18,10 @@ namespace CodeBase.UI.Shop
         private ShopView _shopView;
         private LobbyConfig _config;
 
-        public ShopAdapter(LobbyStaticDataProvider staticDataProvider, WindowsManager windowsManager,
+        public ShopAdapter(LobbyConfigProvider configProvider, WindowsManager windowsManager,
             UIModel model, ShopUIFactory shopUIFactory)
         {
-            _staticDataProvider = staticDataProvider;
+            _configProvider = configProvider;
             _windowsManager = windowsManager;
             _model = model;
             _shopUIFactory = shopUIFactory;
@@ -28,7 +29,7 @@ namespace CodeBase.UI.Shop
 
         public void Initialize()
         {
-            _config = _staticDataProvider.GetConfig();
+            _config = _configProvider.GetConfig();
 
             _shopView = _shopUIFactory.CreateView();
             _shopView.Initialize(_config.ShopItemPresets);

@@ -1,4 +1,5 @@
 ﻿using CodeBase.Lobby;
+using CodeBase.Lobby.Data;
 using CodeBase.Lobby.Infrastructure;
 using CodeBase.Project.Services.AssetProviderService;
 using CodeBase.Project.Services.WindowsManagerService;
@@ -11,21 +12,21 @@ namespace CodeBase.UI.Shop
     public class ShopUIFactory : IInitializable
     {
         private readonly IInstantiator _instantiator;
-        private readonly LobbyStaticDataProvider _staticDataProvider;
+        private readonly LobbyConfigProvider _configProvider;
         private readonly IAssetProvider _assetProvider;
         private readonly WindowsManager _windowsManager;
         private LobbyConfig _config;
 
-        public ShopUIFactory(IInstantiator instantiator, LobbyStaticDataProvider staticDataProvider,
+        public ShopUIFactory(IInstantiator instantiator, LobbyConfigProvider configProvider,
             IAssetProvider assetProvider, WindowsManager windowsManager)
         {
             _instantiator = instantiator;
-            _staticDataProvider = staticDataProvider;
+            _configProvider = configProvider;
             _assetProvider = assetProvider;
             _windowsManager = windowsManager;
         }
 
-        public void Initialize() => _config = _staticDataProvider.GetConfig();
+        public void Initialize() => _config = _configProvider.GetConfig();
 
         public ShopView CreateView()
         {

@@ -1,5 +1,6 @@
 ﻿using System;
 using CodeBase.Lobby;
+using CodeBase.Lobby.Data;
 using CodeBase.Lobby.Infrastructure;
 using CodeBase.Project.Services.WindowsManagerService;
 using CodeBase.UI.Model;
@@ -11,7 +12,7 @@ namespace CodeBase.UI.DailyBonus
     {
         private readonly UIModel _model;
         private readonly WindowsManager _windowsManager;
-        private readonly LobbyStaticDataProvider _staticDataProvider;
+        private readonly LobbyConfigProvider _configProvider;
         private readonly DailyBonusUIFactory _dailyBonusUIFactory;
 
         private DailyBonusCongratsView _congratsView;
@@ -19,11 +20,11 @@ namespace CodeBase.UI.DailyBonus
         private LobbyConfig _config;
 
         public DailyBonusAdapter(UIModel model, WindowsManager windowsManager,
-            LobbyStaticDataProvider staticDataProvider, DailyBonusUIFactory dailyBonusUIFactory)
+            LobbyConfigProvider configProvider, DailyBonusUIFactory dailyBonusUIFactory)
         {
             _model = model;
             _windowsManager = windowsManager;
-            _staticDataProvider = staticDataProvider;
+            _configProvider = configProvider;
             _dailyBonusUIFactory = dailyBonusUIFactory;
         }
 
@@ -31,7 +32,7 @@ namespace CodeBase.UI.DailyBonus
 
         public void Initialize()
         {
-            _config = _staticDataProvider.GetConfig();
+            _config = _configProvider.GetConfig();
             _congratsView = _dailyBonusUIFactory.CreateCongratsView();
             _overviewView = _dailyBonusUIFactory.CreateOverviewView();
 

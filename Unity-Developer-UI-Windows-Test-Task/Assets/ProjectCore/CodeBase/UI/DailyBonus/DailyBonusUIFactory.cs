@@ -1,4 +1,5 @@
 ﻿using CodeBase.Lobby;
+using CodeBase.Lobby.Data;
 using CodeBase.Lobby.Infrastructure;
 using CodeBase.Project.Services.WindowsManagerService;
 using UnityEngine;
@@ -9,19 +10,19 @@ namespace CodeBase.UI.DailyBonus
     public class DailyBonusUIFactory : IInitializable
     {
         private readonly IInstantiator _instantiator;
-        private readonly LobbyStaticDataProvider _staticDataProvider;
+        private readonly LobbyConfigProvider _configProvider;
         private readonly WindowsManager _windowsManager;
         private LobbyConfig _config;
 
-        public DailyBonusUIFactory(IInstantiator instantiator, LobbyStaticDataProvider staticDataProvider,
+        public DailyBonusUIFactory(IInstantiator instantiator, LobbyConfigProvider configProvider,
             WindowsManager windowsManager)
         {
             _instantiator = instantiator;
-            _staticDataProvider = staticDataProvider;
+            _configProvider = configProvider;
             _windowsManager = windowsManager;
         }
 
-        public void Initialize() => _config = _staticDataProvider.GetConfig();
+        public void Initialize() => _config = _configProvider.GetConfig();
 
         public DailyBonusCongratsView CreateCongratsView()
         {

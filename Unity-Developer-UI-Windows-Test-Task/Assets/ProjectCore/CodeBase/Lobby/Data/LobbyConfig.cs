@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using CodeBase.Lobby.Main;
+using CodeBase.Lobby.UI;
 using CodeBase.UI.DailyBonus;
 using CodeBase.UI.Levels;
 using CodeBase.UI.Settings;
@@ -7,12 +7,15 @@ using CodeBase.UI.Shop;
 using CodeBase.UI.Shop.Item;
 using UnityEngine;
 
-namespace CodeBase.Lobby
+namespace CodeBase.Lobby.Data
 {
     [CreateAssetMenu(menuName = "Configurations/Lobby", fileName = "LobbyConfig", order = 0)]
     public class LobbyConfig : ScriptableObject
     {
-        public LobbyMainView MainViewPrefab;
+        public Transform CanvasPrefab;
+        public LobbyView ViewPrefab;
+        
+        //next - old.
         public SettingsView SettingsViewPrefab;
 
         public DailyBonusCongratsView DailyBonusCongratsViewPrefab;

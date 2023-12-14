@@ -1,4 +1,5 @@
-﻿using CodeBase.Lobby.Infrastructure;
+﻿using CodeBase.Lobby.Data;
+using CodeBase.Lobby.Infrastructure;
 using CodeBase.Utilities.UI.Window;
 using TMPro;
 using UnityEngine;
@@ -13,20 +14,20 @@ namespace CodeBase.UI.DailyBonus
         [SerializeField] private TextMeshProUGUI _sliderProgressText;
         [SerializeField] private Slider _slider;
 
-        private LobbyStaticDataProvider _staticDataProvider;
+        private LobbyConfigProvider _configProvider;
         private DailyBonusUIFactory _dailyBonusUIFactory;
         private int _maxSliderValue;
 
         [Inject]
-        public void Construct(LobbyStaticDataProvider staticDataProvider, DailyBonusUIFactory dailyBonusUIFactory)
+        public void Construct(LobbyConfigProvider configProvider, DailyBonusUIFactory dailyBonusUIFactory)
         {
-            _staticDataProvider = staticDataProvider;
+            _configProvider = configProvider;
             _dailyBonusUIFactory = dailyBonusUIFactory;
         }
 
         public void Initialize()
         {
-            var config = _staticDataProvider.GetConfig();
+            var config = _configProvider.GetConfig();
 
             _maxSliderValue = config.DailyBonusCountItemPresets.Count + 1;
             _slider.maxValue = _maxSliderValue;

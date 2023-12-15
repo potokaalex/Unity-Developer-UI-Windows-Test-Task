@@ -1,5 +1,4 @@
 ﻿using CodeBase.Lobby.Data;
-using CodeBase.Lobby.Infrastructure;
 using CodeBase.Utilities.UI.Window;
 using TMPro;
 using UnityEngine;

@@ -49,7 +49,10 @@ namespace CodeBase.UI.Shop.Item
             _iapButton.onPurchaseComplete.RemoveListener(OnBuyItem);
         }
 
-        private void OnClickBuyItem() => _audioManager.PlayButtonClickUISound();
+        private void OnClickBuyItem()
+        {
+            //_audioManager.PlayButtonClickUISound();
+        }
 
         private void OnBuyItem(Product arg) => _adapter.BuyItemDonate(_preset);
     }

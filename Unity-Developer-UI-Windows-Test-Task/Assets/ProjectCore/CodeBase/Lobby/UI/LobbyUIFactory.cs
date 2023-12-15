@@ -1,4 +1,6 @@
 ﻿using CodeBase.Lobby.Data;
+using CodeBase.Project.Services.WindowsManagerService;
+using CodeBase.UI.Settings;
 using UnityEngine;
 using Zenject;
 
@@ -8,14 +10,19 @@ namespace CodeBase.Lobby.UI
     {
         private readonly IInstantiator _instantiator;
         private readonly LobbyConfigProvider _configProvider;
+        private readonly WindowsManager _windowsManager;
         private readonly LobbyController _controller;
+        private readonly SettingsController _settingsController;
         private LobbyConfig _config;
 
-        public LobbyUIFactory(IInstantiator instantiator, LobbyConfigProvider configProvider,LobbyController controller)
+        public LobbyUIFactory(IInstantiator instantiator, LobbyConfigProvider configProvider,
+            WindowsManager windowsManager, LobbyController controller, SettingsController settingsController)
         {
             _instantiator = instantiator;
             _configProvider = configProvider;
+            _windowsManager = windowsManager;
             _controller = controller;
+            _settingsController = settingsController;
         }
 
         public void Initialize() => _config = _configProvider.GetConfig();
@@ -23,9 +30,11 @@ namespace CodeBase.Lobby.UI
         public void Create()
         {
             var viewsRoot = CreateRootCanvas().transform;
-            var lobbyView = CreateView(viewsRoot);
-            
+            var lobbyView = CreateView(viewsRoot, _config.ViewPrefab);
+
             _controller.Initialize(lobbyView);
+
+            CreateSettings(viewsRoot);
         }
 
         private Transform CreateRootCanvas()
@@ -35,13 +44,18 @@ namespace CodeBase.Lobby.UI
             return instance.transform;
         }
 
-        private LobbyView CreateView(Transform root)
+        private T CreateView<T>(Transform root, T prefab) where T : MonoBehaviour
         {
-            var prefab = _config.ViewPrefab;
-            var instance = _instantiator.InstantiatePrefabForComponent<LobbyView>(prefab);
-
+            var instance = _instantiator.InstantiatePrefabForComponent<T>(prefab);
             instance.transform.SetParent(root, false);
             return instance;
+        }
+
+        private void CreateSettings(Transform viewsRoot)
+        {
+            var settingsView = CreateView(viewsRoot, _config.Settings.ViewPrefab);
+            _windowsManager.RegisterWindow(WindowType.Settings, settingsView);
+            _settingsController.Initialize(settingsView);
         }
     }
 }

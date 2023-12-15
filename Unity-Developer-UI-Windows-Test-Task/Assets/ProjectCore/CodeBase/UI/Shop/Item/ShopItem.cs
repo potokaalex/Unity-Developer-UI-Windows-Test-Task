@@ -49,7 +49,7 @@ namespace CodeBase.UI.Shop.Item
         private void OnClickBuy()
         {
             _adapter.BuyItem(_preset);
-            _audioManager.PlayButtonClickUISound();
+            //_audioManager.PlayButtonClickUISound();
         }
 
         public void ShowBuy()

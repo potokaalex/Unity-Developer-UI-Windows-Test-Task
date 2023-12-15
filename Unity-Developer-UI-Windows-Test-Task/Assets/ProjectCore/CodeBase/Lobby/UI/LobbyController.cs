@@ -12,9 +12,7 @@ namespace CodeBase.Lobby.UI
         public void Initialize(LobbyView lobbyView)
         {
             _view = lobbyView;
-
             SetCoinsCount(_model.TicketsCount.Value);
-
             _model.TicketsCount.OnChanged += SetCoinsCount;
         }
 

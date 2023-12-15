@@ -2,7 +2,7 @@
 using CodeBase.Project.Services.StateMachineService;
 using CodeBase.UI.Model;
 
-namespace CodeBase.Lobby.Infrastructure.States
+namespace CodeBase.Lobby.States
 {
     public class LobbyExitState : IEnterState
     {

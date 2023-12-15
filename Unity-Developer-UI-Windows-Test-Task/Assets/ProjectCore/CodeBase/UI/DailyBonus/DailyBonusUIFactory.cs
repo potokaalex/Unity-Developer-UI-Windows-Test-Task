@@ -1,6 +1,5 @@
 ﻿using CodeBase.Lobby;
 using CodeBase.Lobby.Data;
-using CodeBase.Lobby.Infrastructure;
 using CodeBase.Project.Services.WindowsManagerService;
 using UnityEngine;
 using Zenject;
@@ -29,7 +28,7 @@ namespace CodeBase.UI.DailyBonus
             var prefab = _config.DailyBonusCongratsViewPrefab;
             var item = _instantiator.InstantiatePrefabForComponent<DailyBonusCongratsView>(prefab);
 
-            item.transform.SetParent(_windowsManager.WindowsRoot, false);
+            item.transform.SetParent(null, false);
 
             return item;
         }
@@ -39,7 +38,7 @@ namespace CodeBase.UI.DailyBonus
             var prefab = _config.DailyBonusOverviewViewPrefab;
             var item = _instantiator.InstantiatePrefabForComponent<DailyBonusOverviewView>(prefab);
 
-            item.transform.SetParent(_windowsManager.WindowsRoot, false);
+            item.transform.SetParent(null, false);
 
             return item;
         }

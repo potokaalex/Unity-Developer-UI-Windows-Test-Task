@@ -6,8 +6,6 @@ namespace CodeBase.Project.Services
     public class AudioManager : MonoBehaviour
     {
         [SerializeField] private AudioMixerGroup _mainMixer;
-        [SerializeField] private AudioSource _uiAudioSource;
-        [SerializeField] private AudioClip _onButtonClickClip;
 
         private const string MusicVolumeName = "MusicVolume";
         private const string UIVolumeName = "UIVolume";
@@ -19,7 +17,5 @@ namespace CodeBase.Project.Services
 
         public void SetUISoundActive(bool isActive) =>
             _mainMixer.audioMixer.SetFloat(UIVolumeName, isActive ? ActiveVolume : DisActiveVolume);
-
-        public void PlayButtonClickUISound() => _uiAudioSource.PlayOneShot(_onButtonClickClip);
     }
 }

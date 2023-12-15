@@ -2,7 +2,6 @@
 using CodeBase.Lobby.UI;
 using CodeBase.UI.DailyBonus;
 using CodeBase.UI.Levels;
-using CodeBase.UI.Settings;
 using CodeBase.UI.Shop;
 using CodeBase.UI.Shop.Item;
 using UnityEngine;
@@ -14,9 +13,9 @@ namespace CodeBase.Lobby.Data
     {
         public Transform CanvasPrefab;
         public LobbyView ViewPrefab;
+        public LobbySettingsConfig Settings;
         
         //next - old.
-        public SettingsView SettingsViewPrefab;
 
         public DailyBonusCongratsView DailyBonusCongratsViewPrefab;
         public DailyBonusOverviewView DailyBonusOverviewViewPrefab;

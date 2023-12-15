@@ -1,6 +1,5 @@
 ﻿using CodeBase.Lobby;
 using CodeBase.Lobby.Data;
-using CodeBase.Lobby.Infrastructure;
 using CodeBase.Project.Services.WindowsManagerService;
 using Zenject;
 
@@ -28,7 +27,7 @@ namespace CodeBase.UI.Levels
             var prefab = _config.LobbyLevelsViewPrefab;
             var item = _instantiator.InstantiatePrefabForComponent<LobbyLevelsView>(prefab);
 
-            item.transform.SetParent(_windowsManager.WindowsRoot, false);
+            item.transform.SetParent(null, false);
 
             return item;
         }

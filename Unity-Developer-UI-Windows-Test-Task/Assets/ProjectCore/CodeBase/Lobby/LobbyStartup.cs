@@ -1,9 +1,9 @@
-﻿using CodeBase.Lobby.Infrastructure.States;
+﻿using CodeBase.Lobby.States;
 using CodeBase.Project.Services.StateMachineService;
 using UnityEngine;
 using Zenject;
 
-namespace CodeBase.Lobby.Infrastructure
+namespace CodeBase.Lobby
 {
     public class LobbyStartup : MonoBehaviour
     {

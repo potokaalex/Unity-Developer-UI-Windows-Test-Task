@@ -11,6 +11,9 @@ namespace CodeBase.UI
         [Inject]
         public void Construct(AudioManager audioManager) => _audioManager = audioManager;
 
-        private protected void PlayButtonClickSound() => _audioManager.PlayButtonClickUISound();
+        private protected void PlayButtonClickSound()
+        {
+            //_audioManager.PlayButtonClickUISound();
+        }
     }
 }

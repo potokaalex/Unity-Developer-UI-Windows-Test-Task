@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CodeBase.Lobby.Infrastructure.States
+namespace CodeBase
 {
     public class EventField<T>
     {

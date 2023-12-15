@@ -1,7 +1,6 @@
-﻿using CodeBase.Project.Services.StateMachineService;
-using Zenject;
+﻿using Zenject;
 
-namespace CodeBase.Project
+namespace CodeBase.Project.Services.StateMachineService
 {
     public class StateMachineInstaller : MonoInstaller
     {

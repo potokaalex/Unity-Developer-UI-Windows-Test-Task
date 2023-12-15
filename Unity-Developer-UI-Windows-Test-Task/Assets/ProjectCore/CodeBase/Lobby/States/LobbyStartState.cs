@@ -1,11 +1,11 @@
 ﻿using CodeBase.Lobby.UI;
-using CodeBase.Project.Services;
 using CodeBase.Project.Services.SaveLoaderService;
 using CodeBase.Project.Services.StateMachineService;
+using CodeBase.Project.Services.UnityEventsObserverService;
 using Unity.Services.Core;
 using UnityEngine;
 
-namespace CodeBase.Lobby.Infrastructure.States
+namespace CodeBase.Lobby.States
 {
     public class LobbyStartState : IEnterState, IExitState
     {

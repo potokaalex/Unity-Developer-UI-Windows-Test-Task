@@ -10,10 +10,6 @@ namespace CodeBase.Project.Services.WindowsManagerService
         private Transform _windowsRoot;
         private IWindow _currentWindow;
 
-        public void Initialize(Transform windowsRoot) => _windowsRoot = windowsRoot;
-
-        public Transform WindowsRoot => _windowsRoot;
-
         public void RegisterWindow(WindowType type, IWindow window) => _registeredWindows.Add(type, window);
 
         public void ToggleCurrentWindow(WindowType type)

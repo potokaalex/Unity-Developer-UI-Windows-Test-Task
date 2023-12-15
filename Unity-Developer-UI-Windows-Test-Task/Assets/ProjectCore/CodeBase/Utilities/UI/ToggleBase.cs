@@ -10,10 +10,10 @@ namespace CodeBase.Utilities.UI
 
         private void Awake() => SelectableToggle = GetComponent<Toggle>();
 
-        private void OnEnable() => SelectableToggle.onValueChanged.AddListener(OnValueChange);
+        private void OnEnable() => SelectableToggle.onValueChanged.AddListener(OnToggleValueChanged);
 
-        private void OnDisable() => SelectableToggle.onValueChanged.RemoveListener(OnValueChange);
+        private void OnDisable() => SelectableToggle.onValueChanged.RemoveListener(OnToggleValueChanged);
 
-        private protected abstract void OnValueChange(bool isActive);
+        private protected abstract void OnToggleValueChanged(bool isActive);
     }
 }

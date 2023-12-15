@@ -1,6 +1,5 @@
 ﻿using CodeBase.Lobby;
 using CodeBase.Lobby.Data;
-using CodeBase.Lobby.Infrastructure;
 using CodeBase.Project.Services.AssetProviderService;
 using CodeBase.Project.Services.WindowsManagerService;
 using CodeBase.UI.Shop.Item;
@@ -33,7 +32,7 @@ namespace CodeBase.UI.Shop
             var prefab = _config.ShopViewPrefab;
             var item = _instantiator.InstantiatePrefabForComponent<ShopView>(prefab);
 
-            item.transform.SetParent(_windowsManager.WindowsRoot, false);
+            item.transform.SetParent(null, false);
 
             return item;
         }

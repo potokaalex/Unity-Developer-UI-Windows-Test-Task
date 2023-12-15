@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace CodeBase.Project.Services
+namespace CodeBase.Project.Services.UnityEventsObserverService
 {
     public class UnityEventsObserver : MonoBehaviour
     {

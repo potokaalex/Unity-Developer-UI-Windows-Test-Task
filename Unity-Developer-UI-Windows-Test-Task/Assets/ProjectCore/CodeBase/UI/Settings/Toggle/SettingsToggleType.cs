@@ -1,4 +1,4 @@
-﻿namespace CodeBase.UI.Settings
+﻿namespace CodeBase.UI.Settings.Toggle
 {
     public enum SettingsToggleType
     {

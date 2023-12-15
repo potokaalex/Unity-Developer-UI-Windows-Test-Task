@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CanvasPrefab: {fileID: 1598339370219117935, guid: 13b29d81d8294b94abfc86440d9d64bb, type: 3}
   ViewPrefab: {fileID: 6589083982184831200, guid: e253a03774d191f488fecafff7fc9424, type: 3}
-  SettingsViewPrefab: {fileID: 3906930698698578222, guid: f01da2f3a8007b74c89f4d1f89b65812, type: 3}
+  Settings:
+    ViewPrefab: {fileID: 3906930698698578222, guid: f01da2f3a8007b74c89f4d1f89b65812, type: 3}
   DailyBonusCongratsViewPrefab: {fileID: 7312072375896489493, guid: 29887de836620b94d899fad30314a16b, type: 3}
   DailyBonusOverviewViewPrefab: {fileID: 3082625682474795020, guid: 8c3f045efea44d145989aa5a8b59be86, type: 3}
   DailyBonusCountItemViewPrefab: {fileID: 443571190072871154, guid: ca61c9844fd4c2941b75fdf0149ee968, type: 3}

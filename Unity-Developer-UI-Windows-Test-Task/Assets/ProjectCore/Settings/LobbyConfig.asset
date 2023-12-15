@@ -37,8 +37,11 @@ MonoBehaviour:
       DayNumber: 7
       TicketsCount: 30
     DaysContToReachWeeklyBonus: 7
-    DaysCountToReachDailyBonus: 0.00003472222
+    DaysCountToReachDailyBonus: 1
     FirstDayNumber: 1
+  Levels:
+    LevelsViewPrefab: {fileID: 325684127526228386, guid: edfda7e5b93fc2f448d9a29f47ec2491, type: 3}
+    LevelsCount: 21
   ShopViewPrefab: {fileID: 5480568759837382669, guid: e4dc171ae3cb64f479149dbcb0d49837, type: 3}
   ShopItemGroupPrefab: {fileID: 4664310790797371788, guid: 0f18f3c5b18a41b4b927011d7a626503, type: 3}
   ShopItemPrefab: {fileID: 3412071454948441761, guid: 5dd58213e805f0242af23954b772e50c, type: 3}
@@ -86,4 +89,3 @@ MonoBehaviour:
     Cost: 500
     Count: 0
     RequiredLevelNumber: 10
-  LobbyLevelsViewPrefab: {fileID: 325684127526228386, guid: edfda7e5b93fc2f448d9a29f47ec2491, type: 3}

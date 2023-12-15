@@ -3,11 +3,12 @@ using CodeBase.Project.Data;
 using CodeBase.Project.Data.Saved;
 using CodeBase.Project.Services.SaveLoaderService;
 using CodeBase.UI.DailyBonus;
+using CodeBase.UI.Levels;
 using CodeBase.UI.Settings;
 
 namespace CodeBase.Lobby.UI
 {
-    public class LobbyModel : IGameDataReader, IGameDataWriter, ISettingsModel, IDailyBonusModel
+    public class LobbyModel : IGameDataReader, IGameDataWriter, ISettingsModel, IDailyBonusModel, ILevelsModel
     {
         public EventField<int> TicketsCount { get; private set; }
 
@@ -19,6 +20,8 @@ namespace CodeBase.Lobby.UI
 
         public EventField<int> ConsecutiveEntryCount { get; private set; }
 
+        public EventField<int> CompletedLevelNumber { get; private set; }
+
         public void OnGameDataLoad(SavedGameData data)
         {
             TicketsCount = new EventField<int>(data.PlayerProgress.TicketsCount);
@@ -28,6 +31,8 @@ namespace CodeBase.Lobby.UI
 
             LastExitOADate = new EventField<double>(data.PlayerProgress.LastExitOADate);
             ConsecutiveEntryCount = new EventField<int>(data.PlayerProgress.ConsecutiveEntryCount);
+
+            CompletedLevelNumber = new EventField<int>(data.PlayerProgress.CompletedLevelNumber);
         }
 
         public void OnGameDataSave(SavedGameData data)
@@ -39,6 +44,8 @@ namespace CodeBase.Lobby.UI
 
             data.PlayerProgress.LastExitOADate = DateTime.Now.ToOADate();
             data.PlayerProgress.ConsecutiveEntryCount = ConsecutiveEntryCount.Value;
+
+            data.PlayerProgress.CompletedLevelNumber = CompletedLevelNumber.Value;
         }
     }
 }

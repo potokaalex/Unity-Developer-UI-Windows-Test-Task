@@ -137,8 +137,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelNumberText: {fileID: 1022332146743980397}
-  _isLockedRoot: {fileID: 1022332147409446989}
-  _isOpenedRoot: {fileID: 1022332146743980399}
+  _isLockedRoot: {fileID: 1022332147409446986}
+  _isOpenedRoot: {fileID: 1022332146743980396}
 --- !u!1 &1022332146743980399
 GameObject:
   m_ObjectHideFlags: 0

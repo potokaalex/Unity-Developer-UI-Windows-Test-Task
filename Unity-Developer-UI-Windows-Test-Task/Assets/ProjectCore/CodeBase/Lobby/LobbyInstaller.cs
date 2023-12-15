@@ -21,12 +21,14 @@ namespace CodeBase.Lobby
             Container.BindInterfacesAndSelfTo<LobbyUIFactory>().AsSingle();
             Container.Bind<DailyBonusUIFactory>().AsSingle();
 
-            Container.Bind(typeof(LobbyModel), typeof(ISettingsModel), typeof(IDailyBonusModel)).To<LobbyModel>()
+            Container.Bind(typeof(LobbyModel), typeof(ISettingsModel), typeof(IDailyBonusModel), typeof(ILevelsModel))
+                .To<LobbyModel>()
                 .AsSingle();
 
             Container.BindInterfacesAndSelfTo<LobbyController>().AsSingle();
             Container.BindInterfacesAndSelfTo<SettingsController>().AsSingle();
             Container.Bind<DailyBonusController>().AsSingle();
+            Container.BindInterfacesAndSelfTo<LevelsController>().AsSingle();
 
             Container.Bind<WindowsManager>().AsSingle();
         }
@@ -37,7 +39,7 @@ namespace CodeBase.Lobby
             //Container.Bind<SettingsUIFactory>().AsSingle();
             //Container.BindInterfacesAndSelfTo<DailyBonusUIFactory>().AsSingle();
             Container.BindInterfacesAndSelfTo<ShopUIFactory>().AsSingle();
-            Container.BindInterfacesAndSelfTo<LevelsUIFactory>().AsSingle();
+            //Container.BindInterfacesAndSelfTo<LevelsUIFactory>().AsSingle();
         }
 
         private void BindAdapters()
@@ -46,7 +48,7 @@ namespace CodeBase.Lobby
             //Container.Bind<SettingsAdapter>().AsSingle();
             //Container.Bind<DailyBonusAdapter>().AsSingle();
             Container.BindInterfacesAndSelfTo<ShopAdapter>().AsSingle();
-            Container.Bind<LevelsAdapter>().AsSingle();
+            //Container.Bind<LevelsAdapter>().AsSingle();
         }
     }
 }

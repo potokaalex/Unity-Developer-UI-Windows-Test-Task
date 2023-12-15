@@ -9,7 +9,7 @@ namespace CodeBase.Project.Data.Saved
         public double LastExitOADate;
         public int ConsecutiveEntryCount;
         public int TicketsCount;
-        public int ReachedLevel = 5;
+        public int CompletedLevelNumber = 5;
 
         public List<string> BoughtItemsNames = new()
         {

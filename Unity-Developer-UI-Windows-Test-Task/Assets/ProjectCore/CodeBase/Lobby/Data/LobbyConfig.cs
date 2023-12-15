@@ -15,6 +15,7 @@ namespace CodeBase.Lobby.Data
         public LobbyView ViewPrefab;
         public LobbySettingsConfig Settings;
         public DailyBonusConfig DailyBonus;
+        public LevelsConfig Levels;
 
         //next - old.
         public ShopView ShopViewPrefab;
@@ -22,7 +23,5 @@ namespace CodeBase.Lobby.Data
         public ShopItem ShopItemPrefab;
         public ShopItemDonate ShopDonateItemPrefab;
         public List<ShopItemPreset> ShopItemPresets;
-
-        public LobbyLevelsView LobbyLevelsViewPrefab;
     }
 }

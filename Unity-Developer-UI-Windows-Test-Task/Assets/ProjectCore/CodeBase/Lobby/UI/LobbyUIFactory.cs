@@ -1,6 +1,7 @@
 ﻿using CodeBase.Lobby.Data;
 using CodeBase.Project.Services.WindowsManagerService;
 using CodeBase.UI.DailyBonus;
+using CodeBase.UI.Levels;
 using CodeBase.UI.Settings;
 using UnityEngine;
 using Zenject;
@@ -15,11 +16,12 @@ namespace CodeBase.Lobby.UI
         private readonly LobbyController _controller;
         private readonly SettingsController _settingsController;
         private readonly DailyBonusUIFactory _dailyBonusUIFactory;
+        private readonly LevelsController _levelsController;
         private LobbyConfig _config;
 
         public LobbyUIFactory(IInstantiator instantiator, LobbyConfigProvider configProvider,
             WindowsManager windowsManager, LobbyController controller, SettingsController settingsController,
-            DailyBonusUIFactory dailyBonusUIFactory)
+            DailyBonusUIFactory dailyBonusUIFactory, LevelsController levelsController)
         {
             _instantiator = instantiator;
             _configProvider = configProvider;
@@ -27,6 +29,7 @@ namespace CodeBase.Lobby.UI
             _controller = controller;
             _settingsController = settingsController;
             _dailyBonusUIFactory = dailyBonusUIFactory;
+            _levelsController = levelsController;
         }
 
         public void Initialize() => _config = _configProvider.GetConfig();
@@ -40,6 +43,7 @@ namespace CodeBase.Lobby.UI
 
             CreateSettings(viewsRoot);
             CreateDailyBonus(viewsRoot);
+            CreateLevels(viewsRoot);
         }
 
         private Transform CreateRootCanvas()
@@ -58,15 +62,22 @@ namespace CodeBase.Lobby.UI
 
         private void CreateSettings(Transform viewsRoot)
         {
-            var settingsView = CreateView(viewsRoot, _config.Settings.ViewPrefab);
-            _windowsManager.RegisterWindow(WindowType.Settings, settingsView);
-            _settingsController.Initialize(settingsView);
+            var view = CreateView(viewsRoot, _config.Settings.ViewPrefab);
+            _windowsManager.RegisterWindow(WindowType.Settings, view);
+            _settingsController.Initialize(view);
         }
 
         private void CreateDailyBonus(Transform viewsRoot)
         {
             _dailyBonusUIFactory.Initialize(_config.DailyBonus);
             _dailyBonusUIFactory.Create(viewsRoot);
+        }
+
+        private void CreateLevels(Transform viewsRoot)
+        {
+            var view = CreateView(viewsRoot, _config.Levels.LevelsViewPrefab);
+            _windowsManager.RegisterWindow(WindowType.Levels, view);
+            _levelsController.Initialize(_config.Levels, view);
         }
     }
 }

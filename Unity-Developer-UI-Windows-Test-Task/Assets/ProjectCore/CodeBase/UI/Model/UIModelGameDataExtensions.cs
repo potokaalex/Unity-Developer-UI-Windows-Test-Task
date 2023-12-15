@@ -40,7 +40,7 @@ namespace CodeBase.UI.Model
                 LastExitOADate = playerProgress.LastExitOADate,
                 ConsecutiveEntryCount = playerProgress.ConsecutiveEntryCount,
                 TicketsCount = playerProgress.TicketsCount,
-                ReachedLevel = playerProgress.ReachedLevel
+                ReachedLevel = playerProgress.CompletedLevelNumber
             };
         }
 
@@ -52,7 +52,7 @@ namespace CodeBase.UI.Model
                 LastExitOADate = playerProgress.LastExitOADate,
                 ConsecutiveEntryCount = playerProgress.ConsecutiveEntryCount,
                 TicketsCount = playerProgress.TicketsCount,
-                ReachedLevel = playerProgress.ReachedLevel
+                CompletedLevelNumber = playerProgress.ReachedLevel
             };
         }
     }

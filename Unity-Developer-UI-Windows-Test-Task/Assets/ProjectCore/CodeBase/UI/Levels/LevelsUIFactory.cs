@@ -1,5 +1,4 @@
-﻿using CodeBase.Lobby;
-using CodeBase.Lobby.Data;
+﻿using CodeBase.Lobby.Data;
 using CodeBase.Project.Services.WindowsManagerService;
 using Zenject;
 

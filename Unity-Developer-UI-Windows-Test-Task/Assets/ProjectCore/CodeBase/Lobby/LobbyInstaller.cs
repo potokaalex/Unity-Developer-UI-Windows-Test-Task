@@ -16,28 +16,26 @@ namespace CodeBase.Lobby
 
         public override void InstallBindings()
         {
-            //BindFactories();
-            //BindAdapters();
-
             Container.Bind<LobbyConfigProvider>().AsSingle().WithArguments(_lobbyConfig);
-            
+
             Container.BindInterfacesAndSelfTo<LobbyUIFactory>().AsSingle();
-            
-            Container.Bind(typeof(LobbyModel), typeof(ISettingsModel)).To<LobbyModel>().AsSingle();
+            Container.Bind<DailyBonusUIFactory>().AsSingle();
+
+            Container.Bind(typeof(LobbyModel), typeof(ISettingsModel), typeof(IDailyBonusModel)).To<LobbyModel>()
+                .AsSingle();
 
             Container.BindInterfacesAndSelfTo<LobbyController>().AsSingle();
             Container.BindInterfacesAndSelfTo<SettingsController>().AsSingle();
+            Container.Bind<DailyBonusController>().AsSingle();
 
             Container.Bind<WindowsManager>().AsSingle();
-            
-            //Container.Bind<UIModel>().AsSingle();
         }
 
         private void BindFactories()
         {
             //Container.Bind<LobbyMainUIFactory>().AsSingle();
             //Container.Bind<SettingsUIFactory>().AsSingle();
-            Container.BindInterfacesAndSelfTo<DailyBonusUIFactory>().AsSingle();
+            //Container.BindInterfacesAndSelfTo<DailyBonusUIFactory>().AsSingle();
             Container.BindInterfacesAndSelfTo<ShopUIFactory>().AsSingle();
             Container.BindInterfacesAndSelfTo<LevelsUIFactory>().AsSingle();
         }
@@ -46,7 +44,7 @@ namespace CodeBase.Lobby
         {
             //Container.Bind(typeof(LobbyMainAdapter), typeof(IDisposable)).To<LobbyMainAdapter>().AsSingle();
             //Container.Bind<SettingsAdapter>().AsSingle();
-            Container.Bind<DailyBonusAdapter>().AsSingle();
+            //Container.Bind<DailyBonusAdapter>().AsSingle();
             Container.BindInterfacesAndSelfTo<ShopAdapter>().AsSingle();
             Container.Bind<LevelsAdapter>().AsSingle();
         }

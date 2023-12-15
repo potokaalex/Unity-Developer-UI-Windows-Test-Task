@@ -14,15 +14,9 @@ namespace CodeBase.Lobby.Data
         public Transform CanvasPrefab;
         public LobbyView ViewPrefab;
         public LobbySettingsConfig Settings;
-        
+        public DailyBonusConfig DailyBonus;
+
         //next - old.
-
-        public DailyBonusCongratsView DailyBonusCongratsViewPrefab;
-        public DailyBonusOverviewView DailyBonusOverviewViewPrefab;
-        public DailyBonusCountItemView DailyBonusCountItemViewPrefab;
-        public List<DailyBonusCountItemPreset> DailyBonusCountItemPresets;
-        public DailyBonusCountItemPreset WeeklyBonusCountItemPreset;
-
         public ShopView ShopViewPrefab;
         public ShopItemGroup ShopItemGroupPrefab;
         public ShopItem ShopItemPrefab;

@@ -1,4 +1,6 @@
-﻿namespace CodeBase.UI.Settings
+﻿using CodeBase.Project.Data;
+
+namespace CodeBase.UI.Settings
 {
     public interface ISettingsModel
     {

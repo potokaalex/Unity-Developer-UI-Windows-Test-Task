@@ -4,7 +4,7 @@ using CodeBase.UI.Settings;
 namespace CodeBase.Lobby.Data
 {
     [Serializable]
-    public struct LobbySettingsConfig
+    public class LobbySettingsConfig
     {
         public SettingsView ViewPrefab;
     }

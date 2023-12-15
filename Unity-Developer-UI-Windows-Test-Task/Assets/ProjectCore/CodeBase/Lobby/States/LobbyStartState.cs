@@ -16,7 +16,7 @@ namespace CodeBase.Lobby.States
         private readonly LobbyModel _lobbyModel;
 
         public LobbyStartState(UnityEventsObserver unityEventsObserver, StateMachine stateMachine,
-            LobbyUIFactory lobbyUIFactory, GameDataSaveLoader gameDataSaveLoader,LobbyModel lobbyModel)
+            LobbyUIFactory lobbyUIFactory, GameDataSaveLoader gameDataSaveLoader, LobbyModel lobbyModel)
         {
             _unityEventsObserver = unityEventsObserver;
             _stateMachine = stateMachine;
@@ -31,9 +31,9 @@ namespace CodeBase.Lobby.States
 
             _gameDataSaveLoader.RegisterWatcher(_lobbyModel);
             _gameDataSaveLoader.Load();
-            
+
             CreateUI();
-            
+
             _unityEventsObserver.OnApplicationExitEvent += _stateMachine.SwitchTo<LobbyExitState>;
         }
 

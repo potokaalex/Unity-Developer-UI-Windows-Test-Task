@@ -1,55 +1,58 @@
-﻿using CodeBase.Lobby;
-using CodeBase.Lobby.Data;
-using CodeBase.Project.Services.WindowsManagerService;
+﻿using CodeBase.Project.Services.WindowsManagerService;
+using CodeBase.UI.DailyBonus.View.CountItem;
 using UnityEngine;
 using Zenject;
 
 namespace CodeBase.UI.DailyBonus
 {
-    public class DailyBonusUIFactory : IInitializable
+    public class DailyBonusUIFactory
     {
         private readonly IInstantiator _instantiator;
-        private readonly LobbyConfigProvider _configProvider;
         private readonly WindowsManager _windowsManager;
-        private LobbyConfig _config;
+        private readonly DailyBonusController _controller;
+        private DailyBonusConfig _config;
 
-        public DailyBonusUIFactory(IInstantiator instantiator, LobbyConfigProvider configProvider,
-            WindowsManager windowsManager)
+        public DailyBonusUIFactory(IInstantiator instantiator, WindowsManager windowsManager,
+            DailyBonusController controller)
         {
             _instantiator = instantiator;
-            _configProvider = configProvider;
             _windowsManager = windowsManager;
+            _controller = controller;
         }
 
-        public void Initialize() => _config = _configProvider.GetConfig();
+        public void Initialize(DailyBonusConfig config) => _config = config;
 
-        public DailyBonusCongratsView CreateCongratsView()
+        public void Create(Transform viewsRoot)
         {
-            var prefab = _config.DailyBonusCongratsViewPrefab;
-            var item = _instantiator.InstantiatePrefabForComponent<DailyBonusCongratsView>(prefab);
+            var congratsView = CreateView(viewsRoot, _config.DailyBonusCongratsViewPrefab);
+            var overviewView = CreateView(viewsRoot, _config.DailyBonusOverviewViewPrefab);
 
-            item.transform.SetParent(null, false);
+            _windowsManager.RegisterWindow(WindowType.DailyBonusCongrats, congratsView);
+            _windowsManager.RegisterWindow(WindowType.DailyBonusOverview, overviewView);
 
-            return item;
+            _controller.Initialize(_config, congratsView, overviewView);
         }
 
-        public DailyBonusOverviewView CreateOverviewView()
+        private T CreateView<T>(Transform root, T prefab) where T : MonoBehaviour
         {
-            var prefab = _config.DailyBonusOverviewViewPrefab;
-            var item = _instantiator.InstantiatePrefabForComponent<DailyBonusOverviewView>(prefab);
-
-            item.transform.SetParent(null, false);
-
-            return item;
+            var instance = _instantiator.InstantiatePrefabForComponent<T>(prefab);
+            instance.transform.SetParent(root, false);
+            return instance;
         }
 
-        public void CreateCountItemView(Transform root, DailyBonusCountItemPreset preset)
+        public void CreateCountItems(Transform root)
+        {
+            foreach (var preset in _config.CountItemsPresets)
+                CreateCountItem(root, preset);
+        }
+
+        private void CreateCountItem(Transform root, DailyBonusCountItemData preset)
         {
             var prefab = _config.DailyBonusCountItemViewPrefab;
             var item = _instantiator.InstantiatePrefabForComponent<DailyBonusCountItemView>(prefab);
 
             item.transform.SetParent(root, false);
-            item.Initialize(preset.DayNumber, preset.TicketsCount);
+            item.Initialize(preset);
         }
     }
 }

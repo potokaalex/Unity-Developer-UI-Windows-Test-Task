@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CodeBase
+namespace CodeBase.Project.Data
 {
     public class EventField<T>
     {

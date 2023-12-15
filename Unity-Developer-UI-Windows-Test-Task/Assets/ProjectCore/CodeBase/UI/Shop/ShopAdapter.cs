@@ -1,5 +1,4 @@
 ﻿using System;
-using CodeBase.Lobby;
 using CodeBase.Lobby.Data;
 using CodeBase.Project.Services.WindowsManagerService;
 using CodeBase.UI.Model;

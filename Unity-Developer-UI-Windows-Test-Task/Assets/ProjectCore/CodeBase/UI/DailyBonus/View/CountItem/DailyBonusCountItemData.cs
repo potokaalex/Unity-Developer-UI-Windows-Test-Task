@@ -1,9 +1,9 @@
 ﻿using System;
 
-namespace CodeBase.UI.DailyBonus
+namespace CodeBase.UI.DailyBonus.View.CountItem
 {
     [Serializable]
-    public struct DailyBonusCountItemPreset
+    public struct DailyBonusCountItemData
     {
         public int DayNumber;
         public int TicketsCount;

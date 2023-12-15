@@ -2,29 +2,19 @@
 using TMPro;
 using UnityEngine;
 
-namespace CodeBase.UI.DailyBonus
+namespace CodeBase.UI.DailyBonus.View
 {
-    public class DailyBonusCongratsView : WindowBase
+    public class DailyBonusCongratsView : MonoBehaviour, IWindow
     {
         [SerializeField] private TextMeshProUGUI _ticketsCountText;
         [SerializeField] private TextMeshProUGUI _dayNumberText;
-
-        public void Initialize() => Close();
 
         public void SetTicketsCount(int count) => _ticketsCountText.text = $"x{count.ToString()}";
 
         public void SetDayNumber(int number) => _dayNumberText.text = $"day {number.ToString()}";
 
-        public override void Open()
-        {
-            base.Open();
-            gameObject.SetActive(true);
-        }
+        public void Open() => gameObject.SetActive(true);
 
-        public override void Close()
-        {
-            base.Close();
-            gameObject.SetActive(false);
-        }
+        public void Close() => gameObject.SetActive(false);
     }
 }

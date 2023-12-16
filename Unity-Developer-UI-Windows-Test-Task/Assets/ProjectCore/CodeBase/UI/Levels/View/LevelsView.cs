@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using CodeBase.Utilities.UI.Window;
 using UnityEngine;
 
-namespace CodeBase.UI.Levels
+namespace CodeBase.UI.Levels.View
 {
     public class LevelsView : MonoBehaviour, IWindow
     {

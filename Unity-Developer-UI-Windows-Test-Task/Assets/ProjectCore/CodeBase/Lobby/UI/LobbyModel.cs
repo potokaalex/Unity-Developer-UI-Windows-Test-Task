@@ -1,14 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 using CodeBase.Project.Data;
 using CodeBase.Project.Data.Saved;
 using CodeBase.Project.Services.SaveLoaderService;
 using CodeBase.UI.DailyBonus;
 using CodeBase.UI.Levels;
 using CodeBase.UI.Settings;
+using CodeBase.UI.Shop;
 
 namespace CodeBase.Lobby.UI
 {
-    public class LobbyModel : IGameDataReader, IGameDataWriter, ISettingsModel, IDailyBonusModel, ILevelsModel
+    public class LobbyModel : IGameDataReader, IGameDataWriter, ISettingsModel, IDailyBonusModel, ILevelsModel,
+        IShopModel
     {
         public EventField<int> TicketsCount { get; private set; }
 
@@ -22,6 +25,8 @@ namespace CodeBase.Lobby.UI
 
         public EventField<int> CompletedLevelNumber { get; private set; }
 
+        public EventField<List<string>> BoughtItemsIDs { get; private set; }
+
         public void OnGameDataLoad(SavedGameData data)
         {
             TicketsCount = new EventField<int>(data.PlayerProgress.TicketsCount);
@@ -33,6 +38,8 @@ namespace CodeBase.Lobby.UI
             ConsecutiveEntryCount = new EventField<int>(data.PlayerProgress.ConsecutiveEntryCount);
 
             CompletedLevelNumber = new EventField<int>(data.PlayerProgress.CompletedLevelNumber);
+
+            BoughtItemsIDs = new EventField<List<string>>(data.PlayerProgress.BoughtItemsIDs);
         }
 
         public void OnGameDataSave(SavedGameData data)

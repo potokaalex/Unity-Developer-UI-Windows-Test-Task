@@ -10,9 +10,9 @@ namespace CodeBase.Utilities.UI
 
         private protected void Awake() => SelectableButton = GetComponent<Button>();
 
-        private protected void OnEnable() => SelectableButton.onClick.AddListener(OnClick);
+        private protected virtual void OnEnable() => SelectableButton.onClick.AddListener(OnClick);
 
-        private protected void OnDisable() => SelectableButton.onClick.RemoveListener(OnClick);
+        private protected virtual void OnDisable() => SelectableButton.onClick.RemoveListener(OnClick);
 
         private protected abstract void OnClick();
     }

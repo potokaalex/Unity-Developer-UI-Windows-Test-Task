@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57cab712e9b646f1b22d2b5d0e483060, type: 3}
+  m_Name: ShopConfig
+  m_EditorClassIdentifier: 
+  ViewPrefab: {fileID: 5480568759837382669, guid: e4dc171ae3cb64f479149dbcb0d49837, type: 3}
+  ItemsGroupPrefab: {fileID: 4664310790797371788, guid: 0f18f3c5b18a41b4b927011d7a626503, type: 3}
+  ItemPrefab: {fileID: 3412071454948441761, guid: 5dd58213e805f0242af23954b772e50c, type: 3}
+  DonateItemPrefab: {fileID: 5858512063051752291, guid: 838ac805cd1330a428d9d94f6bcc1575, type: 3}
+  ItemsPresets:
+  - {fileID: 11400000, guid: 7de8b9b266dc2d14f953592c1322edcb, type: 2}
+  - {fileID: 11400000, guid: bbca7721970653941a7c2f0b94884129, type: 2}
+  - {fileID: 11400000, guid: 45a4d7046cefe2c498c56a12973be0fb, type: 2}
+  - {fileID: 11400000, guid: c13ae2de036181e4cb36e02ebdf935b9, type: 2}
+  - {fileID: 11400000, guid: e7aac73ed8c0cea4db3f7edaf36c4afd, type: 2}
+  - {fileID: 11400000, guid: 6c2e8e015647e6f4685cdb3e1e9c891d, type: 2}
+  - {fileID: 11400000, guid: aeb334ee1646d8a4badcb46471080272, type: 2}

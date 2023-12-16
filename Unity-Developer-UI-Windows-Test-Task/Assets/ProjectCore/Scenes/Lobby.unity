@@ -134,9 +134,9 @@ GameObject:
   - component: {fileID: 311876480}
   - component: {fileID: 311876479}
   - component: {fileID: 311876481}
-  - component: {fileID: 311876478}
-  - component: {fileID: 311876477}
   - component: {fileID: 311876482}
+  - component: {fileID: 311876478}
+  - component: {fileID: 311876483}
   m_Layer: 0
   m_Name: Startup
   m_TagString: Untagged
@@ -144,18 +144,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &311876477
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 311876476}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01ca4741bade428491c1eb0d0e201f4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &311876478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,6 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lobbyConfig: {fileID: 11400000, guid: 9adccd16e753f904fb13100bceb8e4d6, type: 2}
+  _shopConfig: {fileID: 11400000, guid: bbc203688a1058343a4a3b0df5c57bac, type: 2}
 --- !u!114 &311876479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,6 +232,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unityEventsObserverPrefab: {fileID: 8674998938098150158, guid: 83a208ac900c0a14aa02b6e902fd8cab, type: 3}
+--- !u!114 &311876483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 311876476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01ca4741bade428491c1eb0d0e201f4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

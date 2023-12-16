@@ -11,7 +11,7 @@ namespace CodeBase.Project.Data.Saved
         public int TicketsCount;
         public int CompletedLevelNumber = 5;
 
-        public List<string> BoughtItemsNames = new()
+        public List<string> BoughtItemsIDs = new()
         {
             "Character 1",
             "Location 1"

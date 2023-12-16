@@ -1,71 +1,121 @@
-﻿using CodeBase.Lobby.Data;
+﻿using System.Collections.Generic;
+using System.Linq;
 using CodeBase.Project.Services.AssetProviderService;
 using CodeBase.Project.Services.WindowsManagerService;
 using CodeBase.UI.Shop.Item;
+using CodeBase.UI.Shop.Item.BuyButton;
+using CodeBase.UI.Shop.Item.Data;
+using CodeBase.UI.Shop.Item.Donate;
+using CodeBase.UI.Shop.Item.Group;
 using UnityEngine;
 using Zenject;
 
 namespace CodeBase.UI.Shop
 {
-    public class ShopUIFactory : IInitializable
+    public class ShopUIFactory
     {
         private readonly IInstantiator _instantiator;
-        private readonly LobbyConfigProvider _configProvider;
         private readonly IAssetProvider _assetProvider;
         private readonly WindowsManager _windowsManager;
-        private LobbyConfig _config;
+        private readonly ShopController _controller;
+        private ShopConfig _config;
 
-        public ShopUIFactory(IInstantiator instantiator, LobbyConfigProvider configProvider,
-            IAssetProvider assetProvider, WindowsManager windowsManager)
+        public ShopUIFactory(IInstantiator instantiator, IAssetProvider assetProvider, WindowsManager windowsManager,
+            ShopController controller)
         {
             _instantiator = instantiator;
-            _configProvider = configProvider;
             _assetProvider = assetProvider;
             _windowsManager = windowsManager;
+            _controller = controller;
         }
 
-        public void Initialize() => _config = _configProvider.GetConfig();
+        public void Initialize(ShopConfig config) => _config = config;
 
-        public ShopView CreateView()
+        public void Create(Transform viewsRoot)
         {
-            var prefab = _config.ShopViewPrefab;
-            var item = _instantiator.InstantiatePrefabForComponent<ShopView>(prefab);
+            var view = CreateView(viewsRoot, _config.ViewPrefab);
+            _windowsManager.RegisterWindow(WindowType.Shop, view);
+            _controller.Initialize(view);
+        }
 
-            item.transform.SetParent(null, false);
+        private T CreateView<T>(Transform root, T prefab) where T : MonoBehaviour
+        {
+            var instance = _instantiator.InstantiatePrefabForComponent<T>(prefab);
+            instance.transform.SetParent(root, false);
+            return instance;
+        }
 
+        public List<IShopItemView> CreateItems(Transform itemGroupsRoot)
+        {
+            var result = new List<IShopItemView>();
+
+            result.AddRange(CreateGroupWithItems(ShopItemGroupType.Tickets, itemGroupsRoot));
+            result.AddRange(CreateGroupWithItems(ShopItemGroupType.Skins, itemGroupsRoot));
+            result.AddRange(CreateGroupWithItems(ShopItemGroupType.Locations, itemGroupsRoot));
+
+            return result;
+        }
+
+        private List<IShopItemView> CreateGroupWithItems(ShopItemGroupType type, Transform root)
+        {
+            var items = new List<IShopItemView>();
+            var group = CreateView(root, _config.ItemsGroupPrefab);
+            var presets = _config.ItemsPresets.Where(p => p.GroupType == type);
+
+            group.Initialize(type);
+
+            foreach (var preset in presets)
+            {
+                IShopItemView item = preset.Type switch
+                {
+                    ShopItemType.NonDonate => CreateNonDonateItem(group.GetItemsRoot(), preset),
+                    ShopItemType.Donate => CreateDonateItem(group.GetItemsRoot(), preset),
+                    _ => default
+                };
+
+                item.BuyButton.Initialize(new ShopItemBuyData
+                {
+                    GroupType = preset.GroupType,
+                    ID = preset.ID,
+                    TicketsCost = preset.TicketsCost,
+                    ItemsCount = preset.ItemsCount,
+                    RequiredLevelNumber = preset.RequiredLevelNumber,
+                    IsConsumable = preset.IsConsumable
+                });
+
+                items.Add(item);
+            }
+
+            return items;
+        }
+
+        private ShopItemView CreateNonDonateItem(Transform root, ShopItemPreset preset)
+        {
+            var item = CreateView(root, _config.ItemPrefab);
+            item.Initialize(new ShopItemData
+            {
+                ID = preset.ID,
+                Name = preset.Name,
+                TicketsCost = preset.TicketsCost,
+                RequiredLevelNumber = preset.RequiredLevelNumber,
+                UnLockIcon = _assetProvider.GetIcon(preset.IconName),
+                LockIcon = _assetProvider.GetIcon(preset.LockIconName)
+            });
             return item;
         }
 
-        public ShopItemGroup CreateItemGroup(Transform root, ShopItemGroupType groupType)
+        private ShopDonateItemView CreateDonateItem(Transform root, ShopItemPreset preset)
         {
-            var prefab = _config.ShopItemGroupPrefab;
-            var item = _instantiator.InstantiatePrefabForComponent<ShopItemGroup>(prefab);
-
-            item.transform.SetParent(root, false);
-            item.Initialize(groupType);
-
+            var item = CreateView(root, _config.DonateItemPrefab);
+            item.Initialize(new ShopDonateItemData
+            {
+                ID = preset.ID,
+                Name = preset.Name,
+                Cost = preset.DonateCost,
+                ItemsCount = preset.ItemsCount,
+                DefaultIcon = _assetProvider.GetIcon(preset.IconName)
+            });
             return item;
-        }
-
-        public ShopItem CreateItem(ShopItemPreset preset, Transform root)
-        {
-            var prefab = _config.ShopItemPrefab;
-            var item = _instantiator.InstantiatePrefabForComponent<ShopItem>(prefab);
-
-            item.transform.SetParent(root, false);
-            item.Initialize(preset, _assetProvider.Get<Sprite>(preset.IconName));
-
-            return item;
-        }
-
-        public void CreateDonateItem(ShopItemPreset preset, Transform root)
-        {
-            var prefab = _config.ShopDonateItemPrefab;
-            var args = new object[] { preset };
-            var item = _instantiator.InstantiatePrefabForComponent<ShopItemDonate>(prefab, args);
-
-            item.transform.SetParent(root, false);
-            item.Initialize(_assetProvider.Get<Sprite>(preset.IconName));
         }
     }
 }

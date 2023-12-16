@@ -36,7 +36,7 @@ namespace CodeBase.UI.Model
         {
             return new ModelPlayerProgressData
             {
-                BoughtItemsNames = playerProgress.BoughtItemsNames,
+                BoughtItemsNames = playerProgress.BoughtItemsIDs,
                 LastExitOADate = playerProgress.LastExitOADate,
                 ConsecutiveEntryCount = playerProgress.ConsecutiveEntryCount,
                 TicketsCount = playerProgress.TicketsCount,
@@ -48,7 +48,7 @@ namespace CodeBase.UI.Model
         {
             return new SavedPlayerProgressData
             {
-                BoughtItemsNames = playerProgress.BoughtItemsNames,
+                BoughtItemsIDs = playerProgress.BoughtItemsNames,
                 LastExitOADate = playerProgress.LastExitOADate,
                 ConsecutiveEntryCount = playerProgress.ConsecutiveEntryCount,
                 TicketsCount = playerProgress.TicketsCount,

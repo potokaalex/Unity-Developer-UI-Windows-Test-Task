@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using Zenject;
 
-namespace CodeBase.UI.Levels
+namespace CodeBase.UI.Levels.View
 {
     public class LevelsOpenLevelButton : ButtonBase
     {

@@ -32,7 +32,7 @@ namespace CodeBase.Lobby.States
             _gameDataSaveLoader.RegisterWatcher(_lobbyModel);
             _gameDataSaveLoader.Load();
 
-            CreateUI();
+            _lobbyUIFactory.Create();
 
             _unityEventsObserver.OnApplicationExitEvent += _stateMachine.SwitchTo<LobbyExitState>;
         }
@@ -49,11 +49,6 @@ namespace CodeBase.Lobby.States
             {
                 Debug.LogError("Initialize Unity Services: FAILED!");
             }
-        }
-
-        private void CreateUI()
-        {
-            _lobbyUIFactory.Create();
         }
     }
 }

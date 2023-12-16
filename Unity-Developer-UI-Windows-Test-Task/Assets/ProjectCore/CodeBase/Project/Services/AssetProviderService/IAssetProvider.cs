@@ -4,6 +4,6 @@ namespace CodeBase.Project.Services.AssetProviderService
 {
     public interface IAssetProvider
     {
-        public T Get<T>(string path) where T : Object;
+        public Sprite GetIcon(string path);
     }
 }

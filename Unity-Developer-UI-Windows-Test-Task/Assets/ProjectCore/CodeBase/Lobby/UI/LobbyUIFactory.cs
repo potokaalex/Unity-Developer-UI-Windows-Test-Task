@@ -3,6 +3,7 @@ using CodeBase.Project.Services.WindowsManagerService;
 using CodeBase.UI.DailyBonus;
 using CodeBase.UI.Levels;
 using CodeBase.UI.Settings;
+using CodeBase.UI.Shop;
 using UnityEngine;
 using Zenject;
 
@@ -17,11 +18,12 @@ namespace CodeBase.Lobby.UI
         private readonly SettingsController _settingsController;
         private readonly DailyBonusUIFactory _dailyBonusUIFactory;
         private readonly LevelsController _levelsController;
+        private readonly ShopUIFactory _shopUIFactory;
         private LobbyConfig _config;
 
         public LobbyUIFactory(IInstantiator instantiator, LobbyConfigProvider configProvider,
             WindowsManager windowsManager, LobbyController controller, SettingsController settingsController,
-            DailyBonusUIFactory dailyBonusUIFactory, LevelsController levelsController)
+            DailyBonusUIFactory dailyBonusUIFactory, LevelsController levelsController, ShopUIFactory shopUIFactory)
         {
             _instantiator = instantiator;
             _configProvider = configProvider;
@@ -30,6 +32,7 @@ namespace CodeBase.Lobby.UI
             _settingsController = settingsController;
             _dailyBonusUIFactory = dailyBonusUIFactory;
             _levelsController = levelsController;
+            _shopUIFactory = shopUIFactory;
         }
 
         public void Initialize() => _config = _configProvider.GetConfig();
@@ -44,6 +47,7 @@ namespace CodeBase.Lobby.UI
             CreateSettings(viewsRoot);
             CreateDailyBonus(viewsRoot);
             CreateLevels(viewsRoot);
+            CreateShop(viewsRoot);
         }
 
         private Transform CreateRootCanvas()
@@ -78,6 +82,12 @@ namespace CodeBase.Lobby.UI
             var view = CreateView(viewsRoot, _config.Levels.LevelsViewPrefab);
             _windowsManager.RegisterWindow(WindowType.Levels, view);
             _levelsController.Initialize(_config.Levels, view);
+        }
+
+        private void CreateShop(Transform viewsRoot)
+        {
+            _shopUIFactory.Initialize(_configProvider.GetShopConfig());
+            _shopUIFactory.Create(viewsRoot);
         }
     }
 }

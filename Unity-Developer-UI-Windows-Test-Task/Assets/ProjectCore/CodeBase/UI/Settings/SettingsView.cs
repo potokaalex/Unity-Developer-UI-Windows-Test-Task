@@ -1,30 +1,20 @@
-﻿using CodeBase.Utilities.UI.Window;
+﻿using CodeBase.Common.Utilities.UI.Window;
+using CodeBase.UI.Settings.Toggle;
 using UnityEngine;
 
 namespace CodeBase.UI.Settings
 {
-    public class SettingsView : WindowBase
+    public class SettingsView : MonoBehaviour, IWindow
     {
         [SerializeField] private SettingsToggle _musicToggle;
         [SerializeField] private SettingsToggle _uiSoundToggle;
 
-        public void Initialize(bool isMusicActive, bool isUISoundActive)
-        {
-            _musicToggle.Initialize(isMusicActive);
-            _uiSoundToggle.Initialize(isUISoundActive);
-            Close();
-        }
+        public SettingsToggle MusicToggle => _musicToggle;
 
-        public override void Open()
-        {
-            base.Open();
-            gameObject.SetActive(true);
-        }
+        public SettingsToggle UISoundToggle => _uiSoundToggle;
 
-        public override void Close()
-        {
-            base.Close();
-            gameObject.SetActive(false);
-        }
+        public void Open() => gameObject.SetActive(true);
+
+        public void Close() => gameObject.SetActive(false);
     }
 }

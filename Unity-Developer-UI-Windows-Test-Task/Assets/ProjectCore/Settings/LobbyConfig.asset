@@ -12,27 +12,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 878f7caf18b04773a5d91471c293a82b, type: 3}
   m_Name: LobbyConfig
   m_EditorClassIdentifier: 
-  MainViewPrefab: {fileID: 1598339370219117928, guid: 13b29d81d8294b94abfc86440d9d64bb, type: 3}
-  SettingsViewPrefab: {fileID: 3906930698698578222, guid: f01da2f3a8007b74c89f4d1f89b65812, type: 3}
-  DailyBonusCongratsViewPrefab: {fileID: 7312072375896489493, guid: 29887de836620b94d899fad30314a16b, type: 3}
-  DailyBonusOverviewViewPrefab: {fileID: 3082625682474795020, guid: 8c3f045efea44d145989aa5a8b59be86, type: 3}
-  DailyBonusCountItemViewPrefab: {fileID: 443571190072871154, guid: ca61c9844fd4c2941b75fdf0149ee968, type: 3}
-  DailyBonusCountItemPresets:
-  - DayNumber: 1
-    TicketsCount: 5
-  - DayNumber: 2
-    TicketsCount: 5
-  - DayNumber: 3
-    TicketsCount: 10
-  - DayNumber: 4
-    TicketsCount: 10
-  - DayNumber: 5
-    TicketsCount: 15
-  - DayNumber: 6
-    TicketsCount: 15
-  WeeklyBonusCountItemPreset:
-    DayNumber: 7
-    TicketsCount: 30
+  CanvasPrefab: {fileID: 1598339370219117935, guid: 13b29d81d8294b94abfc86440d9d64bb, type: 3}
+  ViewPrefab: {fileID: 6589083982184831200, guid: e253a03774d191f488fecafff7fc9424, type: 3}
+  Settings:
+    ViewPrefab: {fileID: 3906930698698578222, guid: f01da2f3a8007b74c89f4d1f89b65812, type: 3}
+  DailyBonus:
+    DailyBonusCongratsViewPrefab: {fileID: 7312072375896489493, guid: 29887de836620b94d899fad30314a16b, type: 3}
+    DailyBonusOverviewViewPrefab: {fileID: 3082625682474795020, guid: 8c3f045efea44d145989aa5a8b59be86, type: 3}
+    DailyBonusCountItemViewPrefab: {fileID: 443571190072871154, guid: ca61c9844fd4c2941b75fdf0149ee968, type: 3}
+    CountItemsPresets:
+    - DayNumber: 1
+      TicketsCount: 5
+    - DayNumber: 2
+      TicketsCount: 5
+    - DayNumber: 3
+      TicketsCount: 10
+    - DayNumber: 4
+      TicketsCount: 10
+    - DayNumber: 5
+      TicketsCount: 15
+    - DayNumber: 6
+      TicketsCount: 15
+    WeeklyBonusCountItemPreset:
+      DayNumber: 7
+      TicketsCount: 30
+    DaysContToReachWeeklyBonus: 7
+    DaysCountToReachDailyBonus: 1
+    FirstDayNumber: 1
+  Levels:
+    LevelsViewPrefab: {fileID: 325684127526228386, guid: edfda7e5b93fc2f448d9a29f47ec2491, type: 3}
+    LevelsCount: 21
   ShopViewPrefab: {fileID: 5480568759837382669, guid: e4dc171ae3cb64f479149dbcb0d49837, type: 3}
   ShopItemGroupPrefab: {fileID: 4664310790797371788, guid: 0f18f3c5b18a41b4b927011d7a626503, type: 3}
   ShopItemPrefab: {fileID: 3412071454948441761, guid: 5dd58213e805f0242af23954b772e50c, type: 3}
@@ -80,4 +89,3 @@ MonoBehaviour:
     Cost: 500
     Count: 0
     RequiredLevelNumber: 10
-  LobbyLevelsViewPrefab: {fileID: 325684127526228386, guid: edfda7e5b93fc2f448d9a29f47ec2491, type: 3}

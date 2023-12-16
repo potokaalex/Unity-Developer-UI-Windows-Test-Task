@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using CodeBase.Utilities.UI.Window;
+using CodeBase.Common.Utilities.UI.Window;
 using UnityEngine;
 
 namespace CodeBase.UI.Levels.View

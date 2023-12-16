@@ -1,5 +1,5 @@
-﻿using CodeBase.Lobby.Data;
-using CodeBase.Project.Services.WindowsManagerService;
+﻿using CodeBase.Common.Services.WindowsManagerService;
+using CodeBase.Lobby.Data;
 using CodeBase.UI.DailyBonus;
 using CodeBase.UI.Levels;
 using CodeBase.UI.Settings;

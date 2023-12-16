@@ -1,5 +1,5 @@
 ﻿using System;
-using CodeBase.Project.Services.WindowsManagerService;
+using CodeBase.Common.Services.WindowsManagerService;
 using CodeBase.UI.DailyBonus.View;
 using CodeBase.UI.DailyBonus.View.CountItem;
 

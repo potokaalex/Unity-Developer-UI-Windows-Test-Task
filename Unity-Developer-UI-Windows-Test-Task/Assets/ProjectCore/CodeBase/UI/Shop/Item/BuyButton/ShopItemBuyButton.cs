@@ -1,9 +1,9 @@
-﻿using CodeBase.Utilities.UI;
+﻿using CodeBase.Common.Utilities.UI.UIButton;
 using Zenject;
 
 namespace CodeBase.UI.Shop.Item.BuyButton
 {
-    public class ShopItemBuyButton : ButtonBase, IShopItemBuyButton
+    public class ShopItemBuyButton : ButtonBaseSfx, IShopItemBuyButton
     {
         private ShopController _controller;
         private ShopItemBuyData _data;
@@ -13,6 +13,10 @@ namespace CodeBase.UI.Shop.Item.BuyButton
 
         public void Initialize(ShopItemBuyData data) => _data = data;
 
-        private protected override void OnClick() => _controller.BuyItem(_data);
+        private protected override void OnClick()
+        {
+            _controller.BuyItem(_data);
+            PlayButtonClickSound();
+        }
     }
 }

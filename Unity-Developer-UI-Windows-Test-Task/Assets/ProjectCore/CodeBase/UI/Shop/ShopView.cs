@@ -1,6 +1,6 @@
 using System.Collections.Generic;
+using CodeBase.Common.Utilities.UI.Window;
 using CodeBase.UI.Shop.Item;
-using CodeBase.Utilities.UI.Window;
 using UnityEngine;
 using Zenject;
 

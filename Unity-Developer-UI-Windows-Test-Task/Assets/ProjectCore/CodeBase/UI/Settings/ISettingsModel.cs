@@ -1,4 +1,4 @@
-﻿using CodeBase.Project.Data;
+﻿using CodeBase.Common.Data;
 
 namespace CodeBase.UI.Settings
 {

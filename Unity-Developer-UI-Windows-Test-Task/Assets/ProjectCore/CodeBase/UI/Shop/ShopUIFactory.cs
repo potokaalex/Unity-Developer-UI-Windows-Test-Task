@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using CodeBase.Project.Services.AssetProviderService;
-using CodeBase.Project.Services.WindowsManagerService;
+using CodeBase.Common.Services.AssetProviderService;
+using CodeBase.Common.Services.WindowsManagerService;
 using CodeBase.UI.Shop.Item;
 using CodeBase.UI.Shop.Item.BuyButton;
 using CodeBase.UI.Shop.Item.Data;

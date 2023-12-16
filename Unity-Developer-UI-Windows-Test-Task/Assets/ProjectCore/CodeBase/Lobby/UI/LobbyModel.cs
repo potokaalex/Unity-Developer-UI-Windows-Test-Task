@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using CodeBase.Project.Data;
-using CodeBase.Project.Data.Saved;
-using CodeBase.Project.Services.SaveLoaderService;
+using CodeBase.Common.Data;
+using CodeBase.Common.Data.Saved;
+using CodeBase.Common.Services.SaveLoaderService;
 using CodeBase.UI.DailyBonus;
 using CodeBase.UI.Levels;
 using CodeBase.UI.Settings;

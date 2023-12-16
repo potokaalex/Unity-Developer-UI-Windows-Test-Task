@@ -1,12 +1,12 @@
-﻿using CodeBase.UI.Shop.Item.BuyButton;
-using CodeBase.Utilities.UI;
+﻿using CodeBase.Common.Utilities.UI.UIButton;
+using CodeBase.UI.Shop.Item.BuyButton;
 using UnityEngine;
 using UnityEngine.Purchasing;
 using Zenject;
 
 namespace CodeBase.UI.Shop.Item.Donate
 {
-    public class ShopDonateItemBuyButton : ButtonBase, IShopItemBuyButton
+    public class ShopDonateItemBuyButton : ButtonBaseSfx, IShopItemBuyButton
     {
         [SerializeField] private CodelessIAPButton _iapButton;
         private ShopController _controller;
@@ -38,10 +38,7 @@ namespace CodeBase.UI.Shop.Item.Donate
             _iapButton.onPurchaseComplete.RemoveListener(BuyItem);
         }
 
-        private protected override void OnClick()
-        {
-            //ToDo: sfx!
-        }
+        private protected override void OnClick() => PlayButtonClickSound();
 
         private void BuyItem(Product _) => _controller.BuyItem(_data);
     }

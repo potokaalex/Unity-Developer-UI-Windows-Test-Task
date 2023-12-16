@@ -1,5 +1,5 @@
 ﻿using System;
-using CodeBase.Project.Services;
+using CodeBase.Common.Services.AudioManagerService;
 
 namespace CodeBase.UI.Settings
 {
@@ -20,7 +20,7 @@ namespace CodeBase.UI.Settings
             _view = view;
 
             _view.MusicToggle.Initialize(_model.IsMusicActive.Value);
-            _view.MusicToggle.Initialize(_model.IsUISoundActive.Value);
+            _view.UISoundToggle.Initialize(_model.IsUISoundActive.Value);
             _view.Close();
 
             _model.IsMusicActive.OnChanged += _view.MusicToggle.ShowActive;

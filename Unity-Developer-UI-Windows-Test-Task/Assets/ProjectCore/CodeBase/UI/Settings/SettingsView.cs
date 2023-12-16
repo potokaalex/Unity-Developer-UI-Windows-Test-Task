@@ -1,5 +1,5 @@
-﻿using CodeBase.UI.Settings.Toggle;
-using CodeBase.Utilities.UI.Window;
+﻿using CodeBase.Common.Utilities.UI.Window;
+using CodeBase.UI.Settings.Toggle;
 using UnityEngine;
 
 namespace CodeBase.UI.Settings

@@ -1,11 +1,11 @@
 ﻿using System;
-using CodeBase.Utilities.UI;
+using CodeBase.Common.Utilities.UI.UIToggle;
 using UnityEngine;
 using Zenject;
 
 namespace CodeBase.UI.Settings.Toggle
 {
-    public class SettingsToggle : ToggleBase
+    public class SettingsToggle : ToggleBaseSfx
     {
         [SerializeField] private SettingsToggleType _toggleType;
         [SerializeField] private GameObject _onDisableRoot;
@@ -26,10 +26,10 @@ namespace CodeBase.UI.Settings.Toggle
             switch (_toggleType)
             {
                 case SettingsToggleType.Music:
-                    _controller.SetMusicActive(isActive);
+                    SetMusicSound(isActive);
                     break;
                 case SettingsToggleType.UISound:
-                    _controller.SetUISoundActive(isActive);
+                    SetUISound(isActive);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -37,5 +37,22 @@ namespace CodeBase.UI.Settings.Toggle
         }
 
         public void ShowActive(bool isActive) => _onDisableRoot.SetActive(!isActive);
+
+        private void SetMusicSound(bool isActive)
+        {
+            _controller.SetMusicActive(isActive);
+            PlayButtonClickSound();
+        }
+
+        private void SetUISound(bool isActive)
+        {
+            if (isActive)
+            {
+                _controller.SetUISoundActive(true);
+                PlayButtonClickSound();
+            }
+            else
+                PlayButtonClickSound(() => _controller.SetUISoundActive(false));
+        }
     }
 }

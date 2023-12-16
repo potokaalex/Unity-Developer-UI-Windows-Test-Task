@@ -1,11 +1,11 @@
-using CodeBase.Utilities.UI;
+using CodeBase.Common.Utilities.UI.UIButton;
 using TMPro;
 using UnityEngine;
 using Zenject;
 
 namespace CodeBase.UI.Levels.View
 {
-    public class LevelsOpenLevelButton : ButtonBase
+    public class LevelsOpenLevelButton : ButtonBaseSfx
     {
         [SerializeField] private TextMeshProUGUI _levelNumberText;
         [SerializeField] private Transform _isLockedRoot;
@@ -30,6 +30,10 @@ namespace CodeBase.UI.Levels.View
             _isOpenedRoot.gameObject.SetActive(!isLocked);
         }
 
-        private protected override void OnClick() => _controller.OpenLevel(_levelNumber);
+        private protected override void OnClick()
+        {
+            _controller.OpenLevel(_levelNumber);
+            PlayButtonClickSound();
+        }
     }
 }

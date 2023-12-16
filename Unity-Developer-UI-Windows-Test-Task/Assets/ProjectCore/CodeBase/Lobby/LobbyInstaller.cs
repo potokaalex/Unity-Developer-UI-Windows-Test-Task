@@ -1,6 +1,6 @@
-﻿using CodeBase.Lobby.Data;
+﻿using CodeBase.Common.Services.WindowsManagerService;
+using CodeBase.Lobby.Data;
 using CodeBase.Lobby.UI;
-using CodeBase.Project.Services.WindowsManagerService;
 using CodeBase.UI.DailyBonus;
 using CodeBase.UI.Levels;
 using CodeBase.UI.Settings;
@@ -17,41 +17,40 @@ namespace CodeBase.Lobby
 
         public override void InstallBindings()
         {
+            BindFactories();
+            BindControllers();
+            BindModel();
+
             Container.Bind<LobbyConfigProvider>().AsSingle().WithArguments(_lobbyConfig, _shopConfig);
-
-            Container.BindInterfacesAndSelfTo<LobbyUIFactory>().AsSingle();
-            Container.Bind<DailyBonusUIFactory>().AsSingle();
-            Container.Bind<ShopUIFactory>().AsSingle();
-
-            Container.Bind(typeof(LobbyModel),
-                    typeof(ISettingsModel), typeof(IDailyBonusModel), typeof(ILevelsModel), typeof(IShopModel))
-                .To<LobbyModel>()
-                .AsSingle();
-
-            Container.BindInterfacesAndSelfTo<LobbyController>().AsSingle();
-            Container.BindInterfacesAndSelfTo<SettingsController>().AsSingle();
-            Container.Bind<DailyBonusController>().AsSingle();
-            Container.BindInterfacesAndSelfTo<LevelsController>().AsSingle();
-            Container.BindInterfacesAndSelfTo<ShopController>().AsSingle();
-
             Container.Bind<WindowsManager>().AsSingle();
         }
 
         private void BindFactories()
         {
-            //Container.Bind<LobbyMainUIFactory>().AsSingle();
-            //Container.Bind<SettingsUIFactory>().AsSingle();
-            //Container.BindInterfacesAndSelfTo<DailyBonusUIFactory>().AsSingle();
-            //Container.BindInterfacesAndSelfTo<LevelsUIFactory>().AsSingle();
+            Container.BindInterfacesAndSelfTo<LobbyUIFactory>().AsSingle();
+            Container.Bind<DailyBonusUIFactory>().AsSingle();
+            Container.Bind<ShopUIFactory>().AsSingle();
         }
 
-        private void BindAdapters()
+        private void BindControllers()
         {
-            //Container.Bind(typeof(LobbyMainAdapter), typeof(IDisposable)).To<LobbyMainAdapter>().AsSingle();
-            //Container.Bind<SettingsAdapter>().AsSingle();
-            //Container.Bind<DailyBonusAdapter>().AsSingle();
-            //Container.BindInterfacesAndSelfTo<ShopAdapter>().AsSingle();
-            //Container.Bind<LevelsAdapter>().AsSingle();
+            Container.BindInterfacesAndSelfTo<LobbyController>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SettingsController>().AsSingle();
+            Container.Bind<DailyBonusController>().AsSingle();
+            Container.BindInterfacesAndSelfTo<LevelsController>().AsSingle();
+            Container.BindInterfacesAndSelfTo<ShopController>().AsSingle();
+        }
+
+        private void BindModel()
+        {
+            Container.Bind(
+                    typeof(LobbyModel),
+                    typeof(ISettingsModel),
+                    typeof(IDailyBonusModel),
+                    typeof(ILevelsModel),
+                    typeof(IShopModel))
+                .To<LobbyModel>()
+                .AsSingle();
         }
     }
 }

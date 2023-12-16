@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using CodeBase.Project.Data;
+using CodeBase.Common.Data;
 
 namespace CodeBase.UI.Shop
 {

@@ -1,4 +1,4 @@
-﻿using CodeBase.Utilities.UI.Window;
+﻿using CodeBase.Common.Utilities.UI.Window;
 using TMPro;
 using UnityEngine;
 
